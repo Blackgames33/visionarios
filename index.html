@@ -73,8 +73,8 @@ nav{
 
 /* CORE */
 .core{
-  width:220px;
-  height:220px;
+  width:1700px;
+  height:170px;
   border-radius:50%;
   background:
     radial-gradient(circle, rgba(139,233,253,0.25), transparent 70%);
@@ -93,7 +93,16 @@ nav{
   border:1px solid rgba(139,233,253,0.2);
   animation:pulse 4s infinite;
 }
-
+.core::after{
+  content:"";
+  position:absolute;
+  inset:-30px;
+  border-radius:50%;
+  border:1px solid rgba(139,233,253,0.2);
+  animation:pulse 4s infinite;
+  animation-delay:01s;
+}
+  
 @keyframes pulse{
   0%{transform:scale(0.8);opacity:0.6;}
   100%{transform:scale(1.4);opacity:0;}
