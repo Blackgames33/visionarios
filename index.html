@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,7 +102,7 @@ nav{
   animation:pulse 4s infinite;
   animation-delay:01s;
 }
-  
+
 @keyframes pulse{
   0%{transform:scale(0.7);opacity:0.8;}
   100%{transform:scale(1.5);opacity:0;}
@@ -290,29 +289,8 @@ footer{
     width:65%;
     height:65%;
   }
-    
-}
-
-
-  @media (max-width:768px){
-
-  .hero-text h1{
-    font-size:1.6rem;
-    letter-spacing:0.08em;
-    line-height:1.2;
-    padding:0 10px;
-  }
 
 }
-  @media (max-width:768px){
-
-  .hero-text p{
-    font-size:0.85rem;
-    line-height:1.5;
-    padding:0 15px;
-    opacity:0.8;
-  }
-
 
 </style>
 </head>
@@ -334,31 +312,25 @@ footer{
 
 <div class="orbit">
 
-<div class="nodes">
+<a href="cognitive.html" class="node">
+  <div class="node-content" style="background-image:url('assets/brain.png')"></div>
+</a>
 
-  <!-- COLE SEU NOVO CÓDIGO AQUI -->
+<a href="temporal.html" class="node">
+  <div class="node-content" style="background-image:url('assets/time.png')"></div>
+   <span class="node-label">Chrono Dynamics</span>
+</a>
 
-  <a href="cognitive.html" class="node">
-    <div class="node-content" style="background-image:url('assets/cognitive.png')"></div>
-    <span class="node-label">Cognitive System</span>
-  </a>
+<a href="cosmology.html" class="node">
+  <div class="node-content" style="background-image:url('assets/cosmos.png')"></div>
+</a>
 
-  <a href="temporal.html" class="node">
-    <div class="node-content" style="background-image:url('assets/time.png')"></div>
-    <span class="node-label">Chrono Dynamics</span>
-  </a>
-
-  <a href="cosmology.html" class="node">
-    <div class="node-content" style="background-image:url('assets/cosmos.png')"></div>
-    <span class="node-label">Structural Cosmology</span>
-  </a>
-
-  <a href="compute.html" class="node">
-    <div class="node-content" style="background-image:url('assets/ai.png')"></div>
-    <span class="node-label">Computational Layer</span>
-  </a>
+<a href="computing.html" class="node">
+  <div class="node-content" style="background-image:url('assets/computation.png')"></div>
+</a>
 
 </div>
+
 <div class="hero-text">
   <h1>VISIONÁRIOS</h1>
   <p>
@@ -409,6 +381,7 @@ footer{
 <script>
 window.addEventListener("scroll", () => {
   const bg = document.querySelector(".bg");
+  bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
 
   const offsetY = window.scrollY * 0.2;
 
