@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VISIONÁRIOS — Conceptual Systems</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --bg:#000;
@@ -14,24 +12,26 @@
   --accent:#8be9fd;
   --border:rgba(255,255,255,0.08);
 }
-
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
    background:black;
   color:white;
   font-family:'Roboto',sans-serif;
   overflow-x:hidden;
+   background:#000; /*mantem a base*/
 }
 
 /* BACKGROUND */
 .bg{
   position:fixed;
   inset:0;
+  inset:-10; /* expande alem da tela */
   background:url('assets/fundo3.png') center center/cover no-repeat;
   opacity:0.25;
   z-index:-1;
   will-change:transform;
+  transform:scale(1.1);
+
 }
 
 /* NAV */
@@ -43,7 +43,6 @@ header{
   border-bottom:1px solid var(--border);
   z-index:100;
 }
-
 nav{
   max-width:1200px;
   margin:auto;
@@ -53,12 +52,10 @@ nav{
   height:90px;
   padding:0 5%;
 }
-
 .logo{
   font-family:'Montserrat';
   letter-spacing:0.3em;
 }  
-
 /* HERO */
 .hero{
   height:100vh;
@@ -67,7 +64,6 @@ nav{
   justify-content:center;
   position:relative;
 }
-
 /* CORE */
 .core{
   width:170px;
@@ -79,7 +75,6 @@ nav{
     inset 0 0 40px rgba(139,233,253,0.1);
   position:absolute;
 }
-
 /* PULSE */
 .core::after,
 .core::before{
@@ -90,14 +85,11 @@ nav{
   border:1px solid rgba(139,233,253,0.2);
   animation:pulse 4s infinite;
 }
-
 .core::before{ animation-delay:1s; }
-
 @keyframes pulse{
   0%{transform:scale(0.7);opacity:0.8;}
   100%{transform:scale(1.5);opacity:0;}
 }
-
 /* ORBIT */
 .orbit{
   position:absolute;
@@ -107,13 +99,10 @@ nav{
   border:1px dashed rgba(255,255,255,0.08);
   animation:rotate(0deg);
 }
-
-
 @keyframes rotate{
   from{transform:rotate(0deg);}
   to{transform:rotate(360deg);}
 }
-
 /* NODE */
 .node{
   position:absolute;
@@ -133,16 +122,13 @@ nav{
   backdrop-filter: blur(10px) saturate(120%);
   transition:0.4s;
 }
-
 .node:hover{
   transform:scale(1.25);
   box-shadow:0 0 30px rgba(139,233,253,0.4);
 }
-
 .node:active{
   transform:scale(1.35);
 }
-
 /* NODE CONTENT */
 .node-content{
   width:100%;
@@ -151,13 +137,11 @@ nav{
   background-position:center;
   background-repeat:no-repeat;
 }
-
 /* POSITIONS */
 .node:nth-child(1){ top:-40px; left:50%; transform:translateX(-50%);}
 .node:nth-child(2){ bottom:-40px; left:50%; transform:translateX(-50%);}
 .node:nth-child(3){ left:-40px; top:50%; transform:translateY(-50%);}
 .node:nth-child(4){ right:-40px; top:50%; transform:translateY(-50%);}
-
 /* HUD */
 .node-display{
   position:absolute;
@@ -169,7 +153,6 @@ nav{
   opacity:0;
   transition:0.3s;
 }
-
 /* HERO TEXT */
 .hero-text{
   position:absolute;
@@ -177,55 +160,46 @@ nav{
   text-align:center;
   max-width:800px;
 }
-
 .hero-text h1{
   font-family:'Montserrat';
   font-size:clamp(2.5rem,5vw,4rem);
   letter-spacing:0.2em;
 }
-
 .hero-text p{
   margin-top:20px;
   opacity:0.7;
 }
-
 /* SECTION */
 section{
   padding:140px 0;
 }
-
 .shell{
   max-width:1200px;
   margin:auto;
   padding:0 5%;
 }
-
 .section-title{
   text-align:center;
   font-family:'Montserrat';
   margin-bottom:80px;
   letter-spacing:0.15em;
 }
-
 /* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:40px;
 }
-
 .card{
   padding:40px;
   border:1px solid var(--border);
   background:rgba(255,255,255,0.02);
   transition:0.4s;
 }
-
 .card:hover{
   transform:translateY(-10px);
   border-color:rgba(255,255,255,0.3);
 }
-
 /* FOOTER */
 footer{
   padding:100px 0;
@@ -233,19 +207,16 @@ footer{
   text-align:center;
   opacity:0.6;
 }
-
 /* MOBILE */
 @media (max-width:768px){
   .core{ width:120px;height:120px;}
   .orbit{ width:260px;height:260px;}
   .node{ width:50px;height:50px;}
   .node-content{ background-size:70%; }
-
   .hero-text{
     width:100%;
     padding:0 16px;
   }
-
   .hero-text h1{
     font-size:clamp(1.2rem,6vw,2rem);
     letter-spacing:0.08em;
@@ -253,159 +224,115 @@ footer{
 }
 </style>
 </head>
-
 <body>
-
 <div class="bg"></div>
-
 <header>
 <nav>
 <div class="logo">VISIONÁRIOS</div>
 </nav>
 </header>
-
 <section class="hero">
-
 <div class="core"></div>
-
 <div class="orbit">
-
 <a href="cognitive.html" class="node" data-name="Cognitive System">
   <div class="node-content" style="background-image:url('assets/brain.png')"></div>
 </a>
-
 <a href="temporal.html" class="node" data-name="Chrono Dynamics">
   <div class="node-content" style="background-image:url('assets/time.png')"></div>
 </a>
-
 <a href="cosmology.html" class="node" data-name="Structural Cosmology">
   <div class="node-content" style="background-image:url('assets/cosmos.png')"></div>
 </a>
-
 <a href="computing.html" class="node" data-name="Computational Layer">
   <div class="node-content" style="background-image:url('assets/computation.png')"></div>
 </a>
-
 </div>
-
 <div class="node-display" id="nodeDisplay"></div>
-
 <div class="hero-text">
 <h1>VISIONÁRIOS</h1>
 <p>
 A conceptual architecture where cognition, time, computation and structure converge into a unified dynamic system.
 </p>
 </div>
-
 </section>
-
 <section>
 <div class="shell">
-
 <h2 class="section-title">Core Systems</h2>
-
 <div class="grid">
-
 <div class="card">
 <h3>Cognitive Integration</h3>
 <p>Semantic coupling across distributed intelligence systems.</p>
 </div>
-
 <div class="card">
 <h3>Temporal Fields</h3>
 <p>Non-linear interaction between time and structure.</p>
 </div>
-
 <div class="card">
 <h3>Structural Cosmology</h3>
 <p>Layered architecture governing large-scale reality.</p>
 </div>
-
 <div class="card">
 <h3>Computational Substrate</h3>
 <p>Beyond classical computation frameworks.</p>
 </div>
-
 </div>
 </div>
 </section>
-
 <footer>
 <p>© 2026 Visionários</p>
 </footer>
-
 <script>
 /* PARALLAX */
 let currentY = 0;
-
 window.addEventListener("scroll", () => {
   const targetY = window.scrollY * 0.2;
   currentY += (targetY - currentY) * 0.1;
-
   document.querySelector(".bg").style.transform =
     `translateY(${currentY}px)`;
 });
-
 /* HUD SYSTEM */
 const nodes = document.querySelectorAll(".node");
 const display = document.getElementById("nodeDisplay");
-
 nodes.forEach(node => {
-
   node.addEventListener("mouseenter", () => {
     display.innerText = node.dataset.name;
     display.style.opacity = 1;
   });
-
   node.addEventListener("mouseleave", () => {
     display.style.opacity = 0;
   });
-
   /* MOBILE / CLICK */
   node.addEventListener("click", () => {
     display.innerText = node.dataset.name;
     display.style.opacity = 1;
   });
-
 });
-
   const orbit = document.querySelector(".orbit");
-
 let angle = 0;
 let speed = 0.2;
 let targetSpeed = 0.2;
-
 function animate() {
-  speed += (targetSpeed - speed) * 0.05;
+  speed += (targetSpeed - speed) * 0.07;
   angle += speed;
-
   orbit.style.transform = `rotate(${angle}deg)`;
-
   requestAnimationFrame(animate);
 }
-
 animate();
-
 /* Desktop */
-const hero = document.querySelector(".hero");
-
+const hero = document.querySelector(".orbit");
 hero.addEventListener("mouseenter", () => {
   targetSpeed = 0;
 });
-
 hero.addEventListener("mouseleave", () => {
-  targetSpeed = 0.2;
+  targetSpeed = 0.1;
 });
-
 /* Mobile */
-hero.addEventListener("touchstart", () => {
+orbit.addEventListener("touchstart", () => {
   targetSpeed = 0;
 });
-
 hero.addEventListener("touchend", () => {
-  targetSpeed = 0.2;
+  targetSpeed = 0.1;
 });
 </script>
-
 </body>
 </html>
