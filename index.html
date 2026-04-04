@@ -385,13 +385,18 @@ animate();
 /* Desktop */
 const hero = document.querySelector(".hero");
 
-hero.addEventListener("mouseenter", () => {
-  targetSpeed = 0;
-});
+const nodes = document.querySelectorAll(".node");
 
-hero.addEventListener("mouseleave", () => {
-  targetSpeed = 0.2;
-});
+nodes.forEach(node => {
+
+  node.addEventListener("mouseenter", () => {
+    targetSpeed = 0;
+  });
+
+  node.addEventListener("mouseleave", () => {
+    targetSpeed = 0.2;
+  });
+
 
 /* Mobile */
 hero.addEventListener("touchstart", () => {
@@ -401,6 +406,17 @@ hero.addEventListener("touchstart", () => {
 hero.addEventListener("touchend", () => {
   targetSpeed = 0.2;
 });
+nodes.forEach(node => {
+
+  node.addEventListener("touchstart", () => {
+    targetSpeed = 0;
+  });
+
+  node.addEventListener("touchend", () => {
+    targetSpeed = 0.2;
+  });
+
+  
 </script>
 
 </body>
