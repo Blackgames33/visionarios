@@ -337,11 +337,15 @@ A conceptual architecture where cognition, time, computation and structure conve
 <script>
 /* PARALLAX */
 let currentY = 0;
+
 window.addEventListener("scroll", () => {
-  const bg = document.querySelector(".bg");
-  const offsetY = window.scrollY * 0.2;
-  bg.style.transform = `translateY(${offsetY}px)`;
+  const targetY = window.scrollY * 0.2;
+  currentY += (targetY - currentY) * 0.1;
+
+  document.querySelector(".bg").style.transform =
+    `translateY(${currentY}px)`;
 });
+
 /* HUD SYSTEM */
 const nodes = document.querySelectorAll(".node");
 const display = document.getElementById("nodeDisplay");
@@ -385,18 +389,13 @@ animate();
 /* Desktop */
 const hero = document.querySelector(".hero");
 
-const nodes = document.querySelectorAll(".node");
+hero.addEventListener("mouseenter", () => {
+  targetSpeed = 0;
+});
 
-nodes.forEach(node => {
-
-  node.addEventListener("mouseenter", () => {
-    targetSpeed = 0;
-  });
-
-  node.addEventListener("mouseleave", () => {
-    targetSpeed = 0.2;
-  });
-
+hero.addEventListener("mouseleave", () => {
+  targetSpeed = 0.2;
+});
 
 /* Mobile */
 hero.addEventListener("touchstart", () => {
@@ -406,17 +405,6 @@ hero.addEventListener("touchstart", () => {
 hero.addEventListener("touchend", () => {
   targetSpeed = 0.2;
 });
-nodes.forEach(node => {
-
-  node.addEventListener("touchstart", () => {
-    targetSpeed = 0;
-  });
-
-  node.addEventListener("touchend", () => {
-    targetSpeed = 0.2;
-  });
-
-  
 </script>
 
 </body>
