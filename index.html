@@ -254,8 +254,8 @@ footer{
   top:-28px;
   left:50%;
   transform:translateX(-50%);
-  font-size:0.7rem;
-  letter-spacing:0.12em;
+  font-size:0.9rem;
+  letter-spacing:0.14em;
   white-space:nowrap;
   color:rgba(255,255,255,0.75);
   opacity:0;
@@ -265,9 +265,29 @@ footer{
   opacity:1;
   transform:translateX(-50%) translateY(-4px);
 }
-  .node-label{
-    background:red;
+  
   }
+
+  @media (max-width:768px){
+
+  .hero-text h1{
+    font-size:1.6rem;
+    letter-spacing:0.08em;
+    line-height:1.2;
+    padding:0 10px;
+  }
+
+}
+  @media (max-width:768px){
+
+  .hero-text p{
+    font-size:0.85rem;
+    line-height:1.5;
+    padding:0 15px;
+    opacity:0.8;
+  }
+
+}
 </style>
 </head>
 <body>
