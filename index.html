@@ -22,16 +22,18 @@ body{
   color:white;
   font-family:'Roboto',sans-serif;
   overflow-x:hidden;
+   background:#000; /*mantem a base*/
 }
 
 /* BACKGROUND */
 .bg{
   position:fixed;
-  inset:0;
+  inset:-10; /* expande alem da tela */
   background:url('assets/fundo3.png') center center/cover no-repeat;
   opacity:0.25;
   z-index:-1;
-  will-change:transform;
+  transform:scale(1.1);
+  
 }
 
 /* NAV */
