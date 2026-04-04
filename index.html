@@ -18,18 +18,17 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-  position:fixed;
-  inset:0;
-  background:url('assets/fundo3.png') center center/cover no-repeat;
-  opacity:0.25;
-  z-index:-1;
-  will-change:transform;
+  background:black;
+  color:white;
+  font-family:'Roboto',sans-serif;
+  overflow-x:hidden;
+}
 
 /* BACKGROUND */
 .bg{
   position:fixed;
   inset:0;
-  background:url('assets/fundo3.png') center center/cover no-repeat;
+  background:url('assets/fundo3.png') center/cover no-repeat;
   opacity:0.25;
   z-index:-1;
   will-change:transform;
@@ -38,8 +37,8 @@ body{
 /* NAV */
 header{
   position:fixed;
-  width:0%;
-  backdrop-filter:blur(10px);
+  width:100%;
+  backdrop-filter:blur(18px);
   background:rgba(0,0,0,0.4);
   border-bottom:1px solid var(--border);
   z-index:100;
@@ -339,14 +338,11 @@ A conceptual architecture where cognition, time, computation and structure conve
 </footer>
 
 <script>
-let currentY = 0;
-
+/* PARALLAX */
 window.addEventListener("scroll", () => {
-  const targetY = window.scrollY * 0.2;
-  currentY += (targetY - currentY) * 0.1;
-
-  document.querySelector(".bg").style.transform =
-    `translateY(${currentY}px)`;
+  const bg = document.querySelector(".bg");
+  const offsetY = window.scrollY * 0.2;
+  bg.style.transform = `translateY(${offsetY}px) translateX(-40px)`;
 });
 
 /* HUD SYSTEM */
