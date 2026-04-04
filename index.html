@@ -105,12 +105,9 @@ nav{
   height:520px;
   border-radius:50%;
   border:1px dashed rgba(255,255,255,0.08);
-  animation:rotate 40s linear infinite;
+  animation:rotate(0deg);
 }
 
-.hero:hover .orbit{
-  animation-play-state:paused 1s;
-}
 
 @keyframes rotate{
   from{transform:rotate(0deg);}
@@ -370,6 +367,43 @@ nodes.forEach(node => {
     display.style.opacity = 1;
   });
 
+});
+
+  const orbit = document.querySelector(".orbit");
+
+let angle = 0;
+let speed = 0.2;
+let targetSpeed = 0.2;
+
+function animate() {
+  speed += (targetSpeed - speed) * 0.05;
+  angle += speed;
+
+  orbit.style.transform = `rotate(${angle}deg)`;
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+/* Desktop */
+const hero = document.querySelector(".hero");
+
+hero.addEventListener("mouseenter", () => {
+  targetSpeed = 0;
+});
+
+hero.addEventListener("mouseleave", () => {
+  targetSpeed = 0.2;
+});
+
+/* Mobile */
+hero.addEventListener("touchstart", () => {
+  targetSpeed = 0;
+});
+
+hero.addEventListener("touchend", () => {
+  targetSpeed = 0.2;
 });
 </script>
 
