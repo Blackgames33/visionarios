@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VISIONÁRIOS — Conceptual Systems</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --bg:#000;
@@ -14,31 +12,22 @@
   --accent:#8be9fd;
   --border:rgba(255,255,255,0.08);
 }
-
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
   background:black;
   color:white;
   font-family:'Roboto',sans-serif;
   overflow-x:hidden;
 }
-
-/* BACKGROUND FIXO CENTRALIZADO */
+/* BACKGROUND */
 .bg{
   position:fixed;
-  top:0;
-  left:50%;
-  width:120%;
-  height:120%;
-  transform:translateX(-50%);
+  inset:0;
   background:url('assets/fundo3.png') center/cover no-repeat;
   opacity:0.25;
   z-index:-1;
   will-change:transform;
-  transition:filter 0.4s ease;
 }
-
 /* NAV */
 header{
   position:fixed;
@@ -48,7 +37,6 @@ header{
   border-bottom:1px solid var(--border);
   z-index:100;
 }
-
 nav{
   max-width:1200px;
   margin:auto;
@@ -58,13 +46,11 @@ nav{
   height:90px;
   padding:0 5%;
 }
-
 .logo{
   font-family:'Montserrat';
   letter-spacing:0.3em;
 }
-
-/* HERO */
+/* ================= HERO CORE SYSTEM ================= */
 .hero{
   height:100vh;
   display:flex;
@@ -72,23 +58,20 @@ nav{
   justify-content:center;
   position:relative;
 }
-
 /* CORE */
 .core{
   width:170px;
   height:170px;
   border-radius:50%;
-  background:radial-gradient(circle, rgba(139,233,253,0.25), transparent 70%);
+  background:
+    radial-gradient(circle, rgba(139,233,253,0.25), transparent 70%);
   box-shadow:
     0 0 80px rgba(139,233,253,0.2),
     inset 0 0 40px rgba(139,233,253,0.1);
   position:absolute;
-  transition:filter 0.3s ease;
 }
-
 /* PULSE */
-.core::after,
-.core::before{
+.core::after{
   content:"";
   position:absolute;
   inset:-30px;
@@ -96,81 +79,96 @@ nav{
   border:1px solid rgba(139,233,253,0.2);
   animation:pulse 4s infinite;
 }
-.core::before{ animation-delay:1s; }
-
+.core::before{
+  content:"";
+  position:absolute;
+  inset:-30px;
+  border-radius:50%;
+  border:1px solid rgba(139,233,253,0.25);
+  animation:pulse 4s infinite;
+  animation-delay:01s;
+}
 @keyframes pulse{
   0%{transform:scale(0.7);opacity:0.8;}
   100%{transform:scale(1.5);opacity:0;}
 }
-
-/* ORBIT COM VELOCIDADE DINÂMICA */
+/* ORBIT */
 .orbit{
   position:absolute;
   width:520px;
   height:520px;
   border-radius:50%;
   border:1px dashed rgba(255,255,255,0.08);
-  --speed:40s;
-  animation:rotate var(--speed) linear infinite;
-  transition:filter 0.3s ease;
+  animation:rotate 40s linear infinite;
 }
-
 @keyframes rotate{
   from{transform:rotate(0deg);}
   to{transform:rotate(360deg);}
 }
-
 /* NODE */
 .node{
   position:absolute;
   width:80px;
   height:80px;
   border-radius:50%;
+  overflow:visible;
+
   background:
     radial-gradient(circle at 30% 30%,
       rgba(255,255,255,0.35),
       rgba(139,233,253,0.12) 40%,
       rgba(0,0,0,0.65) 100%);
+
   box-shadow:
     inset -12px -12px 25px rgba(0,0,0,0.7),
     inset 6px 6px 12px rgba(255,255,255,0.08),
     0 0 25px rgba(139,233,253,0.15);
+
   border:1px solid rgba(255,255,255,0.06);
-  backdrop-filter: blur(10px) saturate(120%);
+
+  backdrop-filter:blur(8px);
   transition:0.4s;
 }
+.node::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
 
+  background:radial-gradient(circle,
+    transparent 60%,
+    rgba(0,0,0,0.35));
+
+  pointer-events:none;
+}
+  .node::after{
+  content:"";
+  position:absolute;
+  inset:-10px;
+  border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(139,233,253,0.15),
+    transparent 70%);
+  z-index:-1;
+}
+.node img{
+  width:70%;
+  opacity:0.85;
+  filter:
+    brightness(1.3)
+    contrast(1.2)
+    saturate(1.2);
+  mix-blend-mode:screen;
+}
 .node:hover{
-  transform:scale(1.25);
-  box-shadow:0 0 30px rgba(139,233,253,0.4);
+  transform:scale(1.2);
+  box-shadow:0 0 30px rgba(139,233,253,0.3);
 }
-
-.node-content{
-  width:100%;
-  height:100%;
-  background-size:60%;
-  background-position:center;
-  background-repeat:no-repeat;
-}
-
-/* POSIÇÕES */
+/* POSITIONS */
 .node:nth-child(1){ top:-40px; left:50%; transform:translateX(-50%);}
 .node:nth-child(2){ bottom:-40px; left:50%; transform:translateX(-50%);}
 .node:nth-child(3){ left:-40px; top:50%; transform:translateY(-50%);}
 .node:nth-child(4){ right:-40px; top:50%; transform:translateY(-50%);}
-
-/* HUD */
-.node-display{
-  position:absolute;
-  bottom:12%;
-  width:100%;
-  text-align:center;
-  font-size:0.85rem;
-  letter-spacing:0.25em;
-  opacity:0;
-  transition:0.3s ease;
-}
-
 /* HERO TEXT */
 .hero-text{
   position:absolute;
@@ -178,143 +176,197 @@ nav{
   text-align:center;
   max-width:800px;
 }
-
+.hero-text h1{
+  font-family:'Montserrat';
+  font-size:clamp(2.5rem,5vw,4rem);
+  letter-spacing:0.2em;
+}
+.hero-text p{
+  margin-top:20px;
+  opacity:0.7;
+}
 /* SECTION */
-section{ padding:140px 0; }
-
+section{
+  padding:140px 0;
+}
 .shell{
   max-width:1200px;
   margin:auto;
   padding:0 5%;
 }
-
+.section-title{
+  text-align:center;
+  font-family:'Montserrat';
+  margin-bottom:80px;
+  letter-spacing:0.15em;
+}
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:40px;
 }
-
 .card{
   padding:40px;
   border:1px solid var(--border);
   background:rgba(255,255,255,0.02);
   transition:0.4s;
 }
-
+.card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(255,255,255,0.3);
+}
+.card h3{
+  font-family:'Montserrat';
+  margin-bottom:15px;
+}
+/* FOOTER */
 footer{
   padding:100px 0;
   border-top:1px solid var(--border);
   text-align:center;
   opacity:0.6;
 }
+.node{
+  transition:0.4s;
+}
+.node:active{
+  transform:scale(1.4);
+  opacity:0;
+}
+  @media (max-width:768px){
+  .core-system{
+    height:100vh;
+  }
+  .core{
+    width:120px;
+    height:120px;
+  }
+  .orbit{
+    width:260px;
+    height:260px;
+  }
+  .node{
+    width:50px;
+    height:50px;
+  }
+  .node-content{
+    width:65%;
+    height:65%;
+  }
+}
+  .node-label{
+  position:absolute;
+  top:-28px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:0.9rem;
+  letter-spacing:0.14em;
+  white-space:nowrap;
+  color:rgba(255,255,255,0.75);
+  opacity:0;
+  transition:0.3s ease;
+}
+.node:hover .node-label{
+  opacity:1;
+  transform:translateX(-50%) translateY(-4px);
+}
+ 
+@media (max-width:768px){
+
+  .hero-text{
+    width:100%;
+    padding:0 16px;
+  }
+
+  .hero-text h1{
+    font-size:1.5rem;
+    letter-spacing:0.08em;
+    line-height:1.2;
+
+    max-width:100%;
+    word-break:break-word;
+  }
+.hero-text h1{
+  font-size:clamp(1.2rem, 6vw, 2rem);
+}
+}
+  .node{
+  backdrop-filter: blur(10px) saturate(120%);
+}
 </style>
 </head>
-
 <body>
-
 <div class="bg"></div>
-
 <header>
 <nav>
 <div class="logo">VISIONÁRIOS</div>
 </nav>
 </header>
-
+<!-- HERO -->
 <section class="hero">
-
 <div class="core"></div>
-
 <div class="orbit">
-<a href="#" class="node" data-name="Cognitive System">
-<div class="node-content" style="background-image:url('assets/brain.png')"></div>
+<a href="cognitive.html" class="node">
+  <div class="node-content" style="background-image:url('assets/brain.png')"></div>
+ <span class="node-label">Cognitive System</span>
 </a>
-
-<a href="#" class="node" data-name="Chrono Dynamics">
-<div class="node-content" style="background-image:url('assets/time.png')"></div>
+<a href="temporal.html" class="node">
+  <div class="node-content" style="background-image:url('assets/time.png')"></div>
+   <span class="node-label">Chrono Dynamics</span>
 </a>
-
-<a href="#" class="node" data-name="Structural Cosmology">
-<div class="node-content" style="background-image:url('assets/cosmos.png')"></div>
+<a href="cosmology.html" class="node">
+  <div class="node-content" style="background-image:url('assets/cosmos.png')"></div>
+ <span class="node-label">Structural Cosmology</span>
 </a>
-
-<a href="#" class="node" data-name="Computational Layer">
-<div class="node-content" style="background-image:url('assets/computation.png')"></div>
+<a href="computing.html" class="node">
+  <div class="node-content" style="background-image:url('assets/computation.png')"></div>
+ <span class="node-label">Computational Layer</span>
 </a>
 </div>
-
-<div class="node-display" id="nodeDisplay"></div>
-
+<div class="hero-text">
+  <h1>VISIONÁRIOS</h1>
+  <p>
+  A conceptual architecture where cognition, time, computation and structure converge into a unified dynamic system.
+  </p>
+</div>
 </section>
-
+<!-- SECTION -->
+<section>
+<div class="shell">
+<h2 class="section-title">Core Systems</h2>
+<div class="grid">
+<div class="card">
+<h3>Cognitive Integration</h3>
+<p>Semantic coupling across distributed intelligence systems.</p>
+</div>
+<div class="card">
+<h3>Temporal Fields</h3>
+<p>Non-linear interaction between time and structure.</p>
+</div>
+<div class="card">
+<h3>Structural Cosmology</h3>
+<p>Layered architecture governing large-scale reality.</p>
+</div>
+<div class="card">
+<h3>Computational Substrate</h3>
+<p>Beyond classical computation frameworks.</p>
+</div>
+</div>
+</div>
+</section>
 <footer>
 <p>© 2026 Visionários</p>
 </footer>
-
 <script>
-const orbit = document.querySelector(".orbit");
-const nodes = document.querySelectorAll(".node");
-const display = document.getElementById("nodeDisplay");
-const bg = document.querySelector(".bg");
-const core = document.querySelector(".core");
-
-let speed = 40;
-let targetSpeed = 40;
-
-function animateOrbit(){
-  speed += (targetSpeed - speed) * 0.08;
-  orbit.style.setProperty("--speed", speed + "s");
-  requestAnimationFrame(animateOrbit);
-}
-animateOrbit();
-
-nodes.forEach(node => {
-
-  node.addEventListener("mouseenter", () => {
-    targetSpeed = 200;
-
-    orbit.style.filter = "brightness(1.2)";
-    core.style.filter = "brightness(1.3)";
-    bg.style.filter = "brightness(0.8)";
-
-    display.innerText = node.dataset.name;
-    display.style.opacity = 1;
-  });
-
-  node.addEventListener("mouseleave", () => {
-    targetSpeed = 40;
-
-    orbit.style.filter = "none";
-    core.style.filter = "none";
-    bg.style.filter = "none";
-
-    display.style.opacity = 0;
-  });
-
-  node.addEventListener("click", () => {
-    targetSpeed = 200;
-
-    display.innerText = node.dataset.name;
-    display.style.opacity = 1;
-  });
-
-});
-
-document.addEventListener("click", (e) => {
-  if (!e.target.closest(".node")) {
-    targetSpeed = 40;
-    display.style.opacity = 0;
-
-    orbit.style.filter = "none";
-    core.style.filter = "none";
-    bg.style.filter = "none";
-  }
-});
-
+<script>
 window.addEventListener("scroll", () => {
+  const bg = document.querySelector(".bg");
+  bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
   const offsetY = window.scrollY * 0.2;
-  bg.style.transform = `translate(-50%, ${offsetY}px)`;
+  bg.style.transform = `translateY(${offsetY}px) translateX(-40px)`;
 });
 </script>
-
+</script>
 </body>
 </html>
