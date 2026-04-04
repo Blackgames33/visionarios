@@ -117,11 +117,17 @@ nav{
   border:1px dashed rgba(255,255,255,0.08);
   animation:rotate 40s linear infinite;
 }
-
+.node-label{
+  animation:counterRotate 40s linear infinite;
+}
+  
 @keyframes rotate{
   from{transform:rotate(0deg);}
   to{transform:rotate(360deg);}
 }
+  @keyframes counterRotate{
+ from{transform:translatex(-50%) rotate(0deg);}
+  to{transform:translatex(-50%) rotate(-360deg);}
 
 /* NODE */
 .node{
@@ -297,8 +303,8 @@ footer{
   left:50%;
   transform:translateX(-50%);
 
-  font-size:0.7rem;
-  letter-spacing:0.12em;
+  font-size:0.8rem;
+  letter-spacing:0.14em;
   white-space:nowrap;
 
   color:rgba(255,255,255,0.75);
@@ -308,7 +314,7 @@ footer{
 }
 .node:hover .node-label{
   opacity:1;
-  transform:translateX(-50%) translateY(-4px);
+  transform:translateX(-50%) translateY(-4px) rotate(0deg);
 }
   
   }
