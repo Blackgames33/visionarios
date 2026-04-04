@@ -24,10 +24,14 @@ body{
   overflow-x:hidden;
 }
 
-/* BACKGROUND */
+/* BACKGROUND FIXO CENTRALIZADO */
 .bg{
   position:fixed;
-  inset:0;
+  top:0;
+  left:50%;
+  width:120%;
+  height:120%;
+  transform:translateX(-50%);
   background:url('assets/fundo3.png') center/cover no-repeat;
   opacity:0.25;
   z-index:-1;
@@ -92,24 +96,22 @@ nav{
   border:1px solid rgba(139,233,253,0.2);
   animation:pulse 4s infinite;
 }
-
-.core::before{
-  animation-delay:1s;
-}
+.core::before{ animation-delay:1s; }
 
 @keyframes pulse{
   0%{transform:scale(0.7);opacity:0.8;}
   100%{transform:scale(1.5);opacity:0;}
 }
 
-/* ORBIT */
+/* ORBIT COM VELOCIDADE DINÂMICA */
 .orbit{
   position:absolute;
   width:520px;
   height:520px;
   border-radius:50%;
   border:1px dashed rgba(255,255,255,0.08);
-  animation:rotate 40s linear infinite;
+  --speed:40s;
+  animation:rotate var(--speed) linear infinite;
   transition:filter 0.3s ease;
 }
 
@@ -143,11 +145,6 @@ nav{
   box-shadow:0 0 30px rgba(139,233,253,0.4);
 }
 
-.node:active{
-  transform:scale(1.35);
-}
-
-/* NODE CONTENT */
 .node-content{
   width:100%;
   height:100%;
@@ -156,13 +153,13 @@ nav{
   background-repeat:no-repeat;
 }
 
-/* POSITIONS */
+/* POSIÇÕES */
 .node:nth-child(1){ top:-40px; left:50%; transform:translateX(-50%);}
 .node:nth-child(2){ bottom:-40px; left:50%; transform:translateX(-50%);}
 .node:nth-child(3){ left:-40px; top:50%; transform:translateY(-50%);}
 .node:nth-child(4){ right:-40px; top:50%; transform:translateY(-50%);}
 
-/* HUD DISPLAY */
+/* HUD */
 .node-display{
   position:absolute;
   bottom:12%;
@@ -182,21 +179,8 @@ nav{
   max-width:800px;
 }
 
-.hero-text h1{
-  font-family:'Montserrat';
-  font-size:clamp(2.5rem,5vw,4rem);
-  letter-spacing:0.2em;
-}
-
-.hero-text p{
-  margin-top:20px;
-  opacity:0.7;
-}
-
 /* SECTION */
-section{
-  padding:140px 0;
-}
+section{ padding:140px 0; }
 
 .shell{
   max-width:1200px;
@@ -204,14 +188,6 @@ section{
   padding:0 5%;
 }
 
-.section-title{
-  text-align:center;
-  font-family:'Montserrat';
-  margin-bottom:80px;
-  letter-spacing:0.15em;
-}
-
-/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -225,30 +201,11 @@ section{
   transition:0.4s;
 }
 
-.card:hover{
-  transform:translateY(-10px);
-  border-color:rgba(255,255,255,0.3);
-}
-
-/* FOOTER */
 footer{
   padding:100px 0;
   border-top:1px solid var(--border);
   text-align:center;
   opacity:0.6;
-}
-
-/* MOBILE */
-@media (max-width:768px){
-  .core{ width:120px; height:120px; }
-  .orbit{ width:260px; height:260px; }
-  .node{ width:50px; height:50px; }
-  .node-content{ background-size:70%; }
-
-  .hero-text h1{
-    font-size:clamp(1.2rem, 6vw, 2rem);
-    letter-spacing:0.08em;
-  }
 }
 </style>
 </head>
@@ -268,65 +225,25 @@ footer{
 <div class="core"></div>
 
 <div class="orbit">
-
-<a href="cognitive.html" class="node" data-name="Cognitive System">
-  <div class="node-content" style="background-image:url('assets/brain.png')"></div>
+<a href="#" class="node" data-name="Cognitive System">
+<div class="node-content" style="background-image:url('assets/brain.png')"></div>
 </a>
 
-<a href="temporal.html" class="node" data-name="Chrono Dynamics">
-  <div class="node-content" style="background-image:url('assets/time.png')"></div>
+<a href="#" class="node" data-name="Chrono Dynamics">
+<div class="node-content" style="background-image:url('assets/time.png')"></div>
 </a>
 
-<a href="cosmology.html" class="node" data-name="Structural Cosmology">
-  <div class="node-content" style="background-image:url('assets/cosmos.png')"></div>
+<a href="#" class="node" data-name="Structural Cosmology">
+<div class="node-content" style="background-image:url('assets/cosmos.png')"></div>
 </a>
 
-<a href="computing.html" class="node" data-name="Computational Layer">
-  <div class="node-content" style="background-image:url('assets/computation.png')"></div>
+<a href="#" class="node" data-name="Computational Layer">
+<div class="node-content" style="background-image:url('assets/computation.png')"></div>
 </a>
-
 </div>
 
 <div class="node-display" id="nodeDisplay"></div>
 
-<div class="hero-text">
-<h1>VISIONÁRIOS</h1>
-<p>
-A conceptual architecture where cognition, time, computation and structure converge into a unified dynamic system.
-</p>
-</div>
-
-</section>
-
-<section>
-<div class="shell">
-
-<h2 class="section-title">Core Systems</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Cognitive Integration</h3>
-<p>Semantic coupling across distributed intelligence systems.</p>
-</div>
-
-<div class="card">
-<h3>Temporal Fields</h3>
-<p>Non-linear interaction between time and structure.</p>
-</div>
-
-<div class="card">
-<h3>Structural Cosmology</h3>
-<p>Layered architecture governing large-scale reality.</p>
-</div>
-
-<div class="card">
-<h3>Computational Substrate</h3>
-<p>Beyond classical computation frameworks.</p>
-</div>
-
-</div>
-</div>
 </section>
 
 <footer>
@@ -340,23 +257,31 @@ const display = document.getElementById("nodeDisplay");
 const bg = document.querySelector(".bg");
 const core = document.querySelector(".core");
 
-// INTERAÇÃO
+let speed = 40;
+let targetSpeed = 40;
+
+function animateOrbit(){
+  speed += (targetSpeed - speed) * 0.08;
+  orbit.style.setProperty("--speed", speed + "s");
+  requestAnimationFrame(animateOrbit);
+}
+animateOrbit();
+
 nodes.forEach(node => {
 
   node.addEventListener("mouseenter", () => {
-    orbit.style.animationPlayState = "paused";
+    targetSpeed = 200;
 
-    // efeito cinematico leve
     orbit.style.filter = "brightness(1.2)";
     core.style.filter = "brightness(1.3)";
     bg.style.filter = "brightness(0.8)";
 
-    display.innerText = node.getAttribute("data-name");
+    display.innerText = node.dataset.name;
     display.style.opacity = 1;
   });
 
   node.addEventListener("mouseleave", () => {
-    orbit.style.animationPlayState = "running";
+    targetSpeed = 40;
 
     orbit.style.filter = "none";
     core.style.filter = "none";
@@ -366,18 +291,17 @@ nodes.forEach(node => {
   });
 
   node.addEventListener("click", () => {
-    orbit.style.animationPlayState = "paused";
+    targetSpeed = 200;
 
-    display.innerText = node.getAttribute("data-name");
+    display.innerText = node.dataset.name;
     display.style.opacity = 1;
   });
 
 });
 
-// RESET MOBILE
 document.addEventListener("click", (e) => {
   if (!e.target.closest(".node")) {
-    orbit.style.animationPlayState = "running";
+    targetSpeed = 40;
     display.style.opacity = 0;
 
     orbit.style.filter = "none";
@@ -386,10 +310,9 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// PARALLAX
 window.addEventListener("scroll", () => {
   const offsetY = window.scrollY * 0.2;
-  bg.style.transform = `translateY(${offsetY}px) translateX(-40px)`;
+  bg.style.transform = `translate(-50%, ${offsetY}px)`;
 });
 </script>
 
