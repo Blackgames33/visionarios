@@ -387,23 +387,23 @@ function animate() {
 animate();
 
 /* Desktop */
-const hero = document.querySelector(".hero");
+const hero = document.querySelector(".orbit");
 
 hero.addEventListener("mouseenter", () => {
   targetSpeed = 0;
 });
 
 hero.addEventListener("mouseleave", () => {
-  targetSpeed = 0.2;
+  targetSpeed = 0.1;
 });
 
 /* Mobile */
-hero.addEventListener("touchstart", () => {
+orbit.addEventListener("touchstart", () => {
   targetSpeed = 0;
 });
 
 hero.addEventListener("touchend", () => {
-  targetSpeed = 0.2;
+  targetSpeed = 0.1;
 });
 </script>
 
