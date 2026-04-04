@@ -14,6 +14,7 @@
   --accent:#8be9fd;
   --border:rgba(255,255,255,0.08);
 }
+
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
@@ -31,6 +32,7 @@ body{
   opacity:0.25;
   z-index:-1;
   will-change:transform;
+  transition:filter 0.4s ease;
 }
 
 /* NAV */
@@ -77,6 +79,7 @@ nav{
     0 0 80px rgba(139,233,253,0.2),
     inset 0 0 40px rgba(139,233,253,0.1);
   position:absolute;
+  transition:filter 0.3s ease;
 }
 
 /* PULSE */
@@ -107,10 +110,7 @@ nav{
   border-radius:50%;
   border:1px dashed rgba(255,255,255,0.08);
   animation:rotate 40s linear infinite;
-}
-
-.hero:hover .orbit{
-  animation-play-state:paused;
+  transition:filter 0.3s ease;
 }
 
 @keyframes rotate{
@@ -144,7 +144,7 @@ nav{
 }
 
 .node:active{
-  transform:scale(1.4);
+  transform:scale(1.35);
 }
 
 /* NODE CONTENT */
@@ -168,10 +168,10 @@ nav{
   bottom:12%;
   width:100%;
   text-align:center;
-  font-size:0.8rem;
-  letter-spacing:0.2em;
+  font-size:0.85rem;
+  letter-spacing:0.25em;
   opacity:0;
-  transition:0.3s;
+  transition:0.3s ease;
 }
 
 /* HERO TEXT */
@@ -334,31 +334,62 @@ A conceptual architecture where cognition, time, computation and structure conve
 </footer>
 
 <script>
-window.addEventListener("scroll", () => {
-  const bg = document.querySelector(".bg");
-  const offsetY = window.scrollY * 0.2;
-  bg.style.transform = `translateY(${offsetY}px) translateX(-40px)`;
-});
-
+const orbit = document.querySelector(".orbit");
 const nodes = document.querySelectorAll(".node");
 const display = document.getElementById("nodeDisplay");
+const bg = document.querySelector(".bg");
+const core = document.querySelector(".core");
 
+// INTERAÇÃO
 nodes.forEach(node => {
 
   node.addEventListener("mouseenter", () => {
+    orbit.style.animationPlayState = "paused";
+
+    // efeito cinematico leve
+    orbit.style.filter = "brightness(1.2)";
+    core.style.filter = "brightness(1.3)";
+    bg.style.filter = "brightness(0.8)";
+
     display.innerText = node.getAttribute("data-name");
     display.style.opacity = 1;
   });
 
   node.addEventListener("mouseleave", () => {
+    orbit.style.animationPlayState = "running";
+
+    orbit.style.filter = "none";
+    core.style.filter = "none";
+    bg.style.filter = "none";
+
     display.style.opacity = 0;
   });
 
   node.addEventListener("click", () => {
+    orbit.style.animationPlayState = "paused";
+
     display.innerText = node.getAttribute("data-name");
     display.style.opacity = 1;
   });
 
+});
+
+// RESET MOBILE
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".node")) {
+    orbit.style.animationPlayState = "running";
+    display.style.opacity = 0;
+
+    orbit.style.filter = "none";
+    core.style.filter = "none";
+    bg.style.filter = "none";
+  }
+});
+
+// PARALLAX
+window.addEventListener("scroll", () => {
+  const offsetY = window.scrollY * 0.2;
+  bg.style.transform = `translateY(${offsetY}px) translateX(-40px)`;
 });
 </script>
 
