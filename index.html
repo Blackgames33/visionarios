@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,28 +14,30 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
-  background:#000;
+   background:black;
   color:white;
   font-family:'Inter',sans-serif;
   overflow-x:hidden;
+   background:#000; /*mantem a base*/
 }
-
 /* BACKGROUND */
 .bg{
   position:fixed;
   inset:-25%;
-  background:url('assets/fundo3.png') center center / cover no-repeat;
-  filter: brightness(0.85) contrast(1.1);
-  opacity:0.35;
+  background:
+    url('assets/fundo3.png') center center / cover no-repeat,
+    url('assets/fundo3.png') center top / 150% no-repeat;
+filter: brightness(0.9) contrast(1.05);
+  opacity:0.4;
   z-index:-1;
+  will-change:transform;
 }
-
 /* NAV */
 header{
   position:fixed;
-  width:100%;
-  backdrop-filter:blur(12px);
-  background:rgba(0,0,0,0.45);
+  width:0%;
+  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.4);
   border-bottom:1px solid var(--border);
   z-index:100;
 }
@@ -43,19 +45,15 @@ nav{
   max-width:1200px;
   margin:auto;
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  height:70px;
+  justify-content: center extreme;
+  align-items:right;
+  height:50px;
   padding:0 5%;
 }
 .logo{
   font-family:'Inter';
-  font-weight:300;
-  font-size:0.95rem;
-  letter-spacing:0.35em;
-  color:rgba(255,255,255,0.55);
-}
-
+  letter-spacing:0.3em;
+}  
 /* HERO */
 .hero{
   height:100vh;
@@ -64,235 +62,331 @@ nav{
   justify-content:center;
   position:relative;
 }
-
 /* CORE */
 .core{
-  width:180px;
-  height:180px;
+  width:170px;
+  height:170px;
   border-radius:50%;
-  background:radial-gradient(circle, rgba(139,233,253,0.28), transparent 72%);
+  background:radial-gradient(circle, rgba(139,233,253,0.25), transparent 70%);
   box-shadow:
-    0 0 90px rgba(139,233,253,0.35),
-    inset 0 0 50px rgba(139,233,253,0.15);
+    0 0 80px rgba(139,233,253,0.2),
+    inset 0 0 40px rgba(139,233,253,0.1);
   position:absolute;
-  z-index:1;
 }
+/* PULSE */
 .core::after,
 .core::before{
   content:"";
   position:absolute;
-  inset:-35px;
+  inset:-30px;
   border-radius:50%;
-  border:1px solid rgba(139,233,253,0.22);
-  animation:pulse 4.5s infinite ease-in-out;
+  border:1px solid rgba(139,233,253,0.2);
+  animation:pulse 4s infinite;
 }
-.core::before{ animation-delay:1.2s; }
+.core::before{ animation-delay:1s; }
 @keyframes pulse{
-  0%{transform:scale(0.75);opacity:0.75;}
-  100%{transform:scale(1.65);opacity:0;}
+  0%{transform:scale(0.7);opacity:0.8;}
+  100%{transform:scale(1.5);opacity:0;}
 }
-
 /* ORBIT */
 .orbit{
   position:absolute;
-  width:560px;
-  height:560px;
+  width:520px;
+  height:520px;
   border-radius:50%;
-  border:1px dashed rgba(255,255,255,0.09);
-  animation:rotate 38s linear infinite;
-  z-index:2;
+  border:1px dashed rgba(255,255,255,0.08);
+  animation:rotate(0deg);
 }
 @keyframes rotate{
   from{transform:rotate(0deg);}
   to{transform:rotate(360deg);}
 }
-
-/* NODES - REALISMO SOFISTICADO */
+/* NODE */
 .node{
   position:absolute;
-  width:78px;
-  height:78px;
+  width:80px;
+  height:80px;
   border-radius:50%;
-  overflow:hidden;
-  cursor:pointer;
-  transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
-  z-index:3;
+  background:
+    radial-gradient(circle at 30% 30%,
+      rgba(255,255,255,0.35),
+      rgba(139,233,253,0.12) 40%,
+      rgba(0,0,0,0.65) 100%);
   box-shadow:
-    0 0 35px rgba(255,255,255,0.4),
-    inset 28px 25px 35px rgba(255,255,255,0.45),   /* highlight superior */
-    inset -25px -25px 45px rgba(0,0,0,0.85);       /* sombra profunda */
+    inset -12px -12px 25px rgba(0,0,0,0.7),
+    inset 6px 6px 12px rgba(255,255,255,0.08),
+    0 0 25px rgba(139,233,253,0.15);
+  border:1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px) saturate(120%);
+  transition:0.4s;
 }
-
-/* Materiais diferentes para cada esfera */
-.node:nth-child(1){ /* Prata brilhante - Cognitive */
-  background: linear-gradient(135deg, #e0e0e0 10%, #777 50%, #333 90%);
-  box-shadow:
-    0 0 40px #a0d8ff,
-    inset 30px 22px 30px rgba(255,255,255,0.65),
-    inset -28px -28px 50px rgba(0,0,0,0.9);
+.node:hover{
+  transform:scale(1.25);
+  box-shadow:0 0 30px rgba(139,233,253,0.4);
 }
-
-.node:nth-child(2){ /* Roxo metálico - Temporal */
-  background: linear-gradient(145deg, #c026d3 15%, #7e22ce 50%, #4c1d95 90%);
-  box-shadow:
-    0 0 45px #c084fc,
-    inset 32px 25px 32px rgba(255,255,255,0.5),
-    inset -26px -26px 48px rgba(0,0,0,0.85);
+.node:active{
+  transform:scale(1.35);
 }
-
-.node:nth-child(3){ /* Carbono escuro texturizado - Structural */
-  background: radial-gradient(circle at 38% 32%, #555 8%, #222 55%, #0a0a0a 90%);
-  box-shadow:
-    0 0 30px #666,
-    inset 22px 20px 38px rgba(255,255,255,0.18),
-    inset -24px -24px 45px rgba(0,0,0,0.95);
-}
-
-.node:nth-child(4){ /* Cromo hiper-reflexivo - Computational */
-  background: linear-gradient(120deg, #f0f0f0 10%, #999 45%, #444 85%);
-  box-shadow:
-    0 0 50px #67e8f9,
-    inset 35px 20px 35px rgba(255,255,255,0.75),
-    inset -30px -30px 55px rgba(0,0,0,0.9);
-}
-
-/* Imagem dentro da esfera com overlay sutil */
-.node .node-content{
+/* NODE CONTENT */
+.node-content{
   width:100%;
   height:100%;
-  background-size:58%;
+  background-size:60%;
   background-position:center;
   background-repeat:no-repeat;
-  opacity:0.85;
-  mix-blend-mode: screen;
 }
-
-/* Hover sofisticado */
-.node:hover{
-  transform:scale(1.18) rotate(8deg);
-  box-shadow:
-    0 0 55px rgba(255,255,255,0.6),
-    inset 35px 25px 40px rgba(255,255,255,0.6);
-}
-
 /* POSITIONS */
-.node:nth-child(1){ top:-39px; left:50%; transform:translateX(-50%);}
-.node:nth-child(2){ bottom:-39px; left:50%; transform:translateX(-50%);}
-.node:nth-child(3){ left:-39px; top:50%; transform:translateY(-50%);}
-.node:nth-child(4){ right:-39px; top:50%; transform:translateY(-50%);}
-
+.node:nth-child(1){ top:-40px; left:50%; transform:translateX(-50%);}
+.node:nth-child(2){ bottom:-40px; left:50%; transform:translateX(-50%);}
+.node:nth-child(3){ left:-40px; top:50%; transform:translateY(-50%);}
+.node:nth-child(4){ right:-40px; top:50%; transform:translateY(-50%);}
 /* HUD */
 .node-display{
   position:absolute;
   bottom:14%;
   width:100%;
   text-align:center;
-  font-size:0.88rem;
-  letter-spacing:0.25em;
+  font-size:0.85rem;
+  letter-spacing:0.2em;
   opacity:0;
-  transition:0.4s;
-  text-transform:uppercase;
+  transition:0.3s;
 }
-
 /* HERO TEXT */
 .hero-text{
   position:absolute;
-  bottom:9%;
+  bottom:8%;
   text-align:center;
-  max-width:820px;
-  z-index:10;
+  max-width:800px;
 }
 .hero-text h1{
-  font-family:'Inter', sans-serif;
+  font-family:'inter', sans-serif;
   font-weight:200;
-  font-size:4.2rem;
-  letter-spacing:0.22em;
-  opacity:0.88;
+  letter-spacing:0.70em;
+opacity:0.85 !important;
 }
 .hero-text p{
-  margin-top:24px;
-  opacity:0.82;
+  margin-top:20px;
+  opacity:0.9;
+}
+/* SECTION */
+section{
+  padding:140px 0;
+}
+.shell{
+  max-width:1200px;
+  margin:auto;
+  padding:0 5%;
+}
+.section-title{
+  text-align:center;
+ font-family:'inter', sans-serif;
+  margin-bottom:80px;
+  letter-spacing:0.15em;
+}
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:40px;
+}
+.card{
+  padding:40px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,0.02);
+  transition:0.4s;
+}
+.card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(255,255,255,0.3);
+}
+/* FOOTER */
+footer{
+  padding:100px 0;
+  border-top:1px solid var(--border);
+  text-align:center;
+  opacity:0.6;
+}
+/* MOBILE */
+@media (max-width:768px){
+  .core{ width:120px;height:120px;}
+  .orbit{ width:260px;height:260px;}
+  .node{ width:50px;height:50px;}
+  .node-content{ background-size:70%; }
+  .hero-text{
+    width:100%;
+    padding:0 16px;
+  }
+  .hero-text h1{
+    font-size:clamp(1.2rem,6vw,2rem);
+    letter-spacing:0.08em;
+  }
+}
+  .logo{
+  position:absolute;
+  top:28px;
+  left:60px; /* afasta da borda */
+
+  font-family:'Inter', sans-serif;
   font-weight:300;
-  line-height:1.55;
+
+  font-size:0.9rem;
+  letter-spacing:0.35em;
+
+  color:rgba(255,255,255,0.55); /* mais suave */
+  
+  opacity:0.6;
+  transition:0.3s;
+}
+  /* ================= TYPOGRAPHY REFINEMENT ================= */
+
+body{
+  font-family:'Inter', sans-serif;
+  font-feature-settings: "ss01", "cv01", "cv02";
 }
 
-/* Outras seções mantidas iguais (resumidas) */
-section{padding:140px 0;}
-.shell{max-width:1200px; margin:auto; padding:0 5%;}
-.section-title{text-align:center; font-weight:300; letter-spacing:0.18em; opacity:0.78; margin-bottom:80px;}
-.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px;}
-.card{padding:40px; border:1px solid var(--border); background:rgba(255,255,255,0.015); transition:0.4s;}
-.card:hover{transform:translateY(-10px); border-color:rgba(255,255,255,0.25);}
+/* HERO TITLE */
+.hero-text h1{
+  font-weight:200;
+  letter-spacing:0.22em;
+  opacity:0.85; /* menos brilho */
+}
 
+/* LOGO (HUD) */
+.logo{
+  font-weight:200;
+  letter-spacing:0.35em;
+  color:rgba(255,255,255,0.45); /* mais suave */
+  opacity:0.5;
+}
+
+/* SECTION TITLE */
+.section-title{
+  font-weight:300;
+  letter-spacing:0.18em;
+  opacity:0.75;
+}
+
+/* CARD TITLES */
+.card h3{
+  font-weight:400;
+  letter-spacing:0.06em;
+  opacity:0.9;
+}
+
+/* CARD TEXT */
+.card p{
+  font-weight:300;
+  opacity:0.65; /* reduz brilho */
+  line-height:1.6;
+}
+
+  /* ================= MOBILE TYPOGRAPHY FIX ================= */
 @media (max-width:768px){
-  .core{width:130px;height:130px;}
-  .orbit{width:300px;height:300px;}
-  .node{width:54px;height:54px;}
-  .hero-text h1{font-size:2.4rem; letter-spacing:0.18em;}
+
+  body{
+    font-family:'Inter', sans-serif;
+  }
+
+  .hero-text h1{
+    font-weight:200;
+    letter-spacing:0.18em;
+    opacity:0.85;
+  }
+
+  .logo{
+    font-weight:200;
+    letter-spacing:0.3em;
+    color:rgba(255,255,255,0.45);
+    opacity:0.5;
+  }
+
+  .section-title{
+    font-weight:300;
+    letter-spacing:0.16em;
+    opacity:0.75;
+  }
+
+  .card h3{
+    font-weight:400;
+    opacity:0.9;
+  }
+
+  .card p{
+    font-weight:300;
+    opacity:0.65;
+  }
+
 }
 </style>
 </head>
 <body>
 <div class="bg"></div>
-
 <header>
 <nav>
-  <div class="logo">VISIONÁRIOS 2145</div>
+<div class="logo">VISIONÁRIOS 2145</div>
+
 </nav>
 </header>
-
 <section class="hero">
-  <div class="core"></div>
-  
-  <div class="orbit">
-    <a href="cognitive.html" class="node" data-name="Cognitive System">
-      <div class="node-content" style="background-image:url('assets/brain.png')"></div>
-    </a>
-    <a href="temporal.html" class="node" data-name="Chrono Dynamics">
-      <div class="node-content" style="background-image:url('assets/time.png')"></div>
-    </a>
-    <a href="cosmology.html" class="node" data-name="Structural Cosmology">
-      <div class="node-content" style="background-image:url('assets/cosmos.png')"></div>
-    </a>
-    <a href="computing.html" class="node" data-name="Computational Layer">
-      <div class="node-content" style="background-image:url('assets/computation.png')"></div>
-    </a>
-  </div>
-
-  <div class="node-display" id="nodeDisplay"></div>
-
-  <div class="hero-text">
-    <h1>VISIONÁRIOS</h1>
-    <p>A conceptual architecture where cognition, time, computation and structure converge into a unified dynamic system.</p>
-  </div>
+<div class="core"></div>
+<div class="orbit">
+<a href="cognitive.html" class="node" data-name="Cognitive System">
+  <div class="node-content" style="background-image:url('assets/brain.png')"></div>
+</a>
+<a href="temporal.html" class="node" data-name="Chrono Dynamics">
+  <div class="node-content" style="background-image:url('assets/time.png')"></div>
+</a>
+<a href="cosmology.html" class="node" data-name="Structural Cosmology">
+  <div class="node-content" style="background-image:url('assets/cosmos.png')"></div>
+</a>
+<a href="computing.html" class="node" data-name="Computational Layer">
+  <div class="node-content" style="background-image:url('assets/computation.png')"></div>
+</a>
+</div>
+<div class="node-display" id="nodeDisplay"></div>
+<div class="hero-text">
+<h1>VISIONÁRIOS</h1>
+<p>
+A conceptual architecture where cognition, time, computation and structure converge into a unified dynamic system.
+</p>
+</div>
 </section>
-
 <section>
-  <div class="shell">
-    <h2 class="section-title">Core Systems</h2>
-    <div class="grid">
-      <div class="card"><h3>Cognitive Integration</h3><p>Semantic coupling across distributed intelligence systems.</p></div>
-      <div class="card"><h3>Temporal Fields</h3><p>Non-linear interaction between time and structure.</p></div>
-      <div class="card"><h3>Structural Cosmology</h3><p>Layered architecture governing large-scale reality.</p></div>
-      <div class="card"><h3>Computational Substrate</h3><p>Beyond classical computation frameworks.</p></div>
-    </div>
-  </div>
+<div class="shell">
+<h2 class="section-title">Core Systems</h2>
+<div class="grid">
+<div class="card">
+<h3>Cognitive Integration</h3>
+<p>Semantic coupling across distributed intelligence systems.</p>
+</div>
+<div class="card">
+<h3>Temporal Fields</h3>
+<p>Non-linear interaction between time and structure.</p>
+</div>
+<div class="card">
+<h3>Structural Cosmology</h3>
+<p>Layered architecture governing large-scale reality.</p>
+</div>
+<div class="card">
+<h3>Computational Substrate</h3>
+<p>Beyond classical computation frameworks.</p>
+</div>
+</div>
+</div>
 </section>
-
-<footer style="padding:100px 0; text-align:center; opacity:0.6; border-top:1px solid var(--border);">
-  <p>© 2026 Visionários</p>
+<footer>
+<p>© 2026 Visionários</p>
 </footer>
-
 <script>
-/* Parallax background */
+/* PARALLAX */
 let currentY = 0;
 window.addEventListener("scroll", () => {
-  const targetY = window.scrollY * 0.18;
-  currentY += (targetY - currentY) * 0.12;
-  document.querySelector(".bg").style.transform = `translateY(${currentY}px)`;
+  const targetY = window.scrollY * 0.2;
+  currentY += (targetY - currentY) * 0.1;
+  document.querySelector(".bg").style.transform =
+    `translateY(${currentY}px)`;
 });
-
-/* HUD */
+/* HUD SYSTEM */
 const nodes = document.querySelectorAll(".node");
 const display = document.getElementById("nodeDisplay");
 nodes.forEach(node => {
@@ -300,31 +394,42 @@ nodes.forEach(node => {
     display.innerText = node.dataset.name;
     display.style.opacity = 1;
   });
-  node.addEventListener("mouseleave", () => display.style.opacity = 0);
+  node.addEventListener("mouseleave", () => {
+    display.style.opacity = 0;
+  });
+  /* MOBILE / CLICK */
   node.addEventListener("click", () => {
     display.innerText = node.dataset.name;
     display.style.opacity = 1;
   });
 });
-
-/* Animação da órbita */
-const orbit = document.querySelector(".orbit");
+  const orbit = document.querySelector(".orbit");
 let angle = 0;
-let speed = 0.18;
-let targetSpeed = 0.18;
-
+let speed = 0.2;
+let targetSpeed = 0.2;
 function animate() {
-  speed += (targetSpeed - speed) * 0.08;
+  speed += (targetSpeed - speed) * 0.07;
   angle += speed;
   orbit.style.transform = `rotate(${angle}deg)`;
   requestAnimationFrame(animate);
 }
 animate();
-
-/* Pausa ao hover */
-const hero = document.querySelector(".hero");
-hero.addEventListener("mouseenter", () => targetSpeed = 0);
-hero.addEventListener("mouseleave", () => targetSpeed = 0.18);
+/* Desktop */
+const hero = document.querySelector(".orbit");
+hero.addEventListener("mouseenter", () => {
+  targetSpeed = 0;
+});
+hero.addEventListener("mouseleave", () => {
+  targetSpeed = 0.1;
+});
+/* Mobile */
+orbit.addEventListener("touchstart", () => {
+  targetSpeed = 0;
+});
+hero.addEventListener("touchend", () => {
+  targetSpeed = 0.1;
+});
 </script>
 </body>
 </html>
+
