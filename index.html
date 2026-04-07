@@ -101,7 +101,7 @@ nav{
   from{transform:rotate(0deg);}
   to{transform:rotate(360deg);}
 }
-/* ==================== NODES - REALISMO SOFISTICADO ==================== */
+/* ==================== NODES - REALISMO SOFISTICADO (Versão Melhorada) ==================== */
 .node {
   position: absolute;
   width: 78px;
@@ -109,71 +109,89 @@ nav{
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   z-index: 3;
-  
-  /* Sombra base + glow externo */
+
+  /* Base metálica + sombras profundas */
   box-shadow: 
-    0 0 35px rgba(255, 255, 255, 0.45),
-    inset 30px 25px 38px rgba(255, 255, 255, 0.55),   /* highlight forte superior */
-    inset -28px -28px 48px rgba(0, 0, 0, 0.88);       /* sombra profunda inferior */
+    0 0 40px rgba(255, 255, 255, 0.5),           /* glow externo */
+    inset 0 0 60px rgba(0, 0, 0, 0.75),          /* sombra geral interna */
+    inset 32px 22px 40px rgba(255, 255, 255, 0.6), /* highlight superior esquerdo */
+    inset -28px -28px 50px rgba(0, 0, 0, 0.9);   /* sombra inferior direita */
 }
 
-/* ==================== MATERIAIS DIFERENTES POR ESFERA ==================== */
+/* Materiais por esfera (ajustados para mais brilho e profundidade) */
 
-/* 1. Prata brilhante - Cognitive System */
-.node:nth-child(1) {
-  background: linear-gradient(135deg, #e8e8e8 8%, #a0a0a0 45%, #555 88%);
+.node:nth-child(1) { /* Prata brilhante - Cognitive */
+  background: radial-gradient(circle at 35% 30%, #f8f8f8 5%, #c0c0c0 35%, #666 70%, #333 95%);
   box-shadow: 
-    0 0 42px #a0d8ff,
-    inset 32px 24px 35px rgba(255,255,255,0.68),
-    inset -30px -30px 52px rgba(0,0,0,0.92);
+    0 0 45px #a0d8ff,
+    inset 34px 24px 38px rgba(255,255,255,0.75),
+    inset -30px -32px 55px rgba(0,0,0,0.92);
 }
 
-/* 2. Roxo metálico / Iridescente - Chrono Dynamics */
-.node:nth-child(2) {
-  background: linear-gradient(145deg, #d946ef 12%, #a855f7 48%, #6b21a8 90%);
+.node:nth-child(2) { /* Roxo metálico iridescente - Temporal */
+  background: radial-gradient(circle at 38% 28%, #f0abfc 8%, #c026d3 40%, #7e22ce 75%, #4c1d95 95%);
   box-shadow: 
-    0 0 48px #c084fc,
-    inset 34px 26px 36px rgba(255,255,255,0.52),
-    inset -29px -29px 50px rgba(0,0,0,0.88);
+    0 0 50px #e0aaff,
+    inset 35px 25px 40px rgba(255,255,255,0.55),
+    inset -29px -30px 52px rgba(0,0,0,0.88);
 }
 
-/* 3. Carbono escuro texturizado - Structural Cosmology */
-.node:nth-child(3) {
-  background: radial-gradient(circle at 40% 30%, #666 10%, #333 52%, #111 92%);
+.node:nth-child(3) { /* Carbono escuro com textura - Structural */
+  background: radial-gradient(circle at 40% 32%, #888 8%, #444 45%, #222 80%, #0f0f0f 98%);
   box-shadow: 
-    0 0 32px #777,
-    inset 24px 22px 40px rgba(255,255,255,0.20),
-    inset -26px -26px 48px rgba(0,0,0,0.95);
+    0 0 35px #777,
+    inset 26px 20px 42px rgba(255,255,255,0.25),
+    inset -27px -28px 50px rgba(0,0,0,0.95);
 }
 
-/* 4. Cromo hiper-reflexivo - Computational Layer */
-.node:nth-child(4) {
-  background: linear-gradient(125deg, #f5f5f5 10%, #b3b3b3 48%, #4d4d4d 85%);
+.node:nth-child(4) { /* Cromo hiper-reflexivo - Computational */
+  background: radial-gradient(circle at 33% 27%, #ffffff 6%, #e0e0e0 32%, #999 68%, #555 92%);
   box-shadow: 
-    0 0 52px #67e8f9,
-    inset 36px 22px 38px rgba(255,255,255,0.78),
-    inset -32px -32px 55px rgba(0,0,0,0.90);
+    0 0 55px #67e8f9,
+    inset 36px 23px 42px rgba(255,255,255,0.82),
+    inset -33px -33px 58px rgba(0,0,0,0.9);
 }
 
-/* Imagem interna com overlay sutil (mantém o conceito) */
+/* Highlight especular forte (o ponto brilhante que falta na versão anterior) */
+.node::before {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.95) 10%, rgba(255,255,255,0.25) 45%, transparent 70%);
+  top: 14px;
+  left: 18px;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Imagem interna (mantém o conceito mas com melhor integração) */
 .node .node-content {
   width: 100%;
   height: 100%;
-  background-size: 58%;
+  background-size: 54%;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.82;
-  mix-blend-mode: screen;           /* ajuda a integrar com o brilho metálico */
+  opacity: 0.78;
+  mix-blend-mode: screen;
+  filter: contrast(1.15) brightness(1.1);
 }
 
-/* Hover premium */
+/* Hover mais vivo */
 .node:hover {
-  transform: scale(1.22);
+  transform: scale(1.20);
   box-shadow: 
-    0 0 60px rgba(255,255,255,0.65),
-    inset 38px 28px 45px rgba(255,255,255,0.65);
+    0 0 65px rgba(255,255,255,0.7),
+    inset 38px 26px 45px rgba(255,255,255,0.7);
+}
+
+.node:hover::before {
+  opacity: 1;
+  transform: scale(1.15);
 }
 
 /* Active */
@@ -181,13 +199,13 @@ nav{
   transform: scale(1.28);
 }
 
-/* ==================== POSITIONS (mantidas) ==================== */
+/* POSITIONS (mantidas, só ajustei levemente o offset) */
 .node:nth-child(1){ top: -39px; left: 50%; transform: translateX(-50%); }
 .node:nth-child(2){ bottom: -39px; left: 50%; transform: translateX(-50%); }
 .node:nth-child(3){ left: -39px; top: 50%; transform: translateY(-50%); }
 .node:nth-child(4){ right: -39px; top: 50%; transform: translateY(-50%); }
 
-/* HUD (mantido, só melhorei um pouco) */
+/* HUD */
 .node-display {
   position: absolute;
   bottom: 14%;
