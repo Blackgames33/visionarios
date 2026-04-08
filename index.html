@@ -28,7 +28,7 @@ body{
     url('assets/fundo3.png') center center / cover no-repeat,
     url('assets/fundo3.png') center top / 150% no-repeat;
 filter: brightness(0.9) contrast(1.05);
-  opacity:0.3;
+  opacity:0.4;
   z-index:-1;
   will-change:transform;
 }
@@ -52,9 +52,7 @@ nav{
 }
 .logo{
   font-family:'Inter';
-  position:center;
   letter-spacing:0.3em;
-    opacity:80%;
 }  
 /* HERO */
 .hero{
@@ -184,7 +182,6 @@ section{
  font-family:'inter', sans-serif;
   margin-bottom:80px;
   letter-spacing:0.15em;
-  opacity:55%;
 }
 /* GRID */
 .grid{
@@ -223,21 +220,21 @@ footer{
     font-size:clamp(1.2rem,6vw,2rem);
     letter-spacing:0.08em;
   }
-
+}
   .logo{
   position:absolute;
   top:28px;
-  left:80px; /* afasta da borda */
+  left:60px; /* afasta da borda */
 
   font-family:'Inter', sans-serif;
   font-weight:300;
 
-  font-size:0.7rem;
+  font-size:0.9rem;
   letter-spacing:0.35em;
 
   color:rgba(255,255,255,0.55); /* mais suave */
   
-  opacity:0.8;
+  opacity:0.6;
   transition:0.3s;
 }
   /* ================= TYPOGRAPHY REFINEMENT ================= */
@@ -319,68 +316,6 @@ body{
     opacity:0.65;
   }
 
-
-  /* ================= GLASS SPHERE ================= */
-
-.node.glass{
-  background:
-    radial-gradient(circle at 30% 25%,
-      rgba(255,255,255,0.9) 0%,
-      rgba(255,255,255,0.25) 12%,
-      rgba(139,233,253,0.15) 35%,
-      rgba(0,0,0,0.85) 75%);
-  
-  box-shadow:
-    inset -20px -20px 40px rgba(0,0,0,0.9),
-    inset 12px 12px 18px rgba(255,255,255,0.15),
-    0 0 25px rgba(139,233,253,0.15);
-}
-
-/* brilho principal */
-.node.glass::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-
-  background:
-    radial-gradient(circle at 25% 20%,
-      rgba(255,255,255,0.95),
-      rgba(255,255,255,0.2) 30%,
-      transparent 55%);
-
-  opacity:0.8;
-}
-
-/* leve reflexão inferior */
-.node.glass::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-
-  background:
-    radial-gradient(circle at 70% 80%,
-      rgba(255,255,255,0.15),
-      transparent 60%);
-
-  opacity:0.3;
-}
-  /* ================= FORCE FINAL OVERRIDE ================= */
-
-.logo{
-  position:absolute;
-  top:28px;
-  left:60px;
-
-  font-family:'Inter', sans-serif;
-  font-weight:200;
-
-  font-size:0.8rem;
-  letter-spacing:0.35em;
-
-  color:rgba(255,255,255,0.4);
-  opacity:0.5;
 }
 </style>
 </head>
@@ -395,7 +330,7 @@ body{
 <section class="hero">
 <div class="core"></div>
 <div class="orbit">
-<a href="cognitive.html" class="node glass" data-name="Cognitive System">
+<a href="cognitive.html" class="node" data-name="Cognitive System">
   <div class="node-content" style="background-image:url('assets/brain.png')"></div>
 </a>
 <a href="temporal.html" class="node" data-name="Chrono Dynamics">
