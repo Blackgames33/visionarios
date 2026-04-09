@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Structural Cosmology — Visionários</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#000;
+  --fg:#eaeaea;
+  --accent:#8be9fd;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  background:black;
+  color:white;
+  font-family:'Roboto',sans-serif;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND */
+.bg{
+  position:fixed;
+  inset:0;
+  background:url('assets/cosmology-bg.png') center/cover no-repeat;
+  opacity:0.35;
+  z-index:-1;
+  will-change:transform;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+}
+
+.hero h1{
+  font-family:'Montserrat';
+  letter-spacing:0.2em;
+  font-weight:300;
+}
+
+/* LAYERS SYSTEM */
+.layers{
+  position:relative;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* CAMADAS */
+.layer{
+  position:absolute;
+  width:60%;
+  height:120px;
+
+  border-radius:100px;
+  border:1px solid rgba(255,255,255,0.08);
+
+  background:rgba(255,255,255,0.02);
+  backdrop-filter:blur(8px);
+
+  transition:0.5s;
+}
+
+/* POSIÇÕES */
+.layer:nth-child(1){ transform:translateY(-180px); }
+.layer:nth-child(2){ transform:translateY(-90px); }
+.layer:nth-child(3){ transform:translateY(0px); }
+.layer:nth-child(4){ transform:translateY(90px); }
+.layer:nth-child(5){ transform:translateY(180px); }
+
+/* HOVER */
+.layer:hover{
+  transform:scale(1.1);
+  border-color:rgba(139,233,253,0.6);
+  box-shadow:0 0 40px rgba(139,233,253,0.2);
+}
+
+/* LABEL */
+.layer span{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  font-size:0.8rem;
+  letter-spacing:0.15em;
+  opacity:0.7;
+}
+
+/* TEXT SECTION */
+.section{
+  padding:120px 5%;
+  max-width:900px;
+  margin:auto;
+  text-align:center;
+}
+
+.section p{
+  opacity:0.7;
+  line-height:1.8;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .layer{
+    width:80%;
+    height:80px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<section class="hero">
+  <h1>STRUCTURAL COSMOLOGY</h1>
+</section>
+
+<section class="layers">
+
+  <div class="layer"><span>Outer Brane</span></div>
+  <div class="layer"><span>Intermediate Field</span></div>
+  <div class="layer"><span>Core Substrate</span></div>
+  <div class="layer"><span>Inner Dynamics</span></div>
+  <div class="layer"><span>Singular Coupling</span></div>
+
+</section>
+
+<section class="section">
+  <p>
+  Reality is not a continuous expansion, but a structured stratification of interacting layers. 
+  Each level responds to internal tension, energy distribution and coupling with adjacent domains.
+  </p>
+</section>
+
+<script>
+window.addEventListener("scroll", () => {
+  const bg = document.querySelector(".bg");
+  bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+});
+</script>
+
+</body>
+</html>
