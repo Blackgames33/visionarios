@@ -24,33 +24,14 @@ body{
   overflow-x:hidden;
 }
 
-.bg-wrapper{  
-  position:fixed;  
-  inset:0;  
-  z-index:-1;  
-  overflow:hidden;  
-}  
-  
-/* CAMADA BASE */  
-.bg{  
-  position:absolute;  
-  width:100%;  
-  height:120%;  
-  
-  background:url('assets/cosmo4-bg.png') center / cover no-repeat;  
-  opacity:0.35;  
-
-  will-change:transform;  
-}  
-  
-/* TOPO */  
-.bg-top{  
-  top:0;  
-}  
-  
-/* EXTENSÃO (resolve corte) */  
-.bg-bottom{  
-  top:100%;  
+/* BACKGROUND */
+.bg{
+  position:fixed;
+  inset:0;
+  background:url('assets/cosmo4-bg.png') center/cover no-repeat;
+  opacity:0.35;
+  z-index:-1;
+  will-change:transform;
 }
 
 /* HERO */
@@ -138,19 +119,11 @@ body{
     height:80px;
   }
 }
-  @media (max-width:768px){
-  .bg{
-    background-position:center top;
-  }
-}
 </style>
 </head>
 
 <body>
-<div class="bg-wrapper">
-  <div class="bg bg-top"></div>
-  <div class="bg bg-bottom"></div>
-</div>
+
 <div class="bg"></div>
 
 <section class="hero">
@@ -176,13 +149,8 @@ body{
 
 <script>
 window.addEventListener("scroll", () => {
-  const scroll = window.scrollY;
-
-  document.querySelector(".bg-top").style.transform =
-    `translateY(${scroll * 0.2}px)`;
-
-  document.querySelector(".bg-bottom").style.transform =
-    `translateY(${scroll * 0.2}px)`;
+  const bg = document.querySelector(".bg");
+  bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
 });
 </script>
 
