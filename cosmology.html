@@ -27,7 +27,7 @@ body{
 .bg{
   position:fixed;
   inset:0;
-
+background-positon:center 20%;
   background:url('assets/cosmo2-bg.png') center top / cover no-repeat;
 
   opacity:0.35;
@@ -128,9 +128,9 @@ body{
     background-position:center top;
   }
 }
-  @media (max-width:768px){
+@media (max-width:768px){
   .bg{
-    transform:none !important;
+    background-position:center top;
   }
 }
 </style>
@@ -164,13 +164,15 @@ body{
 <script>
 window.addEventListener("scroll", () => {
 
+  const bg = document.querySelector(".bg");
+
   if (window.innerWidth > 768) {
-    const bg = document.querySelector(".bg");
-    bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+    bg.style.transform = `translateY(${window.scrollY * 0.15}px)`;
+  } else {
+    bg.style.transform = "translateZ(0)";
   }
 
 });
 </script>
-
 </body>
 </html>
