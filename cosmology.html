@@ -24,14 +24,16 @@ body{
   overflow-x:hidden;
 }
 
-/* BACKGROUND */
 .bg{
   position:fixed;
   inset:0;
-  background:url('assets/cosmo7-bg.png') center/cover no-repeat;
-  opacity:0.85;
+
+  background:url('assets/cosmo2-bg.png) center top / cover no-repeat;
+
+  opacity:0.35;
   z-index:-1;
-  will-change:transform;
+
+  transform:scale(1.1); /* 👈 leve expansão */
 }
 
 /* HERO */
@@ -124,6 +126,11 @@ body{
     background-position:center top;
   }
 }
+  @media (max-width:768px){
+  .bg{
+    transform:none !important;
+  }
+}
 </style>
 </head>
 
@@ -154,8 +161,12 @@ body{
 
 <script>
 window.addEventListener("scroll", () => {
-  const bg = document.querySelector(".bg");
-  bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+
+  if (window.innerWidth > 768) {
+    const bg = document.querySelector(".bg");
+    bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+  }
+
 });
 </script>
 
