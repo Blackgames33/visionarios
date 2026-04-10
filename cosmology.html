@@ -36,7 +36,20 @@ transform:translateZ(0);
  will-change:transform;
 }
 
-  
+ body::after{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:200px;
+
+  background:url('assets/top-fade.png') center top / cover no-repeat;
+
+  opacity:0.6;
+  pointer-events:none;
+  z-index:-1;
+} 
 body{
   scroll-behavior:smooth;
 }
