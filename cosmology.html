@@ -25,33 +25,39 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Fundo principal - completo e vivo */
-.bg {
+.bg{
   position: fixed;
   inset: 0;
   background: url('assets/cosmo01-bg.png') center center / cover no-repeat;
   z-index: -2;
+
+  transform: translateZ(0);
   will-change: transform;
-  
-  /* Animação leve e orgânica (movimento vivo sutil) */
-  animation: cosmicDrift 120s linear infinite;
+
+  animation: cosmicFloat 40s ease-in-out infinite;
 }
 
-/* Animação suave de deriva cósmica */
-@keyframes cosmicDrift {
-  0%   { background-position: center 20%; }
-  50%  { background-position: center 80%; }
-  100% { background-position: center 20%; }
+@keyframes cosmicFloat {
+  0%   { transform: translateY(0px) scale(1.02); }
+  50%  { transform: translateY(-25px) scale(1.05); }
+  100% { transform: translateY(0px) scale(1.02); }
 }
-
-/* Camada extra sutil para profundidade (opcional, mas dá mais vida) */
+@keyframes cosmicFloat2 {
+  0%   { transform: translateY(0px) scale(1.05); }
+  50%  { transform: translateY(30px) scale(1.08); }
+  100% { transform: translateY(0px) scale(1.05); }
+}
 .bg::after {
   content: "";
   position: absolute;
   inset: 0;
+
   background: url('assets/cosmo0-bg.png') center center / cover no-repeat;
-  opacity: 0.25;
-  animation: cosmicDrift 180s linear infinite reverse; /* movimento oposto e mais lento */
+
+  opacity: 0.18;
+  mix-blend-mode: screen;
+
+  animation: cosmicFloat2 70s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -176,7 +182,7 @@ window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
   
   // Parallax suave e sutil (movimento lento)
-  bg.style.transform = `translateY(${scrollY * 0.08}px)`;
+  bg.style.transform = `translateY(${scrollY * 0.05}px)`;
 });
 </script>
 
