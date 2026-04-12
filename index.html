@@ -153,32 +153,47 @@ footer{
   display:block;
   cursor:pointer;
 }
-
-/* LIVRO (centro da mesa) */
-.hotspot-book{
-  width:260px;
-  height:160px;
-
-  bottom:18%;
-  left:50%;
-  transform:translateX(-50%);
+.timeline-flow{
+  position:absolute;
+  bottom:12%;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  pointer-events:none;
 }
 
-/* JORNAL (lado esquerdo) */
-.hotspot-journal{
-  width:220px;
-  height:140px;
+.line{
+  position:absolute;
+  height:1px;
+  width:0%;
+  background:rgba(255,255,255,0.5);
+  animation:lineGrow 6s linear forwards;
+}
 
-  bottom:22%;
-  left:32%;
+.year{
+  position:absolute;
+  top:-18px;
+  font-size:0.7rem;
+  letter-spacing:0.2em;
+  opacity:0;
+  transform:translateY(10px);
 }
-  .hotspot{
-  outline:1px solid rgba(255,255,255,0.2);
+
+@keyframes lineGrow{
+  from{ width:0%; }
+  to{ width:80%; }
 }
-  .hotspot:hover{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(2px);
+
+.year.show{
+  animation:yearFlow 1.2s ease forwards;
 }
+
+@keyframes yearFlow{
+  0%{ opacity:0; transform:translateY(10px); }
+  30%{ opacity:0.5; }
+  100%{ opacity:0; transform:translateY(-12px); }
+}
+
 </style>
 </head>
 
@@ -192,8 +207,7 @@ footer{
 <header>
   <nav>
     <div class="logo">VISIONÁRIOS 2145</div>
-     <a href="timeline.html" class="hotspot hotspot-book"></a>
-<a href="journal.html" class="hotspot hotspot-journal"></a>
+     
   </nav>
 </header>
 
@@ -202,7 +216,10 @@ footer{
 <section class="hero">
   <div class="hero-center">
     <h1>VISIONÁRIOS</h1>
-  
+  <div class="timeline-flow">
+  <div class="line"></div>
+  <div class="year" id="year"></div>
+</div>
     <p class="subtitle">
       Seeding the limits of reality<br>
       2025 — 2145
@@ -218,6 +235,29 @@ footer{
 <footer>
   <p>© 2026 Visionários</p>
 </footer>
+<script>
+const years = ["2025","2030","2050","2080","2100","2145"];
+const yearEl = document.getElementById("year");
 
+let i = 0;
+
+function showYear(){
+  if(i >= years.length) return;
+
+  yearEl.textContent = years[i];
+
+  const progress = (i + 1) / years.length;
+  yearEl.style.left = (progress * 80) + "%";
+
+  yearEl.classList.remove("show");
+  void yearEl.offsetWidth;
+  yearEl.classList.add("show");
+
+  i++;
+  setTimeout(showYear, 900);
+}
+
+setTimeout(showYear, 800);
+</script>
 </body>
 </html>
