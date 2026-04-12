@@ -148,6 +148,37 @@ footer{
 
   text-transform:uppercase;
 }
+  .hotspot{
+  position:absolute;
+  display:block;
+  cursor:pointer;
+}
+
+/* LIVRO (centro da mesa) */
+.hotspot-book{
+  width:260px;
+  height:160px;
+
+  bottom:18%;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* JORNAL (lado esquerdo) */
+.hotspot-journal{
+  width:220px;
+  height:140px;
+
+  bottom:22%;
+  left:32%;
+}
+  .hotspot{
+  outline:1px solid rgba(255,255,255,0.2);
+}
+  .hotspot:hover{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(2px);
+}
 </style>
 </head>
 
@@ -168,6 +199,8 @@ footer{
 <section class="hero">
   <div class="hero-center">
     <h1>VISIONÁRIOS</h1>
+    <a href="timeline.html" class="hotspot hotspot-book"></a>
+<a href="journal.html" class="hotspot hotspot-journal"></a>
     <p class="subtitle">
       Seeding the limits of reality<br>
       2025 — 2145
