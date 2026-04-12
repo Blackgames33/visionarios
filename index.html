@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>VISIONÁRIOS — Conceptual Systems</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --bg:#000;
@@ -12,444 +15,224 @@
   --accent:#8be9fd;
   --border:rgba(255,255,255,0.08);
 }
+
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
-   background:black;
-  color:white;
+  background:#000;
+  color:#fff;
   font-family:'Inter',sans-serif;
   overflow-x:hidden;
-   background:#000; /*mantem a base*/
 }
-/* BACKGROUND */
+
+/* ================= FUNDO ESTÁVEL ================= */
 .bg{
   position:fixed;
-  inset:-20%;
-  background:
-    url('assets/esfer-bg.png') center center / cover no-repeat,
-   url('assets/esfer-bg.png') center top / 160% no-repeat;
-filter: brightness(0.9) contrast(1.05);
-  opacity:0.4;
-  z-index:-1;
-  will-change:transform;
+  inset:0;
+  background:url('assets/library.jpg') center center no-repeat;
+  background-size:cover;
+  z-index:-2;
 }
-/* NAV */
+
+.bg-overlay{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.85));
+  z-index:-1;
+}
+
+/* ================= NAV ================= */
 header{
   position:fixed;
-  width:0%;
+  width:100%;
   backdrop-filter:blur(10px);
   background:rgba(0,0,0,0.4);
   border-bottom:1px solid var(--border);
   z-index:100;
 }
+
 nav{
   max-width:1200px;
   margin:auto;
   display:flex;
-  justify-content: center extreme;
-  align-items:right;
-  height:50px;
+  align-items:center;
+  height:60px;
   padding:0 5%;
 }
+
 .logo{
-  font-family:'Inter';
-  letter-spacing:0.3em;
-}  
-/* HERO */
+  font-size:0.9rem;
+  letter-spacing:0.35em;
+  opacity:0.6;
+}
+
+/* ================= HERO ================= */
 .hero{
   height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
-}
-/* CORE */
-.core{
-  width:170px;
-  height:170px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(139,233,253,0.25), transparent 70%);
-  box-shadow:
-    0 0 80px rgba(139,233,253,0.2),
-    inset 0 0 40px rgba(139,233,253,0.1);
-  position:absolute;
-}
-/* PULSE */
-.core::after,
-.core::before{
-  content:"";
-  position:absolute;
-  inset:-30px;
-  border-radius:50%;
-  border:1px solid rgba(139,233,253,0.2);
-  animation:pulse 4s infinite;
-}
-.core::before{ animation-delay:1s; }
-@keyframes pulse{
-  0%{transform:scale(0.7);opacity:0.8;}
-  100%{transform:scale(1.5);opacity:0;}
-}
-/* ORBIT */
-.orbit{
-  position:absolute;
-  width:520px;
-  height:520px;
-  border-radius:50%;
-  border:1px dashed rgba(255,255,255,0.08);
-  animation:rotate(0deg);
-}
-@keyframes rotate{
-  from{transform:rotate(0deg);}
-  to{transform:rotate(360deg);}
-}
-/* NODE */
-.node{
-  position:absolute;
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 30% 30%,
-      rgba(255,255,255,0.35),
-      rgba(139,233,253,0.12) 40%,
-      rgba(10,15,25,0.85) 100%);
-  box-shadow:
-    inset -12px -12px 25px rgba(0,0,0,0.7),
-    inset 6px 6px 12px rgba(255,255,255,0.08),
-    0 0 25px rgba(139,233,253,0.15);
-  border:1px solid rgba(255,255,255,0.06);
-  backdrop-filter: blur(10px) saturate(120%);
-  transition:0.4s;
-}
-.node::before{
-  content:"";
-  position:absolute;
-  top:18%;
-  left:22%;
-  width:35%;
-  height:35%;
-  border-radius:50%;
-
-  background:radial-gradient(circle,
-    rgba(255,255,255,0.35),
-    transparent 70%);
-
-  filter:blur(6px);
-}
-  .node{
-  overflow:hidden; /* mantém o brilho dentro da esfera */
-}
-.node:hover{
-  transform:scale(1.25);
-  box-shadow:0 0 30px rgba(139,233,253,0.4);
-}
-.node:active{
-  transform:scale(1.35);
-}
-/* NODE CONTENT */
-.node-content{
-  width:100%;
-  height:100%;
-  background-size:60%;
-  background-position:center;
-  background-repeat:no-repeat;
-}
-/* POSITIONS */
-.node:nth-child(1){ top:-40px; left:50%; transform:translateX(-50%);}
-.node:nth-child(2){ bottom:-40px; left:50%; transform:translateX(-50%);}
-.node:nth-child(3){ left:-40px; top:50%; transform:translateY(-50%);}
-.node:nth-child(4){ right:-40px; top:50%; transform:translateY(-50%);}
-/* HUD */
-.node-display{
-  position:absolute;
-  bottom:14%;
-  width:100%;
   text-align:center;
-  font-size:0.99rem;
-  letter-spacing:0.2em;
-  opacity:0.5;
-  transition:0.3s;
 }
-/* HERO TEXT */
-.hero-text{
-  position:absolute;
-  bottom:9%;
-  text-align:left;
-  max-width:800px;
 
+.hero-center{
+  z-index:10;
 }
-.hero-text h1{
-  font-family:'inter', sans-serif;
-  font-weight:200;
-  letter-spacing:0.70em;
-opacity:0.5 !important;
+
+.hero h1{
+  font-family:'Montserrat', sans-serif;
+  font-size:clamp(2.5rem,6vw,4rem);
+  letter-spacing:0.3em;
+  font-weight:300;
+  color:#f5f5f5;
+  text-shadow:
+    0 0 20px rgba(255,255,255,0.15),
+    0 0 40px rgba(255,255,255,0.05);
 }
-.hero-text p{
+
+.subtitle{
   margin-top:20px;
-  opacity:0,4;
+  opacity:0.7;
+  font-size:0.9rem;
+  letter-spacing:0.15em;
 }
-/* SECTION */
+
+/* ================= SECTION ================= */
 section{
   padding:140px 0;
 }
+
 .shell{
   max-width:1200px;
   margin:auto;
   padding:0 5%;
 }
+
 .section-title{
   text-align:center;
- font-family:'inter', sans-serif;
   margin-bottom:80px;
-  letter-spacing:0.15em;
+  letter-spacing:0.18em;
+  font-weight:300;
 }
-/* GRID */
+
+/* ================= GRID ================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:40px;
 }
+
+/* ================= CARD ================= */
 .card{
-  padding:40px;
+  position:relative;
+  padding:26px;
   border:1px solid var(--border);
+  border-radius:12px;
   background:rgba(255,255,255,0.02);
-  transition:0.4s;
+  transition:0.35s ease;
 }
+
 .card:hover{
-  transform:translateY(-10px);
+  transform:translateY(-6px);
   border-color:rgba(255,255,255,0.3);
+  background:rgba(255,255,255,0.04);
 }
-/* FOOTER */
+
+.card h3{
+  font-size:0.9rem;
+  letter-spacing:0.12em;
+  margin-bottom:12px;
+}
+
+.card p{
+  font-size:0.9rem;
+  opacity:0.7;
+}
+
+/* ================= FOOTER ================= */
 footer{
   padding:100px 0;
   border-top:1px solid var(--border);
   text-align:center;
   opacity:0.6;
 }
-/* MOBILE */
-@media (max-width:768px){
-  .core{ width:120px;height:120px;}
-  .orbit{ width:260px;height:260px;}
-  .node{ width:50px;height:50px;}
-  .node-content{ background-size:70%; }
-  .hero-text{
-    width:100%;
-    padding:0 16px;
-  }
-  
-  .hero-text h1{
-    font-size:clamp(1.3rem,6vw,2rem);
-    letter-spacing:0.08em;
-  }
-}
-  .logo{
-  position:absolute;
-  top:28px;
-  left:60px; /* afasta da borda */
 
-  font-family:'Inter', sans-serif;
-  font-weight:300;
-
-  font-size:0.9rem;
-  letter-spacing:0.35em;
-
-  color:rgba(255,255,255,0.55); /* mais suave */
-  
-  opacity:0.6;
-  transition:0.3s;
-}
-  /* ================= TYPOGRAPHY REFINEMENT ================= */
-
-body{
-  font-family:'Inter', sans-serif;
-  font-feature-settings: "ss01", "cv01", "cv02";
-}
-
-/* HERO TITLE */
-.hero-text h1{
-  font-weight:200;
-  letter-spacing:0.22em;
-  opacity:0.95; /* menos brilho */
-}
-
-/* LOGO (HUD) */
-.logo{
-  font-weight:200;
-  letter-spacing:0.35em;
-  color:rgba(255,255,255,0.45); /* mais suave */
-  opacity:0.5;
-}
-
-/* SECTION TITLE */
-.section-title{
-  font-weight:300;
-  letter-spacing:0.18em;
-  opacity:0.85;
-}
-
-/* CARD TITLES */
-.card h3{
-  font-weight:400;
-  letter-spacing:0.06em;
-  opacity:0.9;
-}
-
-/* CARD TEXT */
-.card p{
-  font-weight:300;
-  opacity:0.65; /* reduz brilho */
-  line-height:1.6;
-}
-
-  /* ================= MOBILE TYPOGRAPHY FIX ================= */
+/* ================= MOBILE ================= */
 @media (max-width:768px){
 
-  body{
-    font-family:'Inter', sans-serif;
+  .hero h1{
+    font-size:1.8rem;
+    letter-spacing:0.2em;
   }
 
-  .hero-text h1{
-    font-weight:200;
-    letter-spacing:0.18em;
-    opacity:0.85;
-  }
-
-  .logo{
-    font-weight:200;
-    letter-spacing:0.3em;
-    color:rgba(255,255,255,0.45);
-    opacity:0.5;
-  }
-
-  .section-title{
-    font-weight:300;
-    letter-spacing:0.16em;
-    opacity:0.75;
-  }
-
-  .card h3{
-    font-weight:400;
-    opacity:0.9;
-  }
-
-  .card p{
-    font-weight:300;
-    opacity:0.65;
+  .subtitle{
+    font-size:0.75rem;
+    padding:0 20px;
   }
 
 }
 </style>
 </head>
-<body>
-<div class="bg"></div>
-<header>
-<nav>
-<div class="logo">VISIONÁRIOS 2145</div>
 
-</nav>
+<body>
+
+<!-- FUNDO -->
+<div class="bg"></div>
+<div class="bg-overlay"></div>
+
+<!-- NAV -->
+<header>
+  <nav>
+    <div class="logo">VISIONÁRIOS 2145</div>
+  </nav>
 </header>
+
+<!-- HERO -->
 <section class="hero">
-<div class="core"></div>
-<div class="orbit">
-<a href="cognitive.html" class="node" data-name="Cognitive System">
-  <div class="node-content" style="background-image:url('assets/brain.png')"></div>
-</a>
-<a href="temporal.html" class="node" data-name="Chrono Dynamics">
-  <div class="node-content" style="background-image:url('assets/time.png')"></div>
-</a>
-<a href="cosmology.html" class="node" data-name="Structural Cosmology">
-  <div class="node-content" style="background-image:url('assets/cosmos.png')"></div>
-</a>
-<a href="computing.html" class="node" data-name="Computational Layer">
-  <div class="node-content" style="background-image:url('assets/computation.png')"></div>
-</a>
-</div>
-<div class="node-display" id="nodeDisplay"></div>
-<div class="hero-text">
-<h1>VISIONÁRIOS</h1>
-<p>
-A conceptual architecture where cognition, time, computation and structure converge into a unified dynamic system.
-</p>
-</div>
+  <div class="hero-center">
+    <h1>VISIONÁRIOS</h1>
+    <p class="subtitle">
+      Semeando os limites da realidade<br>
+      2025 — 2145
+    </p>
+  </div>
 </section>
+
+<!-- SECTION -->
 <section>
-<div class="shell">
-<h2 class="section-title">Core Systems</h2>
-<div class="grid">
-<div class="card">
-<h3>Cognitive Integration</h3>
-<p>Semantic coupling across distributed intelligence systems.</p>
-</div>
-<div class="card">
-<h3>Temporal Fields</h3>
-<p>Non-linear interaction between time and structure.</p>
-</div>
-<div class="card">
-<h3>Structural Cosmology</h3>
-<p>Layered architecture governing large-scale reality.</p>
-</div>
-<div class="card">
-<h3>Computational Substrate</h3>
-<p>Beyond classical computation frameworks.</p>
-</div>
-</div>
-</div>
+  <div class="shell">
+    <h2 class="section-title">Core Systems</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Cognitive Integration</h3>
+        <p>Semantic coupling across distributed intelligence systems.</p>
+      </div>
+
+      <div class="card">
+        <h3>Temporal Fields</h3>
+        <p>Non-linear interaction between time and structure.</p>
+      </div>
+
+      <div class="card">
+        <h3>Structural Cosmology</h3>
+        <p>Layered architecture governing large-scale reality.</p>
+      </div>
+
+      <div class="card">
+        <h3>Computational Substrate</h3>
+        <p>Beyond classical computation frameworks.</p>
+      </div>
+
+    </div>
+  </div>
 </section>
+
+<!-- FOOTER -->
 <footer>
-<p>© 2026 Visionários</p>
+  <p>© 2026 Visionários</p>
 </footer>
-<script>
-/* PARALLAX */
-let currentY = 0;
-window.addEventListener("scroll", () => {
-  const targetY = window.scrollY * 0.2;
-  currentY += (targetY - currentY) * 0.1;
-  document.querySelector(".bg").style.transform =
-    `translateY(${currentY}px)`;
-});
-/* HUD SYSTEM */
-const nodes = document.querySelectorAll(".node");
-const display = document.getElementById("nodeDisplay");
-nodes.forEach(node => {
-  node.addEventListener("mouseenter", () => {
-    display.innerText = node.dataset.name;
-    display.style.opacity = 1;
-  });
-  node.addEventListener("mouseleave", () => {
-    display.style.opacity = 0;
-  });
-  /* MOBILE / CLICK */
-  node.addEventListener("click", () => {
-    display.innerText = node.dataset.name;
-    display.style.opacity = 1;
-  });
-});
-  const orbit = document.querySelector(".orbit");
-let angle = 0;
-let speed = 0.2;
-let targetSpeed = 0.2;
-function animate() {
-  speed += (targetSpeed - speed) * 0.07;
-  angle += speed;
-  orbit.style.transform = `rotate(${angle}deg)`;
-  requestAnimationFrame(animate);
-}
-animate();
-/* Desktop */
-const hero = document.querySelector(".orbit");
-hero.addEventListener("mouseenter", () => {
-  targetSpeed = 0;
-});
-hero.addEventListener("mouseleave", () => {
-  targetSpeed = 0.1;
-});
-/* Mobile */
-orbit.addEventListener("touchstart", () => {
-  targetSpeed = 0;
-});
-hero.addEventListener("touchend", () => {
-  targetSpeed = 0.1;
-});
-</script>
+
 </body>
 </html>
-
