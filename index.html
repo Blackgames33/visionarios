@@ -166,7 +166,8 @@ footer{
   position:absolute;
   height:1px;
   width:0%;
-  background:rgba(255,255,255,0.5);
+  left:0;
+  background:rgba(255,255,255,0.25);
   animation:lineGrow 6s linear forwards;
 }
 
@@ -181,8 +182,8 @@ footer{
 
 @keyframes lineGrow{
   from{ width:0%; }
-  to{ width:80%; }
-  opacity:0.8;
+  to{ width:100%; }
+
 }
 
 .year.show{
@@ -194,7 +195,13 @@ footer{
   30%{ opacity:0.5; }
   100%{ opacity:0; transform:translateY(-12px); }
 }
+.hero{
+  transition:transform 1.2s ease;
+}
 
+.hero.zoom{
+  transform:scale(1.05);
+}
 </style>
 </head>
 
@@ -245,12 +252,15 @@ const yearEl = document.getElementById("year");
 let i = 0;
 
 function showYear(){
-  if(i >= years.length) return;
+ if(i >= years.length){
+  document.querySelector(".hero").classList.add("zoom");
+  return;
+}
 
   yearEl.textContent = years[i];
 
   const progress = (i + 1) / years.length;
-  yearEl.style.left = (progress * 80) + "%";
+  yearEl.style.left = (progress * 95) + "%";
 
   yearEl.classList.remove("show");
   void yearEl.offsetWidth;
