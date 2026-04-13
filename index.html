@@ -22,15 +22,17 @@ body{
   background:#000;
   color:#fff;
   font-family:'Inter',sans-serif;
-  overflow-x:hidden;
+
+  overflow:hidden;      /* 🔥 impede scroll */
+  height:100vh;         /* ocupa tela inteira */
 }
 
 /* ================= FUNDO ESTÁVEL ================= */
 .bg{
   position:fixed;
   inset:0;
-  background:url('assets/library.jpg') center center no-repeat;
-  background-size:cover;
+  background:url('assets/library.jpg') center/cover no-repeat;
+  
   z-index:-2;
 }
 
@@ -73,6 +75,8 @@ nav{
   align-items:center;
   justify-content:center;
   text-align:center;
+  position:relative;
+  overflow:hidden;
 }
 
 .hero-center{
@@ -120,10 +124,12 @@ section{
 
 /* ================= FOOTER ================= */
 footer{
-  padding:100px 0;
-  border-top:1px solid var(--border);
+  position:fixed;
+  bottom:10px;
+  width:100%;
   text-align:center;
-  opacity:0.6;
+  opacity:0.4;
+  font-size:0.7rem;
 }
 
 /* ================= MOBILE ================= */
