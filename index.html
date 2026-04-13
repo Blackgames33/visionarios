@@ -171,7 +171,7 @@ footer{
   left:-10vw;
   background:rgba(255,255,255,0.3);
   transform:translatey(-50%);
-  animation:lineGrow 4s linear forwards;
+  animation:lineGrow 7s linear forwards;
 
 }
 
@@ -186,10 +186,9 @@ footer{
 
 @keyframes lineGrow{
   0%{ width:0vw; }
-  100%{ width:130vw; }
+  100%{ width:120vw; }
 
 }
-
 
   }
 .hero{
@@ -202,7 +201,11 @@ footer{
   body{
   transition:transform 1.8s ease;
 }
-
+@keyframes year{
+  0%{ opacity:0; transform:translateY(10px); }
+  30%{ opacity:0.5; }
+  100%{ opacity:0; transform:translateY(-12px); }
+}
 
 </style>
 </head>
