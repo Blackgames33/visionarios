@@ -43,7 +43,7 @@ body{
 
 /* ================= NAV ================= */
 header{
-  position:relative;
+  position:fixed;
   width:100%;
   backdrop-filter:blur(10px);
   background:rgba(0,0,0,0.4);
@@ -54,7 +54,7 @@ header{
 nav{
   max-width:1200px;
   margin:auto;
-  display:fixed;
+  display:flex;
   align-items:center;
   height:60px;
   padding:0 5%;
@@ -170,7 +170,7 @@ footer{
   width:0%;
   left:0;
   background:rgba(255,255,255,0.35);
-  animation:lineGrow 6s linear forwards;
+  animation:lineGrow 10s linear forwards;
 
 }
 
@@ -185,12 +185,12 @@ footer{
 
 @keyframes lineGrow{
   from{ width:0%; }
-  to{ width:180%; }
+  to{ width:120%; }
 
 }
 
 .year.show{
-  animation:yearFlow 1.5s ease forwards;
+  animation:yearFlow 10s ease forwards;
 }
 
 @keyframes yearFlow{
