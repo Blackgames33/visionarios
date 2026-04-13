@@ -228,8 +228,8 @@ footer{
 }
 
 .hero-center{
-  opacity:0;
-  transform:translateY(20px);
+  opacity:0 !important;
+  transform:translateY(30px);
   transition:all 1.2s ease;
 }
 
@@ -266,9 +266,9 @@ footer{
 <!-- HERO -->
 
 <section class="hero">
-  <div class="hero-center">
-    <h1>VISIONÁRIOS</h1>
-     <div class="timeline-flow">
+  <div class="hero-center" style="opacity:0;">
+    <h1>VISIONÁRIOS</h1>  
+    <div class="timeline-flow">
   <div class="line"></div>
   <div class="year" id="year"></div>
 </div>
@@ -290,49 +290,47 @@ footer{
   <p>© 2026 Visionários</p>
 </footer>
 <script>
-const years = ["2025","2030","2050","2080","2100","2145"];
-const container = document.querySelector(".timeline-flow");
-const hero = document.querySelector(".hero-center");
+window.addEventListener("load", () => {
 
-const duration = 4000;
-const stepTime = duration / years.length;
+  const years = ["2025","2030","2050","2080","2100","2145"];
+  const container = document.querySelector(".timeline-flow");
+  const hero = document.querySelector(".hero-center");
 
-// Garante que o título começa invisível
-hero.classList.remove("show");
+  const duration = 4000;
+  const stepTime = duration / years.length;
 
-// LOOP DOS ANOS
-years.forEach((year, i) => {
+  // timeline
+  years.forEach((year, i) => {
 
+    setTimeout(() => {
+
+      const el = document.createElement("div");
+      el.className = "year-pop";
+      el.textContent = year;
+
+      let pos = ((i + 1) / years.length) * window.innerWidth;
+
+      if(i === years.length - 1){
+        pos = window.innerWidth - 80;
+      }
+
+      el.style.left = pos + "px";
+
+      container.appendChild(el);
+
+      setTimeout(() => el.remove(), 2000);
+
+    }, i * stepTime + 200);
+
+  });
+
+  // REVELAÇÃO FINAL (ISOLADA)
   setTimeout(() => {
-
-    const el = document.createElement("div");
-    el.className = "year-pop";
-    el.textContent = year;
-
-    // posição na tela
-    let pos = ((i + 1) / years.length) * window.innerWidth;
-
-    // ajuste do último
-    if(i === years.length - 1){
-      pos = window.innerWidth - 80;
-    }
-
-    el.style.left = pos + "px";
-
-    container.appendChild(el);
-
-    // remove depois
-    setTimeout(() => el.remove(), 2000);
-
-  }, i * stepTime + 200);
+    hero.style.opacity = "1";
+    hero.style.transform = "translateY(0)";
+  }, duration + 1200);
 
 });
-
-// REVELAÇÃO FINAL (DEPOIS DA LINHA + ANOS)
-setTimeout(() => {
-  hero.classList.add("show");
-}, duration + 1200);
-
 </script>
 </body>
 </html>
