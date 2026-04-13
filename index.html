@@ -43,7 +43,7 @@ body{
 
 /* ================= NAV ================= */
 header{
-  position:fixed;
+  position:relative;
   width:100%;
   backdrop-filter:blur(10px);
   background:rgba(0,0,0,0.4);
@@ -69,7 +69,7 @@ nav{
 /* ================= HERO ================= */
 .hero{
   height:100vh;
-  display:flex;
+  display:fixed;
   align-items:center;
   justify-content:center;
   text-align:center;
@@ -190,14 +190,15 @@ footer{
 }
 
 .year.show{
-  animation:yearFlow 10s ease forwards;
+  animation:yearFlow 1.8s ease forwards;
 }
 
 @keyframes yearFlow{
-  0%{ opacity:0; transform:translateY(10px); }
-  30%{ opacity:0.5; }
-  100%{ opacity:0; transform:translateY(-12px); }
+  0%{ opacity:0; transform:translateY(6px); }
+  30%{ opacity:0.4; }
+  100%{ opacity:0; transform:translateY(-10px); }
 }
+  }
 .hero{
   transition:transform 1.2s ease;
 }
@@ -252,13 +253,13 @@ footer{
 const years = ["2025","2030","2050","2080","2100","2145"];
 const yearEl = document.getElementById("year");
 
+const totalDuration = 10000; // 10s (igual à linha)
+const stepTime = totalDuration / years.length;
+
 let i = 0;
 
 function showYear(){
- if(i >= years.length){
-  document.querySelector(".hero").classList.add("zoom");
-  return;
-}
+  if(i >= years.length) return;
 
   yearEl.textContent = years[i];
 
@@ -270,9 +271,10 @@ function showYear(){
   yearEl.classList.add("show");
 
   i++;
-  setTimeout(showYear, 900);
+  setTimeout(showYear, stepTime);
 }
 
+// começa levemente depois da linha iniciar
 setTimeout(showYear, 800);
 </script>
 </body>
