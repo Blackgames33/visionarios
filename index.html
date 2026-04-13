@@ -177,11 +177,11 @@ footer{
 
 .year{
   position:absolute;
-  top:-14px;
+  top:-10px;
   font-size:0.7rem;
   letter-spacing:0.2em;
   opacity:0;
-  transform:translateY(10px);
+  transform:translateY(-50%);
 }
 
 @keyframes lineGrow{
@@ -206,6 +206,13 @@ footer{
 
 .hero.zoom{
   transform:scale(1.05);
+}
+  body{
+  transition:transform 1.8s ease;
+}
+
+body.zoom-end{
+  transform:scale(1.03);
 }
 </style>
 </head>
@@ -254,29 +261,37 @@ footer{
 const years = ["2025","2030","2050","2080","2100","2145"];
 const yearEl = document.getElementById("year");
 
-const totalDuration = 4000;
-const stepTime = totalDuration / years.length;
+const duration = 4000; // mesmo tempo da linha
+const start = performance.now();
 
-let i = 0;
+function animate(now){
 
-function showYear(){
-  if(i >= years.length) return;
+  let progress = (now - start) / duration;
 
-  yearEl.textContent = years[i];
+  if(progress > 1) progress = 1;
 
-  const progress = (i + 1) / years.length;
-  yearEl.style.left = (progress * window.innrwidth) + "px";
+  // posição acompanha a linha REAL
+  const x = progress * window.innerWidth;
+  yearEl.style.left = x + "px";
 
+  // lógica dos anos (troca ao longo do caminho)
+  const index = Math.floor(progress * years.length);
+  yearEl.textContent = years[index] || "";
+
+  // animação visual
   yearEl.classList.remove("show");
   void yearEl.offsetWidth;
   yearEl.classList.add("show");
 
-  i++;
-  setTimeout(showYear, stepTime);
+  if(progress < 1){
+    requestAnimationFrame(animate);
+  } else {
+    // FINAL → ativa zoom natural
+    document.body.classList.add("zoom-end");
+  }
 }
 
-// começa levemente depois da linha iniciar
-setTimeout(showYear, 800);
+requestAnimationFrame(animate);
 </script>
 </body>
 </html>
