@@ -201,10 +201,30 @@ footer{
   body{
   transition:transform 1.8s ease;
 }
-@keyframes year{
-  0%{ opacity:0; transform:translateY(10px); }
-  30%{ opacity:0.1; }
-  100%{ opacity:0; transform:translateY(-12px); }
+
+.year-pop{
+  position:absolute;
+  bottom:6px;
+  transform:translateX(-50%);
+  font-size:0.75rem;
+  letter-spacing:0.2em;
+  opacity:0;
+
+  animation:popUp 2s ease forwards;
+}
+
+@keyframes popUp{
+  0%{
+    opacity:0;
+    transform:translate(-50%, 10px);
+  }
+  30%{
+    opacity:0.5;
+  }
+  100%{
+    opacity:0;
+    transform:translate(-50%, -18px);
+  }
 }
 
 </style>
@@ -252,34 +272,31 @@ footer{
 </footer>
 <script>
 const years = ["2025","2030","2050","2080","2100","2145"];
-const yearEl = document.getElementById("year");
+const container = document.querySelector(".timeline-flow");
 
 const duration = 4000;
-const start = performance.now();
+const stepTime = duration / years.length;
 
-function animate(now){
+years.forEach((year, i) => {
 
-  let progress = (now - start) / duration;
-  if(progress > 1) progress = 1;
+  setTimeout(() => {
 
-  // posição real na tela
-  const x = progress * window.innerWidth;
-  yearEl.style.left = x + "px";
+    const el = document.createElement("div");
+    el.className = "year-pop";
+    el.textContent = year;
 
-  // index corrigido (não some)
-  const index = Math.min(
-    Math.floor(progress * years.length),
-    years.length - 1
-  );
+    // posição ao longo da linha
+    const progress = (i + 1) / years.length;
+    el.style.left = (progress * 100) + "vw";
 
-  yearEl.textContent = years[index];
+    container.appendChild(el);
 
-  if(progress < 1){
-    requestAnimationFrame(animate);
-  }
+    // remove depois da animação
+    setTimeout(() => el.remove(), 2000);
 
-}
-requestAnimationFrame(animate);
+  }, i * stepTime);
+
+});
 </script>
 </body>
 </html>
