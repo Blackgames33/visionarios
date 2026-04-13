@@ -292,10 +292,15 @@ footer{
 <script>
 const years = ["2025","2030","2050","2080","2100","2145"];
 const container = document.querySelector(".timeline-flow");
+const hero = document.querySelector(".hero-center");
 
 const duration = 4000;
 const stepTime = duration / years.length;
 
+// Garante que o título começa invisível
+hero.classList.remove("show");
+
+// LOOP DOS ANOS
 years.forEach((year, i) => {
 
   setTimeout(() => {
@@ -304,28 +309,30 @@ years.forEach((year, i) => {
     el.className = "year-pop";
     el.textContent = year;
 
-    // posição ao longo da linha
-    const progress = (i + 1) / years.length;
-   let pos = progress * window.innerWidth;
+    // posição na tela
+    let pos = ((i + 1) / years.length) * window.innerWidth;
 
-// se for o último (2145), puxa um pouco pra dentro
-setTimeout(() => {
-  document.querySelector(".hero-center").classList.add("show");
-}, 1200);
-if(i === years.length - 1){
-  pos = window.innerWidth - 80; // ajuste fino
-}
+    // ajuste do último
+    if(i === years.length - 1){
+      pos = window.innerWidth - 80;
+    }
 
-el.style.left = pos + "px";
+    el.style.left = pos + "px";
 
     container.appendChild(el);
 
-    // remove depois da animação
+    // remove depois
     setTimeout(() => el.remove(), 2000);
 
-  }, i * stepTime + 280 );
+  }, i * stepTime + 200);
 
 });
+
+// REVELAÇÃO FINAL (DEPOIS DA LINHA + ANOS)
+setTimeout(() => {
+  hero.classList.add("show");
+}, duration + 1200);
+
 </script>
 </body>
 </html>
