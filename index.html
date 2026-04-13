@@ -228,7 +228,7 @@ footer{
 }
 
 .hero-center{
-  opacity:0 !important;
+  opacity:0;
   transform:translateY(30px);
   transition:all 1.2s ease;
 }
@@ -246,6 +246,10 @@ footer{
 .hero-center.show h1{
   letter-spacing:0.25em;
 }
+.hero-center{
+  position:relative;
+  z-index:10;
+}  
 </style>
 </head>
 
@@ -295,7 +299,7 @@ window.addEventListener("load", () => {
   const years = ["2025","2030","2050","2080","2100","2145"];
   const container = document.querySelector(".timeline-flow");
   const hero = document.querySelector(".hero-center");
-
+document.querySelector(".hero-center").style.opacity = "1";
   const duration = 4000;
   const stepTime = duration / years.length;
 
