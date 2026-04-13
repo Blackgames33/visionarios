@@ -154,43 +154,50 @@ footer{
   cursor:pointer;
 }
 .timeline-flow{
-  position:fixed;
+  position:absolute;
   bottom:18%;
   left:0;
-  width:100vw;
-  height:20px;
+  width:10%;
+  display:flex;
   pointer-events:none;
-  z-index:5;
+  max-width:120px;
+  margin:auto;
 }
 
 .line{
   position:absolute;
-  top:50%;
-  height:2px;
-  width:0vw;
-  left:-10vw;
-  background:rgba(255,255,255,0.3);
-  transform:translatey(-50%);
-  animation:lineGrow 7s linear forwards;
+  height:1px;
+  width:0%;
+  left:0;
+  background:rgba(255,255,255,0.35);
+  animation:lineGrow 10s linear forwards;
 
 }
 
 .year{
   position:absolute;
-  top:-12px;
-  font-size:0.75rem;
+  top:-14px;
+  font-size:0.7rem;
   letter-spacing:0.2em;
-  opacity:0.6;
-  white-space:nowrap;
+  opacity:0;
+  transform:translateY(10px);
 }
 
 @keyframes lineGrow{
-  0%{ width:0vw; }
-  100%{ width:120vw; }
+  from{ width:0%; }
+  to{ width:120%; }
 
 }
 
-  }
+.year.show{
+  animation:yearFlow 1.5s ease forwards;
+}
+
+@keyframes yearFlow{
+  0%{ opacity:0; transform:translateY(10px); }
+  30%{ opacity:0.5; }
+  100%{ opacity:0; transform:translateY(-12px); }
+}
 .hero{
   transition:transform 1.2s ease;
 }
@@ -198,15 +205,6 @@ footer{
 .hero.zoom{
   transform:scale(1.05);
 }
-  body{
-  transition:transform 1.8s ease;
-}
-@keyframes year{
-  0%{ opacity:0; transform:translateY(10px); }
-  30%{ opacity:0.5; }
-  100%{ opacity:0; transform:translateY(-12px); }
-}
-
 </style>
 </head>
 
@@ -277,7 +275,7 @@ function animate(now){
   if(progress < 1){
     requestAnimationFrame(animate);
   }
-}
+
 
 requestAnimationFrame(animate);
 </script>
