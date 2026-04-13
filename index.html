@@ -309,12 +309,11 @@ years.forEach((year, i) => {
    let pos = progress * window.innerWidth;
 
 // se for o último (2145), puxa um pouco pra dentro
-if(i === years.length - 1){
-  pos = window.innerWidth - 80; // ajuste fino
-
 setTimeout(() => {
   document.querySelector(".hero-center").classList.add("show");
 }, 1200);
+if(i === years.length - 1){
+  pos = window.innerWidth - 80; // ajuste fino
 }
 
 el.style.left = pos + "px";
