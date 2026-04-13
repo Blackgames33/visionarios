@@ -287,7 +287,14 @@ years.forEach((year, i) => {
 
     // posição ao longo da linha
     const progress = (i + 1) / years.length;
-    el.style.left = (progress * 100) + "vw";
+   let pos = progress * window.innerWidth;
+
+// se for o último (2145), puxa um pouco pra dentro
+if(i === years.length - 1){
+  pos = window.innerWidth - 80; // ajuste fino
+}
+
+el.style.left = pos + "px";
 
     container.appendChild(el);
 
