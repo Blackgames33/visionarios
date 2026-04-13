@@ -227,6 +227,25 @@ footer{
   }
 }
 
+.hero-center{
+  opacity:0;
+  transform:translateY(20px);
+  transition:all 1.2s ease;
+}
+
+.hero-center.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.hero-center h1{
+  letter-spacing:0.4em;
+  transition:all 1.2s ease;
+}
+
+.hero-center.show h1{
+  letter-spacing:0.25em;
+}
 </style>
 </head>
 
@@ -292,6 +311,10 @@ years.forEach((year, i) => {
 // se for o último (2145), puxa um pouco pra dentro
 if(i === years.length - 1){
   pos = window.innerWidth - 80; // ajuste fino
+
+setTimeout(() => {
+  document.querySelector(".hero-center").classList.add("show");
+}, 1200);
 }
 
 el.style.left = pos + "px";
