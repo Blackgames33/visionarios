@@ -190,15 +190,7 @@ footer{
 
 }
 
-.year.show{
-  animation:yearFlow 1.8s ease forwards;
-}
 
-@keyframes yearFlow{
-  0%{ opacity:0; transform:translateY(6px); }
-  30%{ opacity:0.4; }
-  100%{ opacity:0; transform:translateY(-10px); }
-}
   }
 .hero{
   transition:transform 1.2s ease;
@@ -259,34 +251,28 @@ footer{
 const years = ["2025","2030","2050","2080","2100","2145"];
 const yearEl = document.getElementById("year");
 
-const duration = 4000; // mesmo tempo da linha
+const duration = 4000;
 const start = performance.now();
 
 function animate(now){
 
   let progress = (now - start) / duration;
-
   if(progress > 1) progress = 1;
 
-  // posição acompanha a linha REAL
+  // posição real na tela
   const x = progress * window.innerWidth;
   yearEl.style.left = x + "px";
 
-  // lógica dos anos (troca ao longo do caminho)
-  const index = Math.floor(progress * years.length),
-    yers.length - 1
-};
-  yearEl.textContent = years[index];
+  // index corrigido (não some)
+  const index = Math.min(
+    Math.floor(progress * years.length),
+    years.length - 1
+  );
 
-  // animação visual
-  yearEl.classList.remove("show");
-  void yearEl.offsetWidth;
-  yearEl.classList.add("show");
+  yearEl.textContent = years[index];
 
   if(progress < 1){
     requestAnimationFrame(animate);
-  } else {
-  
   }
 }
 
