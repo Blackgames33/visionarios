@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Timeline — Visionários</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  background:#000;
+  color:#fff;
+  font-family:'Inter',sans-serif;
+  overflow:hidden;
+}
+
+/* FUNDO */
+.bg{
+  position:fixed;
+  inset:0;
+  background:url('assets/library.jpg') center/cover no-repeat;
+  z-index:-2;
+}
+
+.bg-overlay{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
+  z-index:-1;
+}
+
+/* BOTÃO VOLTAR */
+.back-home{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:0.7rem;
+  letter-spacing:0.3em;
+  opacity:0.6;
+  cursor:pointer;
+  transition:0.4s;
+}
+
+.back-home:hover{
+  opacity:1;
+}
+
+/* TIMELINE */
+.timeline{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+/* LINHA */
+.line{
+  position:absolute;
+  width:80%;
+  height:1px;
+  background:rgba(255,255,255,0.15);
+}
+
+/* NODES */
+.node{
+  position:absolute;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#fff;
+  cursor:pointer;
+  transition:0.4s;
+}
+
+.node:hover{
+  transform:scale(2);
+  background:#8be9fd;
+}
+
+/* POSIÇÕES */
+.node[data-year="2025"]{ left:15%; }
+.node[data-year="2050"]{ left:35%; }
+.node[data-year="2080"]{ left:55%; }
+.node[data-year="2100"]{ left:70%; }
+.node[data-year="2145"]{ left:85%; }
+
+/* TEXTO FLUTUANTE */
+.label{
+  position:absolute;
+  top:-40px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:0.7rem;
+  opacity:0;
+  letter-spacing:0.2em;
+  transition:0.3s;
+  white-space:nowrap;
+}
+
+.node:hover .label{
+  opacity:1;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+  .line{
+    width:90%;
+  }
+
+  .node{
+    width:8px;
+    height:8px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="bg-overlay"></div>
+
+<div class="back-home">VISIONÁRIOS</div>
+
+<section class="timeline">
+
+  <div class="line"></div>
+
+  <div class="node" data-year="2025">
+    <div class="label">2025 — Emergence</div>
+  </div>
+
+  <div class="node" data-year="2050">
+    <div class="label">2050 — Acceleration</div>
+  </div>
+
+  <div class="node" data-year="2080">
+    <div class="label">2080 — Transition</div>
+  </div>
+
+  <div class="node" data-year="2100">
+    <div class="label">2100 — Expansion</div>
+  </div>
+
+  <div class="node" data-year="2145">
+    <div class="label">2145 — Convergence</div>
+  </div>
+
+</section>
+
+<script>
+
+/* VOLTAR */
+document.querySelector(".back-home").addEventListener("click", () => {
+  document.body.style.opacity = "0";
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 800);
+});
+
+</script>
+
+</body>
+</html>
