@@ -285,6 +285,12 @@ footer{
   position:relative;
   z-index:10;
 }  
+  .enter{
+  pointer-events:none;
+  text-decoration:none;
+  color:inherit;
+  display:inline-block;
+}
 </style>
 </head>
 
@@ -305,13 +311,22 @@ footer{
 <!-- HERO -->
 
 <section class="hero">
- <div class="hero-center">
-    <h1>VISIONÁRIOS</h1>  
-    <div class="timeline-flow">
-  <div class="line"></div>
-  <div class="year" id="year"></div>
+
+<div class="hero-center">
+
+  <!-- LINK (APENAS TEXTO) -->
+  <a href="timeline.html" class="enter">
+    <h1>VISIONÁRIOS</h1>
+    <p class="subtitle">2025 — 2145</p>
+  </a>
+
+  <!-- TIMELINE FICA FORA -->
+  <div class="timeline-flow">
+    <div class="line"></div>
+    <div class="year" id="year"></div>
+  </div>
+
 </div>
- 
     <p class="subtitle">
       Seeding the limits of reality<br>
       2025 — 2145
@@ -366,6 +381,7 @@ document.querySelector(".hero-center").style.opacity = "1";
   // REVELAÇÃO FINAL (ISOLADA)
  setTimeout(() => {
   hero.classList.add("show");
+   document.querySelector(".enter").style.pointerEvents = "auto";
 }, duration + 1500);
 
 });
