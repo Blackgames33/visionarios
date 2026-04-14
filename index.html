@@ -398,9 +398,12 @@ enterLink.addEventListener("click", function(e){
 
   document.body.classList.add("fade-out");
 
+  // força reflow (🔥 chave pro mobile)
+  document.body.offsetHeight;
+
   setTimeout(() => {
     window.location.href = this.href;
-  }, 1000);
+  }, 1200);
 });
 </script>
 </body>
