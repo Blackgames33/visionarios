@@ -22,12 +22,26 @@ body{
 
 /* ================= FUNDO ================= */
 
-.bg-dynamic{
+.bg{
   position:fixed;
   inset:0;
-  background:url('assets/library.jpg') center/cover no-repeat;
-  z-index:-3;
-  transition:filter 1.2s ease;
+
+  background:url('assets/timeline/t0_system_flow.jpg') center center no-repeat;
+  background-size:cover;
+
+  z-index:-2;
+}
+  .bg::after{
+  content:'';
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.65));
+
+  backdrop-filter:contrast(0.95) saturate(0.9);
+
+  z-index:1;
 }
 
 .bg-tone{
@@ -128,7 +142,10 @@ body{cursor:none;}
     top:65%;
   }
 }
-
+body{
+  background:#000;
+  overflow:hidden; /* trava scroll no intro */
+}
 </style>
 </head>
 
