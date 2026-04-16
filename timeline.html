@@ -170,9 +170,12 @@ body{cursor:none;}
 .scene-1{
   background-image:url('assets/time.jpg'); /* Wall Street */
 }
-
 .scene-2{
+  background-image:url('assets/library.jpg'); /* avião */
+}
+.scene-3{
   background-image:url('assets/plane.jpg'); /* avião */
+  
 }
 </style>
 </head>
@@ -187,6 +190,7 @@ body{cursor:none;}
   <div class="bg-color"></div>
     <div class="scene scene-1"></div>
   <div class="scene scene-2"></div>
+  <div class="scene scene-3"></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -285,23 +289,45 @@ function revealCinema(){
 
 window.addEventListener("mousemove", revealCinema);
 window.addEventListener("touchstart", revealCinema);
-  const scene1 = document.querySelector(".scene-1");
-const scene2 = document.querySelector(".scene-2");
+  const scene1 = document.querySelector(".scene-1"); // Wall Street
+const scene2 = document.querySelector(".scene-2"); // Biblioteca
+const scene3 = document.querySelector(".scene-3"); // Avião
+
+let triggered = false;
 
 window.addEventListener("mousemove", (e) => {
 
   const x = e.clientX / window.innerWidth;
 
-  // primeira metade → cena 1
-  if(x < 0.5){
+  // divisão em 3 partes
+  if(x < 0.33){
     scene1.style.opacity = "1";
     scene2.style.opacity = "0";
+    scene3.style.opacity = "0";
   }
 
-  // segunda metade → cena 2
-  else{
+  else if(x < 0.66){
     scene1.style.opacity = "0";
     scene2.style.opacity = "1";
+    scene3.style.opacity = "0";
+  }
+
+  else{
+    scene1.style.opacity = "0";
+    scene2.style.opacity = "0";
+    scene3.style.opacity = "1";
+  }
+
+  // FINAL → troca de página
+  if(x > 0.95 && !triggered){
+    triggered = true;
+
+    document.body.style.transition = "opacity 0.8s ease";
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+      window.location.href = "timeline.html";
+    }, 800);
   }
 
 });
@@ -319,6 +345,7 @@ if(x > 0.95 && !triggered){
     window.location.href = "timeline.html";
   }, 800);
 }
+  
 </script>
 
 </body>
