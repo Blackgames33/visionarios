@@ -141,13 +141,25 @@ body{cursor:none;}
     top:65%;
   }
 }
+.cinema-bg{
+  position:fixed;
+  inset:0;
 
+  background:url('assets/time.jpg') center center no-repeat;
+  background-size:cover;
+
+  opacity:0;
+  transition:opacity 2.5s ease;
+
+  z-index:-10; /* bem atrás de tudo */
+}
 </style>
 </head>
 
 <body>
 
 <!-- FUNDO -->
+    <div class="cinema-bg"></div>
 <div class="bg-dynamic"></div>
 <div class="bg-tone"></div>
   <div class="bg-image"></div>
@@ -238,6 +250,18 @@ window.addEventListener("mousemove", revealBG);
 
 // Mobile (toque)
 window.addEventListener("touchstart", revealBG);
+  let cinemaRevealed = false;
+
+function revealCinema(){
+  if(cinemaRevealed) return;
+
+  cinemaRevealed = true;
+
+  document.querySelector(".cinema-bg").style.opacity = "1";
+}
+
+window.addEventListener("mousemove", revealCinema);
+window.addEventListener("touchstart", revealCinema);
 </script>
 
 </body>
