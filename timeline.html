@@ -289,9 +289,9 @@ function revealCinema(){
 
 window.addEventListener("mousemove", revealCinema);
 window.addEventListener("touchstart", revealCinema);
-  const scene1 = document.querySelector(".scene-1"); // Wall Street
-const scene2 = document.querySelector(".scene-2"); // Biblioteca
-const scene3 = document.querySelector(".scene-3"); // Avião
+const scene1 = document.querySelector(".scene-1");
+const scene2 = document.querySelector(".scene-2");
+const scene3 = document.querySelector(".scene-3");
 
 let triggered = false;
 
@@ -299,7 +299,7 @@ window.addEventListener("mousemove", (e) => {
 
   const x = e.clientX / window.innerWidth;
 
-  // divisão em 3 partes
+  // ===== CENAS =====
   if(x < 0.33){
     scene1.style.opacity = "1";
     scene2.style.opacity = "0";
@@ -318,7 +318,7 @@ window.addEventListener("mousemove", (e) => {
     scene3.style.opacity = "1";
   }
 
-  // FINAL → troca de página
+  // ===== FINAL =====
   if(x > 0.95 && !triggered){
     triggered = true;
 
@@ -331,21 +331,6 @@ window.addEventListener("mousemove", (e) => {
   }
 
 });
-  if(x > 0.95){
-  window.location.href = "timeline.html";
-}
-  let triggered = false;
-
-if(x > 0.95 && !triggered){
-  triggered = true;
-
-  document.body.style.opacity = "0";
-
-  setTimeout(() => {
-    window.location.href = "timeline.html";
-  }, 800);
-}  
-  }};
 </script>
 
 </body>
