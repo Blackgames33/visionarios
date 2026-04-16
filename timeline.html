@@ -177,6 +177,10 @@ body{cursor:none;}
   background-image:url('assets/plane.jpg'); /* avião */
   
 }
+  .scene-4{
+  background-image:url('house/plane.jpg'); /* avião */
+  
+}
 </style>
 </head>
 
@@ -191,7 +195,7 @@ body{cursor:none;}
     <div class="scene scene-1"></div>
   <div class="scene scene-2"></div>
   <div class="scene scene-3"></div>
-
+ <div class="scene scene-4"></div>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-center" id="hero">
@@ -292,6 +296,8 @@ window.addEventListener("touchstart", revealCinema);
 const scene1 = document.querySelector(".scene-1");
 const scene2 = document.querySelector(".scene-2");
 const scene3 = document.querySelector(".scene-3");
+  const scene4 = document.querySelector(".scene-4");
+ 
 
 let triggered = false;
 
@@ -316,6 +322,7 @@ window.addEventListener("mousemove", (e) => {
     scene1.style.opacity = "0";
     scene2.style.opacity = "0";
     scene3.style.opacity = "1";
+     scene4.style.opacity = "1";
   }
 
   // ===== FINAL =====
