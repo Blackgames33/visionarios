@@ -22,12 +22,20 @@ body{
 
 /* ================= FUNDO ================= */
 
-.bg-dynamic{
+.bg{
   position:fixed;
   inset:0;
-  background:url('assets/time.jpg') center/cover no-repeat;
-  z-index:-3;
-  transition:filter 1.2s ease;
+
+  background:url('assets/time.jpg') center center no-repeat;
+  background-size:cover;
+
+  opacity:0; /* 👈 ISSO É O SEGREDO */
+  transition:opacity 1.8s ease;
+
+  z-index:-2;
+}
+  .bg.show{
+  opacity:1;
 }
 
 .bg-tone{
@@ -208,7 +216,9 @@ window.addEventListener("mousemove", (e)=>{
 if(window.innerWidth < 768){
   document.querySelector(".timeline").style.display = "none";
 }
-
+setTimeout(() => {
+  document.querySelector(".bg").classList.add("show");
+}, 2200);
 </script>
 
 </body>
