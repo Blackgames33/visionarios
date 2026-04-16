@@ -296,39 +296,42 @@ window.addEventListener("touchstart", revealCinema);
 const scene1 = document.querySelector(".scene-1");
 const scene2 = document.querySelector(".scene-2");
 const scene3 = document.querySelector(".scene-3");
-const scene4 = document.querySelector(".scene-4");
-const scene5 = document.querySelector(".scene-5");
+
+let triggered = false;
 
 window.addEventListener("mousemove", (e) => {
 
   const x = e.clientX / window.innerWidth;
 
-  if(x < 0.2){
-    show(scene1);
+  // ===== CENAS =====
+  if(x < 0.33){
+    scene1.style.opacity = "1";
+    scene2.style.opacity = "0";
+    scene3.style.opacity = "0";
   }
-  else if(x < 0.4){
-    show(scene2);
+
+  else if(x < 0.66){
+    scene1.style.opacity = "0";
+    scene2.style.opacity = "1";
+    scene3.style.opacity = "0";
   }
-  else if(x < 0.6){
-    show(scene3);
-  }
-  else if(x < 0.8){
-    show(scene4);
-  }
+
   else{
-    show(scene5);
+    scene1.style.opacity = "0";
+    scene2.style.opacity = "0";
+    scene3.style.opacity = "1";
   }
 
-});
+  // ===== FINAL =====
+  if(x > 0.95 && !triggered){
+    triggered = true;
 
-function show(active){
-  [scene1,scene2,scene3,scene4,scene5].forEach(s => {
-    s.style.opacity = (s === active) ? "1" : "0";
-
+    document.body.style.transition = "opacity 0.8s ease";
+    document.body.style.opacity = "0";
 
     setTimeout(() => {
       window.location.href = "timeline.html";
-    }, 1000);
+    }, 800);
   }
 
 });
