@@ -30,10 +30,15 @@ body{
   background-size:cover;
 
   opacity:0; /* 👈 ISSO É O SEGREDO */
-  transition:opacity 2.2s ease;
+  transition:opacity 2s ease;
 
-  z-index:-2;
+  z-index:-3;
 }
+  .bg-color{
+    position:fixed;
+    inset:0;
+    z-index:2;
+  }
   .bg.show{
   opacity:1;
 }
@@ -145,6 +150,8 @@ body{cursor:none;}
 <!-- FUNDO -->
 <div class="bg-dynamic"></div>
 <div class="bg-tone"></div>
+  <div class="bg-image"></div>
+  <div class="bg-color"></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -216,9 +223,6 @@ window.addEventListener("mousemove", (e)=>{
 if(window.innerWidth < 768){
   document.querySelector(".timeline").style.display = "none";
 }
-setTimeout(() => {
-  document.querySelector(".bg").classList.add("show");
-}, 3000);
 
   let revealed = false;
 
@@ -226,7 +230,7 @@ function revealBG(){
   if(revealed) return;
 
   revealed = true;
-  document.querySelector(".bg").style.opacity = "1";
+  document.querySelector(".bg-image").style.opacity = "1";
 }
 
 // Desktop (mouse)
