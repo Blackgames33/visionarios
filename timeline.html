@@ -179,7 +179,7 @@ body{cursor:none;}
 }
   .scene-4{
   background-image:url('assets/house.jpg'); /* avião */
-  
+    }
 @media (max-width:768px){
 
   .hero h1{
@@ -202,7 +202,7 @@ body{cursor:none;}
 
 }
   body{
-    overflow:hidden;
+    overflow-x:hidden;
   }
   
     @media (max-width:768px){
@@ -389,14 +389,7 @@ function show(active){
     s.style.opacity = (s === active) ? "1" : "0";
   });
 }
-  window.addEventListener("touchmove", (e) => {
-
-  const touch = e.touches[0];
-  const x = touch.clientX / window.innerWidth;
-
-  handleScene(x);
-
-});
+  
 </script>
 
 </body>
