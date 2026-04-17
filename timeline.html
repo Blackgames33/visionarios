@@ -181,6 +181,33 @@ body{cursor:none;}
   background-image:url('assets/house.jpg'); /* avião */
   
 }
+  @media (max-width:768px){
+
+  .hero h1{
+    font-size:1.5rem;
+    letter-spacing:0.18em;
+    line-height:1.2;
+    padding:0 12px;
+  }
+
+  .subtitle{
+    font-size:0.75rem;
+    letter-spacing:0.12em;
+  }
+
+}
+  @media (max-width:768px){
+
+  .timeline-flow{
+    bottom:12%;
+  }
+
+  .year{
+    font-size:0.8rem;
+    letter-spacing:0.2em;
+  }
+
+}
 </style>
 </head>
 
@@ -299,9 +326,7 @@ const scene3 = document.querySelector(".scene-3");
 const scene4 = document.querySelector(".scene-4");
 const scene5 = document.querySelector(".scene-5");
 
-window.addEventListener("mousemove", (e) => {
-
-  const x = e.clientX / window.innerWidth;
+function handleScene(x){
 
   if(x < 0.2){
     show(scene1);
@@ -319,13 +344,42 @@ window.addEventListener("mousemove", (e) => {
     show(scene5);
   }
 
+  if(x > 0.95 && !triggered){
+    triggered = true;
+
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+      window.location.href = "timeline.html";
+    }, 800);
+  }
+}
+
+// DESKTOP
+window.addEventListener("mousemove", (e) => {
+  const x = e.clientX / window.innerWidth;
+  handleScene(x);
 });
 
+// MOBILE
+window.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  const x = touch.clientX / window.innerWidth;
+  handleScene(x);
+});
 function show(active){
   [scene1,scene2,scene3,scene4,scene5].forEach(s => {
     s.style.opacity = (s === active) ? "1" : "0";
   });
 }
+  window.addEventListener("touchmove", (e) => {
+
+  const touch = e.touches[0];
+  const x = touch.clientX / window.innerWidth;
+
+  handleScene(x);
+
+});
 </script>
 
 </body>
