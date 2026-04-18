@@ -303,7 +303,32 @@ footer{
   transform:scale(1.015);
   transition:all 1.2s ease;
 }
-  
+  @media (max-width: 768px){
+
+  .hero{
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .hero-center{
+    transform: translate(-50%, -50%) scale(0.75);
+    width: 90%;
+    text-align: center;
+  }
+
+  .hero h1{
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+
+}
+  @media (max-width: 768px){
+
+  .bg{
+    background-position: center 20%;
+  }
+
+}
 </style>
 </head>
 
