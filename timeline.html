@@ -252,82 +252,22 @@ background-size: 160%;
 
 <script>
 
-/* ELEMENTOS */
+/* ================= ELEMENTOS ================= */
+
 const progress = document.getElementById("progress");
 const year = document.getElementById("year");
 const tone = document.querySelector(".bg-tone");
 const hero = document.getElementById("hero");
 const cursor = document.getElementById("cursor");
 
-/* ================= HERO APARECE DEPOIS ================= */
-setTimeout(()=>{
+/* ================= HERO ================= */
+
+setTimeout(() => {
   hero.classList.add("show");
 }, 1800);
 
-/* ================= INTERAÇÃO ================= */
-window.addEventListener("mousemove", (e)=>{
+/* ================= CENAS ================= */
 
-  const percent = e.clientX / window.innerWidth;
-
-  /* LINHA */
-  progress.style.width = (percent * 100) + "%";
-
-  /* ANO */
-  const yearValue = Math.floor(2025 + percent * (2145 - 2025));
-  year.innerText = yearValue;
-  year.style.left = (percent * 100) + "%";
-
-  /* FUNDO DINÂMICO */
-  if(percent < 0.25){
-    tone.style.background = "linear-gradient(to right, rgba(255,180,120,0.25), transparent)";
-  }
-  else if(percent < 0.5){
-    tone.style.background = "linear-gradient(to right, rgba(180,220,255,0.15), transparent)";
-  }
-  else if(percent < 0.75){
-    tone.style.background = "linear-gradient(to right, rgba(120,160,255,0.25), transparent)";
-  }
-  else{
-    tone.style.background = "linear-gradient(to right, rgba(200,200,255,0.35), transparent)";
-  }
-
-  /* CURSOR */
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-
-});
-
-/* ================= MOBILE (fallback simples) ================= */
-if(window.innerWidth < 768){
-  document.querySelector(".timeline").style.display = "none";
-}
-
-  let revealed = false;
-
-function revealBG(){
-  if(revealed) return;
-
-  revealed = true;
-  document.querySelector(".bg-image").style.opacity = "1";
-}
-
-// Desktop (mouse)
-window.addEventListener("mousemove", revealBG);
-
-// Mobile (toque)
-window.addEventListener("touchstart", revealBG);
-  let cinemaRevealed = false;
-
-function revealCinema(){
-  if(cinemaRevealed) return;
-
-  cinemaRevealed = true;
-
-  document.querySelector(".cinema-bg").style.opacity = "1";
-}
-
-window.addEventListener("mousemove", revealCinema);
-window.addEventListener("touchstart", revealCinema);
 const scenes = [
   document.querySelector(".scene-1"),
   document.querySelector(".scene-2"),
@@ -339,76 +279,117 @@ const scenes = [
   document.querySelector(".scene-8")
 ];
 
+/* ================= CONTROLE PRINCIPAL ================= */
+
 window.addEventListener("mousemove", (e) => {
 
   const x = e.clientX / window.innerWidth;
 
-  // reset
-  scenes.forEach(s => s.style.opacity = "0");
+  /* ================= TIMELINE ================= */
 
-  // divide em 8 partes
+  progress.style.width = (x * 100) + "%";
+
+  const yearValue = Math.floor(2025 + x * (2145 - 2025));
+  year.innerText = yearValue;
+  year.style.left = (x * 100) + "%";
+
+  /* ================= FUNDO DINÂMICO ================= */
+
+  if (x < 0.25) {
+    tone.style.background = "linear-gradient(to right, rgba(255,180,120,0.25), transparent)";
+  } 
+  else if (x < 0.5) {
+    tone.style.background = "linear-gradient(to right, rgba(180,220,255,0.15), transparent)";
+  } 
+  else if (x < 0.75) {
+    tone.style.background = "linear-gradient(to right, rgba(120,160,255,0.25), transparent)";
+  } 
+  else {
+    tone.style.background = "linear-gradient(to right, rgba(200,200,255,0.35), transparent)";
+  }
+
+  /* ================= CURSOR ================= */
+
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+
+  /* ================= CENAS ================= */
+
+  scenes.forEach(s => {
+    if (s) s.style.opacity = "0";
+  });
+
   const index = Math.floor(x * scenes.length);
 
-  if(scenes[index]){
+  if (scenes[index]) {
     scenes[index].style.opacity = "1";
   }
 
-});
+  /* ================= FINAL (TRANSIÇÃO) ================= */
 
-function handleScene(x){
+  if (x > 0.97 && !window._transitioning) {
+    window._transitioning = true;
 
-  if(x < 0.2){
-    show(scene1);
-  }
-  else if(x < 0.4){
-    show(scene2);
-  }
-  else if(x < 0.6){
-    show(scene3);
-  }
-  else if(x < 0.8){
-    show(scene4);
-  }
-  else{
-    show(scene5);
-  }
-
-  if(x > 0.95 && !triggered){
-    triggered = true;
-
+    document.body.style.transition = "opacity 0.8s ease";
     document.body.style.opacity = "0";
 
     setTimeout(() => {
       window.location.href = "timeline.html";
     }, 800);
   }
-}
 
-// DESKTOP
-window.addEventListener("mousemove", (e) => {
-  const x = e.clientX / window.innerWidth;
-  handleScene(x);
 });
 
-// MOBILE
+/* ================= MOBILE ================= */
+
 window.addEventListener("touchmove", (e) => {
+
   const touch = e.touches[0];
   const x = touch.clientX / window.innerWidth;
-  handleScene(x);
-});
-function show(active){
-  [scene1,scene2,scene3,scene4,scene5].forEach(s => {
-    s.style.opacity = (s === active) ? "1" : "0";
+
+  /* mesmas ações do mouse */
+
+  progress.style.width = (x * 100) + "%";
+
+  const yearValue = Math.floor(2025 + x * (2145 - 2025));
+  year.innerText = yearValue;
+  year.style.left = (x * 100) + "%";
+
+  scenes.forEach(s => {
+    if (s) s.style.opacity = "0";
   });
-}
-  window.addEventListener("touchmove", (e) => {
 
-  const touch = e.touches[0];
-  const x = touch.clientX / window.innerWidth;
+  const index = Math.floor(x * scenes.length);
 
-  handleScene(x);
+  if (scenes[index]) {
+    scenes[index].style.opacity = "1";
+  }
 
 });
+
+/* ================= CINEMA EFFECT ================= */
+
+let cinemaRevealed = false;
+
+function revealCinema(){
+  if(cinemaRevealed) return;
+
+  cinemaRevealed = true;
+
+  const cinema = document.querySelector(".cinema-bg");
+  if(cinema){
+    cinema.style.opacity = "1";
+  }
+}
+
+window.addEventListener("mousemove", revealCinema);
+window.addEventListener("touchstart", revealCinema);
+
+/* ================= MOBILE AJUSTE ================= */
+
+if (window.innerWidth < 768) {
+  document.querySelector(".timeline").style.display = "none";
+}
 </script>
 
 </body>
