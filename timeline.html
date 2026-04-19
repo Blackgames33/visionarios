@@ -254,144 +254,142 @@ background-size: 160%;
 
 <script>
 
-/* ================= ELEMENTOS ================= */
-
+/* ELEMENTOS */
 const progress = document.getElementById("progress");
 const year = document.getElementById("year");
 const tone = document.querySelector(".bg-tone");
 const hero = document.getElementById("hero");
 const cursor = document.getElementById("cursor");
 
-/* ================= HERO ================= */
-
-setTimeout(() => {
+/* ================= HERO APARECE DEPOIS ================= */
+setTimeout(()=>{
   hero.classList.add("show");
 }, 1800);
 
-/* ================= CENAS ================= */
+/* ================= INTERAÇÃO ================= */
+window.addEventListener("mousemove", (e)=>{
 
-const scenes = [
-  document.querySelector(".scene-1"),
-  document.querySelector(".scene-2"),
-  document.querySelector(".scene-3"),
-  document.querySelector(".scene-4"),
-  document.querySelector(".scene-5"),
-  document.querySelector(".scene-6"),
-  document.querySelector(".scene-7"),
-  document.querySelector(".scene-8")
-];
+  const percent = e.clientX / window.innerWidth;
 
-/* ================= CONTROLE PRINCIPAL ================= */
+  /* LINHA */
+  progress.style.width = (percent * 100) + "%";
 
-window.addEventListener("mousemove", (e) => {
-
-  const x = e.clientX / window.innerWidth;
-
-  /* ================= TIMELINE ================= */
-
-  progress.style.width = (x * 100) + "%";
-
-  const yearValue = Math.floor(2025 + x * (2145 - 2025));
+  /* ANO */
+  const yearValue = Math.floor(2025 + percent * (2145 - 2025));
   year.innerText = yearValue;
-  year.style.left = (x * 100) + "%";
+  year.style.left = (percent * 100) + "%";
 
-  /* ================= FUNDO DINÂMICO ================= */
-
-  if (x < 0.25) {
+  /* FUNDO DINÂMICO */
+  if(percent < 0.25){
     tone.style.background = "linear-gradient(to right, rgba(255,180,120,0.25), transparent)";
-  } 
-  else if (x < 0.5) {
+  }
+  else if(percent < 0.5){
     tone.style.background = "linear-gradient(to right, rgba(180,220,255,0.15), transparent)";
-  } 
-  else if (x < 0.75) {
+  }
+  else if(percent < 0.75){
     tone.style.background = "linear-gradient(to right, rgba(120,160,255,0.25), transparent)";
-  } 
-  else {
+  }
+  else{
     tone.style.background = "linear-gradient(to right, rgba(200,200,255,0.35), transparent)";
   }
 
-  /* ================= CURSOR ================= */
-
+  /* CURSOR */
   cursor.style.left = e.clientX + "px";
   cursor.style.top = e.clientY + "px";
 
-  /* ================= CENAS ================= */
-
-  scenes.forEach(s => {
-    if (s) s.style.opacity = "0";
-  });
-
-  const index = Math.floor(x * scenes.length);
-
-  if (scenes[index]) {
-    scenes[index].style.opacity = "1";
-  }
-
-  /* ================= FINAL (TRANSIÇÃO) ================= */
-
-  if (x > 0.97 && !window._transitioning) {
-    window._transitioning = true;
-
-    document.body.style.transition = "opacity 0.8s ease";
-    document.body.style.opacity = "0";
-
-    setTimeout(() => {
-      window.location.href = "timeline.html";
-    }, 800);
-  }
-
 });
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE (fallback simples) ================= */
+if(window.innerWidth < 768){
+  document.querySelector(".timeline").style.display = "none";
+}
 
-window.addEventListener("touchmove", (e) => {
+  let revealed = false;
 
-  const touch = e.touches[0];
-  const x = touch.clientX / window.innerWidth;
+function revealBG(){
+  if(revealed) return;
 
-  /* mesmas ações do mouse */
+  revealed = true;
+  document.querySelector(".bg-image").style.opacity = "1";
+}
 
-  progress.style.width = (x * 100) + "%";
+// Desktop (mouse)
+window.addEventListener("mousemove", revealBG);
 
-  const yearValue = Math.floor(2025 + x * (2145 - 2025));
-  year.innerText = yearValue;
-  year.style.left = (x * 100) + "%";
-
-  scenes.forEach(s => {
-    if (s) s.style.opacity = "0";
-  });
-
-  const index = Math.floor(x * scenes.length);
-
-  if (scenes[index]) {
-    scenes[index].style.opacity = "1";
-  }
-
-});
-
-/* ================= CINEMA EFFECT ================= */
-
-let cinemaRevealed = false;
+// Mobile (toque)
+window.addEventListener("touchstart", revealBG);
+  let cinemaRevealed = false;
 
 function revealCinema(){
   if(cinemaRevealed) return;
 
   cinemaRevealed = true;
 
-  const cinema = document.querySelector(".cinema-bg");
-  if(cinema){
-    cinema.style.opacity = "1";
-  }
+  document.querySelector(".cinema-bg").style.opacity = "1";
 }
 
 window.addEventListener("mousemove", revealCinema);
 window.addEventListener("touchstart", revealCinema);
+const scene1 = document.querySelector(".scene-1");
+const scene2 = document.querySelector(".scene-2");
+const scene3 = document.querySelector(".scene-3");
+const scene4 = document.querySelector(".scene-4");
+const scene5 = document.querySelector(".scene-5");
 
-/* ================= MOBILE AJUSTE ================= */
+function handleScene(x){
 
-if (window.innerWidth < 768) {
-  document.querySelector(".timeline").style.display = "none";
+  if(x < 0.2){
+    show(scene1);
+  }
+  else if(x < 0.4){
+    show(scene2);
+  }
+  else if(x < 0.6){
+    show(scene3);
+  }
+  else if(x < 0.8){
+    show(scene4);
+  }
+  else{
+    show(scene5);
+  }
+
+  if(x > 0.95 && !triggered){
+    triggered = true;
+
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+      window.location.href = "timeline.html";
+    }, 800);
+  }
 }
+
+// DESKTOP
+window.addEventListener("mousemove", (e) => {
+  const x = e.clientX / window.innerWidth;
+  handleScene(x);
+});
+
+// MOBILE
+window.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  const x = touch.clientX / window.innerWidth;
+  handleScene(x);
+});
+function show(active){
+  [scene1,scene2,scene3,scene4,scene5].forEach(s => {
+    s.style.opacity = (s === active) ? "1" : "0";
+  });
+}
+  window.addEventListener("touchmove", (e) => {
+
+  const touch = e.touches[0];
+  const x = touch.clientX / window.innerWidth;
+
+  handleScene(x);
+
+});
 </script>
 
 </body>
