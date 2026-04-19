@@ -176,13 +176,16 @@ body{cursor:none;}
       
 .scene-3{
   background-image:url('assets/library6.jpg'); /*biblioteca*/
+      .scene-4{
+  background-image:url('assets/library6.jpg'); /*biblioteca*/
+
 }
   
-.scene-4{
+.scene-5{
   background-image:url('assets/plane.jpg'); /* avião */
   
 }
-  .scene-5{
+  .scene-6{
   background-image:url('assets/house.jpg'); /*house */
 }
   
@@ -242,6 +245,7 @@ background-size: 160%;
   <div class="scene scene-3"></div>
  <div class="scene scene-4"></div>
    <div class="scene scene-5"></div>
+  <div class="scene scene-6"></div>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-center" id="hero">
@@ -344,6 +348,7 @@ const scene2 = document.querySelector(".scene-2");
 const scene3 = document.querySelector(".scene-3");
 const scene4 = document.querySelector(".scene-4");
 const scene5 = document.querySelector(".scene-5");
+  const scene6 = document.querySelector(".scene-6");
 
 function handleScene(x){
 
@@ -353,7 +358,7 @@ scene2.style.opacity = "0";
 scene3.style.opacity = "0";
 scene4.style.opacity = "0";
 scene5.style.opacity = "0";
-
+scene6.style.opacity = "0";
 // ativa somente uma
 if (x < 0.2) {
   scene1.style.opacity = "1"; // Wall Street
@@ -370,9 +375,11 @@ else if (x < 0.6) {
 else if (x < 0.8) {
   scene4.style.opacity = "1"; // Avião
 }
-
+else if (x < 0.8) {
+  scene5.style.opacity = "1"; // Avião
+}
 else {
-  scene5.style.opacity = "1"; // Cozinha
+  scene6.style.opacity = "1"; // Cozinha
 }
 
   if(x > 0.95 && !triggered){
