@@ -154,32 +154,27 @@ body{cursor:none;}
   z-index:-10; /* bem atrás de tudo */
 }
   .scene{
-  position:fixed;
+  position:absolute;
   inset:0;
 
   background-size:cover;
   background-position:center;
 
   opacity:0;
-  transition:opacity 1.2s ease;
+  transition:opacity 0.8s ease;
 
-  z-index:-9;
+  z-index:-1;
 }
 
 /* IMAGENS */
-.scene-1{
-  background-image:url('assets/time.jpg'); /* Wall Street */
-}
-.scene-2{
-  background-image:url('assets/library6.jpg'); /*biblioteca*/
-}
-.scene-3{
-  background-image:url('assets/plane.jpg'); /* avião */
-  
-}
-  .scene-4{
-  background-image:url('assets/house.jpg'); /* avião */
-}
+.scene-1 { background-image: url('assets/wallstreet.jpg'); }
+.scene-2 { background-image: url('assets/onu.jpg'); }
+.scene-3 { background-image: url('assets/biblioteca.jpg'); }
+.scene-4 { background-image: url('assets/aviao.jpg'); }
+.scene-5 { background-image: url('assets/cozinha.jpg'); }
+.scene-6 { background-image: url('assets/futuro1.jpg'); }
+.scene-7 { background-image: url('assets/futuro2.jpg'); }
+.scene-8 { background-image: url('assets/final.jpg'); }
   
 @media (max-width:768px){
 
@@ -333,11 +328,32 @@ function revealCinema(){
 
 window.addEventListener("mousemove", revealCinema);
 window.addEventListener("touchstart", revealCinema);
-const scene1 = document.querySelector(".scene-1");
-const scene2 = document.querySelector(".scene-2");
-const scene3 = document.querySelector(".scene-3");
-const scene4 = document.querySelector(".scene-4");
-const scene5 = document.querySelector(".scene-5");
+const scenes = [
+  document.querySelector(".scene-1"),
+  document.querySelector(".scene-2"),
+  document.querySelector(".scene-3"),
+  document.querySelector(".scene-4"),
+  document.querySelector(".scene-5"),
+  document.querySelector(".scene-6"),
+  document.querySelector(".scene-7"),
+  document.querySelector(".scene-8")
+];
+
+window.addEventListener("mousemove", (e) => {
+
+  const x = e.clientX / window.innerWidth;
+
+  // reset
+  scenes.forEach(s => s.style.opacity = "0");
+
+  // divide em 8 partes
+  const index = Math.floor(x * scenes.length);
+
+  if(scenes[index]){
+    scenes[index].style.opacity = "1";
+  }
+
+});
 
 function handleScene(x){
 
