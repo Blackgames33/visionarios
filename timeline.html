@@ -170,15 +170,18 @@ body{cursor:none;}
 .scene-1{
   background-image:url('assets/time.jpg'); /* Wall Street */
 }
-.scene-2{
-  background-image:url('assets/library.jpg'); /*biblioteca*/
+    .scene-2{
+  background-image:url('assets/onu.jpg'); /* onu
 }
 .scene-3{
+  background-image:url('assets/library6.jpg'); /*biblioteca*/
+}
+.scene-4{
   background-image:url('assets/plane.jpg'); /* avião */
   
 }
-  .scene-4{
-  background-image:url('assets/house.jpg'); /* avião */
+  .scene-5{
+  background-image:url('assets/house.jpg'); /*house */
 }
   
 @media (max-width:768px){
@@ -236,6 +239,7 @@ background-size: 160%;
   <div class="scene scene-2"></div>
   <div class="scene scene-3"></div>
  <div class="scene scene-4"></div>
+   <div class="scene scene-5"></div>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-center" id="hero">
@@ -353,8 +357,12 @@ function handleScene(x){
   else if(x < 0.8){
     show(scene4);
   }
-  else{
+     else if(x < 0.7){
     show(scene5);
+  }
+    
+  else{
+    show(scene6);
   }
 
   if(x > 0.95 && !triggered){
