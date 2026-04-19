@@ -1,37 +1,56 @@
+Skip to content
+Blackgames33
+visionarios
+Repository navigation
+Code
+Issues
+Pull requests
+Agents
+Actions
+Projects
+Wiki
+Security and quality
+Insights
+Settings
+Comparing changes
+Choose two branches to see what’s changed or to start a new pull request. If you need to, you can also  or learn more about diff comparisons.
+...
+ 1 commit
+ 1 file changed
+ 1 contributor
+Commits on Apr 19, 2026
+Update timeline.html
+
+@Blackgames33
+Blackgames33 authored 24 minutes ago
+ Showing  with 11 additions and 7 deletions.
+  18 changes: 11 additions & 7 deletions18  
+timeline.html
+Original file line number	Diff line number	Diff line change
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>VISIONÁRIOS</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Montserrat:wght@300&display=swap" rel="stylesheet">
-
 <style>
-
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
   background:#000;
   color:#fff;
   font-family:'Inter',sans-serif;
   overflow:hidden;
 }
-
 /* ================= FUNDO ================= */
-
 .bg{
   position:fixed;
   inset:0;
-
   background:url('assets/time.jpg') center center no-repeat;
   background-size:cover;
-
   opacity:0; /* 👈 ISSO É O SEGREDO */
   transition:opacity 2s ease;
-
   z-index:-3;
 }
   .bg-color{
@@ -42,7 +61,6 @@ body{
   .bg.show{
   opacity:1;
 }
-
 .bg-tone{
   position:fixed;
   inset:0;
@@ -50,9 +68,7 @@ body{
   pointer-events:none;
   transition:background 1.2s ease;
 }
-
 /* ================= HERO ================= */
-
 .hero{
   position:absolute;
   inset:0;
@@ -61,18 +77,15 @@ body{
   justify-content:center;
   text-align:center;
 }
-
 .hero-center{
   opacity:0;
   transform:translateY(10px);
   transition:1.5s ease;
 }
-
 .hero-center.show{
   opacity:1;
   transform:translateY(0);
 }
-
 .hero h1{
   font-family:'Montserrat';
   font-size:clamp(2.5rem,6vw,4rem);
@@ -80,16 +93,13 @@ body{
   font-weight:300;
   text-shadow:0 0 20px rgba(255,255,255,0.15);
 }
-
 .subtitle{
   margin-top:20px;
   font-size:0.85rem;
   letter-spacing:0.2em;
   opacity:0.7;
 }
-
 /* ================= TIMELINE ================= */
-
 .timeline{
   position:absolute;
   top:55%;
@@ -97,19 +107,16 @@ body{
   width:100%;
   height:2px;
 }
-
 .timeline-bar{
   width:100%;
   height:100%;
   background:rgba(255,255,255,0.08);
 }
-
 .timeline-progress{
   height:100%;
   width:0%;
   background:rgba(255,255,255,0.25);
 }
-
 .year{
   position:absolute;
   top:-25px;
@@ -118,11 +125,8 @@ body{
   opacity:0.7;
   transform:translateX(-50%);
 }
-
 /* ================= CURSOR ================= */
-
 body{cursor:none;}
-
 .cursor{
   position:fixed;
   width:20px;
@@ -131,12 +135,9 @@ body{cursor:none;}
   pointer-events:none;
   font-size:18px;
 }
-
 /* ================= MOBILE ================= */
-
 @media(max-width:768px){
   body{cursor:auto;}
-
   .timeline{
     top:65%;
   }
@@ -144,32 +145,27 @@ body{cursor:none;}
 .cinema-bg{
   position:fixed;
   inset:0;
-
   background:url('assets/time.jpg') center center no-repeat;
   background-size:cover;
-
   opacity:0;
   transition:opacity 2.5s ease;
-
   z-index:-10; /* bem atrás de tudo */
 }
   .scene{
   position:fixed;
   inset:0;
-
   background-size:cover;
   background-position:center;
-
   opacity:0;
   transition:opacity 1.2s ease;
-
   z-index:-9;
 }
-
 /* IMAGENS */
 .scene-1{
   background-image:url('assets/time.jpg'); /* Wall Street */
 }
+.scene-2{
+  background-image:url('assets/library6.jpg'); /*biblioteca*/
   .scene-3{
   background-image:url('assets/onu.jpg'); /*onu*/
 }
@@ -178,44 +174,38 @@ body{cursor:none;}
 }
 .scene-4{
   background-image:url('assets/plane.jpg'); /* avião */
-  
+
 }
+  .scene-4{
   .scene-5{
   background-image:url('assets/house.jpg'); /* avião */
     }
 @media (max-width:768px){
-
   .hero h1{
     font-size: clamp(1.2rem, 6vw, 1.8rem);
     letter-spacing: 0.12em; /* ↓ reduzido */
     line-height: 1.2;
-
     max-width: 90vw;
     margin: 0 auto;
-
     text-align: center;
     word-break: break-word;
   }
-
   .subtitle{
     font-size: 0.7rem;
     letter-spacing: 0.1em;
     padding: 0 10px;
   }
-
 }
   body{
     overflow-x:hidden;
   }
   
     @media (max-width:768px){
-
   /* ajuste global leve */
   .bg,
   .scene{
     background-position: center 30% !important;
   }
-
 }
 @media (max-width:768px){
 
@@ -223,16 +213,18 @@ body{cursor:none;}
    .scene-2{ background-position: center 30% !important; } /* onu */
   .scene-3{ background-position: center 30% !important; } /* Biblioteca */
 
+  .scene-2{ background-position: center 30% !important; } /* Biblioteca */
+
+  .scene-3{ background-position: center 25% !important; } /* Avião */
   .scene-4{ background-position: center 25% !important; } /* Avião */
 
+  .scene-4{ background-position: center 20% !important; } /* Cozinha */
   .scene-5{ background-position: center 20% !important; } /* Cozinha */
 
 }
 </style>
 </head>
-
 <body>
-
 <!-- FUNDO -->
     <div class="cinema-bg"></div>
 <div class="bg-dynamic"></div>
@@ -251,7 +243,6 @@ body{cursor:none;}
     <p class="subtitle">2025 — 2145</p>
   </div>
 </section>
-
 <!-- TIMELINE -->
 <div class="timeline">
   <div class="timeline-bar">
@@ -259,37 +250,28 @@ body{cursor:none;}
   </div>
   <div class="year" id="year"></div>
 </div>
-
 <!-- CURSOR -->
 <div class="cursor" id="cursor">→</div>
-
 <script>
-
 /* ELEMENTOS */
 const progress = document.getElementById("progress");
 const year = document.getElementById("year");
 const tone = document.querySelector(".bg-tone");
 const hero = document.getElementById("hero");
 const cursor = document.getElementById("cursor");
-
 /* ================= HERO APARECE DEPOIS ================= */
 setTimeout(()=>{
   hero.classList.add("show");
 }, 1800);
-
 /* ================= INTERAÇÃO ================= */
 window.addEventListener("mousemove", (e)=>{
-
   const percent = e.clientX / window.innerWidth;
-
   /* LINHA */
   progress.style.width = (percent * 100) + "%";
-
   /* ANO */
   const yearValue = Math.floor(2025 + percent * (2145 - 2025));
   year.innerText = yearValue;
   year.style.left = (percent * 100) + "%";
-
   /* FUNDO DINÂMICO */
   if(percent < 0.25){
     tone.style.background = "linear-gradient(to right, rgba(255,180,120,0.25), transparent)";
@@ -303,42 +285,30 @@ window.addEventListener("mousemove", (e)=>{
   else{
     tone.style.background = "linear-gradient(to right, rgba(200,200,255,0.35), transparent)";
   }
-
   /* CURSOR */
   cursor.style.left = e.clientX + "px";
   cursor.style.top = e.clientY + "px";
-
 });
-
 /* ================= MOBILE (fallback simples) ================= */
 if(window.innerWidth < 768){
   document.querySelector(".timeline").style.display = "none";
 }
-
   let revealed = false;
-
 function revealBG(){
   if(revealed) return;
-
   revealed = true;
   document.querySelector(".bg-image").style.opacity = "1";
 }
-
 // Desktop (mouse)
 window.addEventListener("mousemove", revealBG);
-
 // Mobile (toque)
 window.addEventListener("touchstart", revealBG);
   let cinemaRevealed = false;
-
 function revealCinema(){
   if(cinemaRevealed) return;
-
   cinemaRevealed = true;
-
   document.querySelector(".cinema-bg").style.opacity = "1";
 }
-
 window.addEventListener("mousemove", revealCinema);
 window.addEventListener("touchstart", revealCinema);
 const scene1 = document.querySelector(".scene-1");
@@ -346,10 +316,8 @@ const scene2 = document.querySelector(".scene-2");
 const scene3 = document.querySelector(".scene-3");
 const scene4 = document.querySelector(".scene-4");
 const scene5 = document.querySelector(".scene-5");
-
 function handleScene(x){
-
-if(x < 0.2){
+  if(x < 0.2){
     show(scene1);
   }
   else if(x < 0.4){
@@ -361,26 +329,22 @@ if(x < 0.2){
   else if(x < 0.8){
     show(scene4);
   }
-  else{x < 0.8){
+  else{
     show(scene5);
   }
   if(x > 0.95 && !triggered){
     triggered = true;
-
     document.body.style.opacity = "0";
-
     setTimeout(() => {
       window.location.href = "timeline.html";
     }, 800);
   }
 }
-
 // DESKTOP
 window.addEventListener("mousemove", (e) => {
   const x = e.clientX / window.innerWidth;
   handleScene(x);
 });
-
 // MOBILE
 window.addEventListener("touchmove", (e) => {
   const touch = e.touches[0];
@@ -394,6 +358,17 @@ function show(active){
 }
   
 </script>
-
 </body>
 </html>
+Footer
+© 2026 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Community
+Docs
+Contact
+Manage cookies
+Do not share my personal information
