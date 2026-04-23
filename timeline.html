@@ -218,7 +218,61 @@ background-size: 160%;
   }
 
 } 
+.zenodo-zone{
+  position:absolute;
+  bottom:0;
+  right:0;
+  width:220px;
+  height:220px;
+  cursor:pointer;
+  z-index:5;
+}
 
+.zenodo-panel{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.6s ease;
+
+  z-index:10;
+}
+
+.zenodo-panel.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.zenodo-box{
+  text-align:center;
+  font-family:'Inter', sans-serif;
+}
+
+.zenodo-title{
+  margin-bottom:20px;
+  font-size:0.8rem;
+  letter-spacing:0.2em;
+  opacity:0.7;
+}
+
+.zenodo-box a{
+  display:block;
+  margin:10px 0;
+  font-size:0.9rem;
+  text-decoration:none;
+  color:#fff;
+  opacity:0.8;
+  transition:opacity 0.3s;
+}
+
+.zenodo-box a:hover{
+  opacity:1;
+}
 </style>
 </head>
 
@@ -240,6 +294,26 @@ background-size: 160%;
 <div class="scene scene-6"></div>
 <div class="scene scene-7"></div>
 <div class="scene scene-8"></div>
+  <div class="scene scene-8">
+
+  <div class="zenodo-zone"></div>
+
+  <div class="zenodo-panel" id="zenodoPanel">
+    <div class="zenodo-box">
+      <p class="zenodo-title">Archive Access</p>
+
+      <a href="https://doi.org/10.5281/zenodo.19704495" target="_blank">
+        Technical Note I — Report
+      </a>
+
+      <a href="https://doi.org/10.5281/zenodo.19247329" target="_blank">
+        Technical Note II — Communication Framework
+      </a>
+
+    </div>
+  </div>
+
+</div>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-center" id="hero">
@@ -408,6 +482,18 @@ if (window.innerWidth < 768) {
   const timeline = document.querySelector(".timeline");
   if(timeline) timeline.style.display = "none";
 }
+  const zone = document.querySelector(".zenodo-zone");
+const panel = document.getElementById("zenodoPanel");
+
+zone.addEventListener("click", () => {
+  panel.classList.add("active");
+});
+
+panel.addEventListener("click", (e) => {
+  if(e.target === panel){
+    panel.classList.remove("active");
+  }
+});
 </script>
 
 </body>
