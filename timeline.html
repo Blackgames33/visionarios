@@ -314,6 +314,7 @@ background-size: 160%;
 </div>
 
   }
+
 <script>
 /* ================= ELEMENTOS ================= */
 
@@ -322,11 +323,12 @@ const year = document.getElementById("year");
 const tone = document.querySelector(".bg-tone");
 const hero = document.getElementById("hero");
 const cursor = document.getElementById("cursor");
+const dock = document.getElementById("zenodo-dock");
 
 /* ================= HERO ================= */
 
 setTimeout(() => {
-  hero.classList.add("show");
+  if (hero) hero.classList.add("show");
 }, 1800);
 
 /* ================= CENAS ================= */
@@ -342,17 +344,17 @@ const scenes = [
   document.querySelector(".scene-8")
 ];
 
-/* ================= 🎯 TIMELINE CONTROL ================= */
+/* ================= TIMELINE ================= */
 
 const timelineConfig = [
-  { start: 0.00, end: 0.10, scene: 0 }, // Wall Street
-  { start: 0.10, end: 0.20, scene: 1 }, // ONU
-  { start: 0.20, end: 0.30, scene: 2 }, // Biblioteca
-  { start: 0.30, end: 0.40, scene: 3 }, // Avião
-  { start: 0.40, end: 0.50, scene: 4 }, // Cozinha
-  { start: 0.50, end: 0.60, scene: 5 }, // Futuro 1
-  { start: 0.60, end: 0.70, scene: 6 }, // Futuro 2
-  { start: 0.70, end: 0.80, scene: 7 }  // Final
+  { start: 0.00, end: 0.10, scene: 0 },
+  { start: 0.10, end: 0.20, scene: 1 },
+  { start: 0.20, end: 0.30, scene: 2 },
+  { start: 0.30, end: 0.40, scene: 3 },
+  { start: 0.40, end: 0.50, scene: 4 },
+  { start: 0.50, end: 0.60, scene: 5 },
+  { start: 0.60, end: 0.70, scene: 6 },
+  { start: 0.70, end: 0.80, scene: 7 }
 ];
 
 function getSceneIndex(x){
@@ -365,7 +367,7 @@ function getSceneIndex(x){
   return 0;
 }
 
-/* ================= FUNÇÃO CENTRAL ================= */
+/* ================= EXPERIÊNCIA ================= */
 
 function updateExperience(x, clientX, clientY){
 
@@ -378,7 +380,7 @@ function updateExperience(x, clientX, clientY){
     year.style.left = (x * 100) + "%";
   }
 
-  /* ===== FUNDO DINÂMICO ===== */
+  /* ===== FUNDO ===== */
   if(tone){
     if (x < 0.25) {
       tone.style.background = "linear-gradient(to right, rgba(255,180,120,0.25), transparent)";
@@ -400,7 +402,7 @@ function updateExperience(x, clientX, clientY){
     cursor.style.top = clientY + "px";
   }
 
-  /* ===== CENAS (AGORA CONTROLADAS) ===== */
+  /* ===== CENAS ===== */
   const index = getSceneIndex(x);
 
   scenes.forEach(s => {
@@ -411,7 +413,7 @@ function updateExperience(x, clientX, clientY){
     scenes[index].style.opacity = "1";
   }
 
-  /* ===== FINAL (TRANSIÇÃO) ===== */
+  /* ===== TRANSIÇÃO FINAL ===== */
   if (x > 0.97 && !window._transitioning) {
     window._transitioning = true;
 
@@ -424,22 +426,7 @@ function updateExperience(x, clientX, clientY){
   }
 }
 
-/* ================= DESKTOP ================= */
-
-window.addEventListener("mousemove", (e) => {
-  const x = e.clientX / window.innerWidth;
-  updateExperience(x, e.clientX, e.clientY);
-});
-
-/* ================= MOBILE ================= */
-
-window.addEventListener("touchmove", (e) => {
-  const touch = e.touches[0];
-  const x = touch.clientX / window.innerWidth;
-  updateExperience(x, touch.clientX, touch.clientY);
-});
-
-/* ================= CINEMA EFFECT ================= */
+/* ================= CINEMA ================= */
 
 let cinemaRevealed = false;
 
@@ -457,43 +444,72 @@ function revealCinema(){
 window.addEventListener("mousemove", revealCinema);
 window.addEventListener("touchstart", revealCinema);
 
-/* ================= MOBILE AJUSTE ================= */
+/* ================= MOBILE ================= */
 
 if (window.innerWidth < 768) {
   const timeline = document.querySelector(".timeline");
   if(timeline) timeline.style.display = "none";
 }
-  const dock = document.getElementById("zenodo-dock");
+
+/* ================= CONTROLE UNIFICADO ================= */
 
 let timeout = null;
+let ticking = false;
+
+function handleMove(clientX, clientY){
+
+  const x = clientX / window.innerWidth;
+
+  /* ===== EXPERIENCE ===== */
+  updateExperience(x, clientX, clientY);
+
+  /* ===== DOCK ===== */
+  if(dock){
+    const triggerZone = 0.94;
+
+    if (x > triggerZone) {
+
+      if (!dock.classList.contains("show")) {
+        timeout = setTimeout(() => {
+          dock.classList.add("show");
+        }, 120);
+      }
+
+    } else {
+
+      clearTimeout(timeout);
+
+      setTimeout(() => {
+        dock.classList.remove("show");
+      }, 180);
+    }
+  }
+}
+
+/* ===== DESKTOP (com RAF) ===== */
 
 window.addEventListener("mousemove", (e) => {
-  const triggerZone = 0.94; // mais preciso (6% da borda direita)
-
-  if (e.clientX / window.innerWidth > triggerZone) {
-
-    // pequeno delay → sensação de intenção do usuário
-    if (!dock.classList.contains("show")) {
-      timeout = setTimeout(() => {
-        dock.classList.add("show");
-      }, 120);
-    }
-
-  } else {
-
-    clearTimeout(timeout);
-
-    // evita “piscar” quando o usuário tenta clicar
-    setTimeout(() => {
-      dock.classList.remove("show");
-    }, 180);
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      handleMove(e.clientX, e.clientY);
+      ticking = false;
+    });
+    ticking = true;
   }
 });
+
+/* ===== MOBILE ===== */
+
+window.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  handleMove(touch.clientX, touch.clientY);
+});
+
+/* ================= LINKS ================= */
 
 function openLink(url){
   window.open(url, "_blank", "noopener,noreferrer");
 }
 </script>
-
 </body>
 </html>
