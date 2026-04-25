@@ -177,7 +177,6 @@ body{cursor:none;}
 .scene-5 { background-image: url('assets/house.jpg'); }
 .scene-6 { background-image: url('assets/futuro1.jpg'); }
 .scene-7 { background-image: url('assets/conceito1.jpg'); }
-  size:80%;
 .scene-8 { background-image: url('assets/conceito2.jpg'); }
   
 @media (max-width:768px){
@@ -219,7 +218,11 @@ background-size: 160%;
   }
 
 } 
-
+.scene img{
+  width: 70%;
+  height: auto;
+  object-fit: contain;
+}
 </style>
 </head>
 
@@ -239,7 +242,9 @@ background-size: 160%;
 <div class="scene scene-4"></div>
 <div class="scene scene-5"></div>
 <div class="scene scene-6"></div>
-<div class="scene scene-7"></div>
+<div class="scene scene-7">
+  <img src="assets/conceito1.jpg" />
+</div>
 <div class="scene scene-8"></div>
 <!-- HERO -->
 <section class="hero">
