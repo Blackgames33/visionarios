@@ -218,7 +218,41 @@ background-size: 160%;
   }
 
 } 
+#end-screen{
+  position:fixed;
+  inset:0;
 
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(0,0,0,0.0);
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:0.8s ease;
+  z-index:100;
+}
+
+#end-screen.show{
+  opacity:1;
+  pointer-events:auto;
+  background:rgba(0,0,0,0.4);
+}
+
+.enter-docs{
+  font-size:1rem;
+  letter-spacing:0.3em;
+  opacity:0.7;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.enter-docs:hover{
+  opacity:1;
+  transform:scale(1.05);
+}
 </style>
 </head>
 
@@ -258,10 +292,12 @@ background-size: 160%;
 
 <!-- CURSOR -->
 <div class="cursor" id="cursor">→</div>
-
+<div id="end-screen">
+  <div class="enter-docs">ENTER ARCHIVE →</div>
+</div>
 <script>
 /* ================= ELEMENTOS ================= */
-
+const endScreen = document.getElementById("end-screen");
 const progress = document.getElementById("progress");
 const year = document.getElementById("year");
 const tone = document.querySelector(".bg-tone");
@@ -322,7 +358,13 @@ function updateExperience(x, clientX, clientY){
     year.innerText = yearValue;
     year.style.left = (x * 100) + "%";
   }
-
+if(endScreen){
+  if (x > 0.97) {
+    endScreen.classList.add("show");
+  } else {
+    endScreen.classList.remove("show");
+  }
+}
   /* ===== FUNDO DINÂMICO ===== */
   if(tone){
     if (x < 0.25) {
@@ -408,6 +450,9 @@ if (window.innerWidth < 768) {
   const timeline = document.querySelector(".timeline");
   if(timeline) timeline.style.display = "none";
 }
+  document.querySelector(".enter-docs").addEventListener("click", () => {
+  window.location.href = "archive.html";
+});
 </script>
 
 </body>
