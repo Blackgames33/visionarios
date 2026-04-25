@@ -462,15 +462,7 @@ if (window.innerWidth < 768) {
   const timeline = document.querySelector(".timeline");
   if(timeline) timeline.style.display = "none";
 }
-  trigger.addEventListener("click", () => {
-  panel.classList.add("active");
-});
-
-panel.addEventListener("click", (e) => {
-  if(e.target === panel){
-    panel.classList.remove("active");
-  }
-});
+  
 </script>
 
 </body>
