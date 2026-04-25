@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ARCHIVE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+  margin:0;
+  background:#000;
+  color:#fff;
+  font-family:'Inter', sans-serif;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+
+  overflow:hidden;
+}
+
+/* conteúdo */
+.archive{
+  text-align:center;
+}
+
+.archive h1{
+  font-family:'Montserrat';
+  letter-spacing:0.3em;
+  font-weight:300;
+  margin-bottom:40px;
+}
+
+/* links */
+.archive a{
+  display:block;
+  margin:15px 0;
+  color:#fff;
+  text-decoration:none;
+  opacity:0.7;
+  transition:0.3s;
+}
+
+.archive a:hover{
+  opacity:1;
+}
+
+/* voltar (lado esquerdo) */
+.back-zone{
+  position:fixed;
+  left:0;
+  top:0;
+  width:80px;
+  height:100vh;
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="archive">
+
+  <h1>ARCHIVE</h1>
+
+  <a href="https://doi.org/10.5281/zenodo.19704495" target="_blank">
+    Report I — Foundations
+  </a>
+
+  <a href="SEU_SEGUNDO_DOI_AQUI" target="_blank">
+    Report II — Communication
+  </a>
+
+</div>
+
+<div class="back-zone" id="back"></div>
+
+<script>
+
+/* voltar automaticamente */
+document.getElementById("back").addEventListener("mousemove", () => {
+  window.location.href = "timeline.html";
+});
+
+</script>
+
+</body>
+</html>
