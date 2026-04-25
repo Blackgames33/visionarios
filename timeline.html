@@ -218,7 +218,48 @@ background-size: 160%;
   }
 
 } 
+#zenodo-dock{
+  position: fixed;
+  right: 0;
+  bottom: 40px;
 
+  width: 200px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  transform: translateX(110%);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+
+  z-index: 100;
+}
+
+#zenodo-dock.show{
+  transform: translateX(0);
+}
+
+.zenodo-item{
+  padding: 10px 14px;
+
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.zenodo-item:hover{
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-4px);
+}
 </style>
 </head>
 
@@ -258,7 +299,21 @@ background-size: 160%;
 
 <!-- CURSOR -->
 <div class="cursor" id="cursor">→</div>
+<div id="zenodo-dock">
 
+  <button class="zenodo-item" 
+          onclick="openLink('https://doi.org/10.5281/zenodo.19704495')">
+    Document I
+  </button>
+
+  <button class="zenodo-item" 
+          onclick="openLink('SEU_SEGUNDO_DOI_AQUI')">
+    Document II
+  </button>
+
+</div>
+
+  }
 <script>
 /* ================= ELEMENTOS ================= */
 
@@ -407,6 +462,36 @@ window.addEventListener("touchstart", revealCinema);
 if (window.innerWidth < 768) {
   const timeline = document.querySelector(".timeline");
   if(timeline) timeline.style.display = "none";
+}
+  const dock = document.getElementById("zenodo-dock");
+
+let timeout = null;
+
+window.addEventListener("mousemove", (e) => {
+  const triggerZone = 0.94; // mais preciso (6% da borda direita)
+
+  if (e.clientX / window.innerWidth > triggerZone) {
+
+    // pequeno delay → sensação de intenção do usuário
+    if (!dock.classList.contains("show")) {
+      timeout = setTimeout(() => {
+        dock.classList.add("show");
+      }, 120);
+    }
+
+  } else {
+
+    clearTimeout(timeout);
+
+    // evita “piscar” quando o usuário tenta clicar
+    setTimeout(() => {
+      dock.classList.remove("show");
+    }, 180);
+  }
+});
+
+function openLink(url){
+  window.open(url, "_blank", "noopener,noreferrer");
 }
 </script>
 
