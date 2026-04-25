@@ -358,13 +358,7 @@ function updateExperience(x, clientX, clientY){
     year.innerText = yearValue;
     year.style.left = (x * 100) + "%";
   }
-if(endScreen){
-  if (x > 0.97) {
-    endScreen.classList.add("show");
-  } else {
-    endScreen.classList.remove("show");
-  }
-}
+
   /* ===== FUNDO DINÂMICO ===== */
   if(tone){
     if (x < 0.25) {
@@ -397,7 +391,13 @@ if(endScreen){
   if (scenes[index]) {
     scenes[index].style.opacity = "1";
   }
-
+if(endScreen){
+  if (x > 0.97) {
+    endScreen.classList.add("show");
+  } else {
+    endScreen.classList.remove("show");
+  }
+}
   /* ===== FINAL (TRANSIÇÃO) ===== */
   if (x > 0.97 && !window._transitioning) {
     window._transitioning = true;
