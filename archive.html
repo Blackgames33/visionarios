@@ -4,91 +4,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ARCHIVE</title>
+<title>SEMANTIC INFRASTRUCTURE</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Montserrat:wght@300&display=swap" rel="stylesheet">
 
 <style>
 
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+
 body{
-  margin:0;
-  background:#000;
-  color:#fff;
-  font-family:'Inter', sans-serif;
+  height:100vh;
+  overflow:hidden;
 
   display:flex;
   align-items:center;
   justify-content:center;
-  height:100vh;
 
-  overflow:hidden;
+  font-family:'Inter', sans-serif;
+  color:#fff;
+
+  background:#000;
 }
 
-/* conteúdo */
+/* FUNDO (opcional, pode trocar imagem) */
+.bg{
+  position:fixed;
+  inset:0;
+  background:url('assets/library000.jpg') center/cover no-repeat;
+  z-index:-2;
+}
+
+.bg-overlay{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
+  z-index:-1;
+}
+
+/* CONTAINER */
 .archive{
   text-align:center;
+  position:relative;
+  z-index:10;
 }
 
-.archive h1{
-  font-family:'Montserrat';
-  letter-spacing:0.3em;
-  font-weight:300;
-  margin-bottom:40px;
-}
-
-/* links */
-.archive a{
-  display:block;
-  margin:15px 0;
-  color:#fff;
-  text-decoration:none;
-  opacity:0.7;
-  transition:0.3s;
-}
-
-.archive a:hover{
-  opacity:1;
-}
-
-/* voltar (lado esquerdo) */
-.back-zone{
-  position:fixed;
-  left:0;
-  top:0;
-  width:80px;
-  height:100vh;
-  cursor:pointer;
-}
-.archive-title{
-  opacity:0;
-  transform:translateY(10px);
-  transition:2s ease;
-}
-
-.archive-title.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.back-hint{
-  position:fixed;
-  left:30px;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:18px;
-  opacity:0.2;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.back-hint:hover{
-  opacity:0.7;
-}
-  .archive{
-  text-align:center;
-}
-
-/* flecha rápida */
+/* FLECHA */
 .arrow-fast{
   position:fixed;
   left:-100px;
@@ -96,7 +57,8 @@ body{
   transform:translateY(-50%);
   font-size:20px;
   opacity:0.6;
-  transition:1s ease;
+  transition:0.8s ease;
+  z-index:5;
 }
 
 .arrow-fast.show{
@@ -104,28 +66,34 @@ body{
   opacity:0;
 }
 
-/* título */
+/* TÍTULO */
 .archive-title{
+  font-family:'Montserrat';
+  letter-spacing:0.3em;
+  font-weight:300;
+
   opacity:0;
   transform:translateY(20px);
   transition:1.5s ease;
 }
 
-/* conteúdo */
+/* CONTEÚDO */
 .archive-content{
+  margin-top:40px;
+
   opacity:0;
   transform:translateY(20px);
   transition:1.5s ease;
 }
 
-/* ativação */
+/* ATIVAÇÃO */
 .archive.show .archive-title,
 .archive.show .archive-content{
   opacity:1;
   transform:translateY(0);
 }
 
-/* links */
+/* LINKS */
 .archive a{
   display:block;
   margin:15px 0;
@@ -133,81 +101,72 @@ body{
   text-decoration:none;
   opacity:0.7;
   transition:0.3s;
+  letter-spacing:0.15em;
 }
 
 .archive a:hover{
   opacity:1;
 }
 
-/* voltar por zona */
+/* ZONA DE VOLTA */
 .back-zone{
   position:fixed;
   left:0;
   top:0;
   width:80px;
   height:100vh;
-  z-index:50;
-}
-  .archive{
-  position:relative;
-  z-index:10;
-}
-
-.archive-title,
-.archive-content{
-  position:relative;
-  z-index:11;
-}
-
-/* garante que nada bloqueie */
-.arrow-fast{
-  z-index:5;
-}
-
-.back-zone{
   z-index:20;
+  cursor:pointer;
 }
+
+/* MOBILE */
+@media (max-width:768px){
+  body{
+    touch-action:none;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- FUNDO -->
+<div class="bg"></div>
+<div class="bg-overlay"></div>
+
+<!-- CONTEÚDO -->
 <div class="archive">
+
   <div class="arrow-fast">→</div>
 
   <h1 class="archive-title">SEMANTIC INFRASTRUCTURE</h1>
 
   <div class="archive-content">
-  <a href="https://doi.org/10.5281/zenodo.19247329" target="_blank">
-  Conceptual Foundations
+
+    <a href="https://doi.org/10.5281/zenodo.19247329" target="_blank">
       Layer I — Conceptual Foundations
     </a>
 
-   <a href="https://doi.org/10.5281/zenodo.19704495" target="_blank">
+    <a href="https://doi.org/10.5281/zenodo.19704495" target="_blank">
       Layer II — Post-Symbolic Communication
     </a>
+
   </div>
+
 </div>
 
+<!-- ZONA DE VOLTA -->
 <div class="back-zone" id="backZone"></div>
 
 <script>
 
-/* voltar automaticamente */
-document.getElementById("back").addEventListener("mousemove", () => {
-  window.location.href = "timeline.html";
-});
-setTimeout(() => {
-  document.querySelector(".archive-title").classList.add("show");
-}, 800);
-
-document.getElementById("back").addEventListener("click", () => {
-  window.location.href = "timeline.html";
-});
-  const archive = document.querySelector(".archive");
+/* ELEMENTOS */
+const archive = document.querySelector(".archive");
 const arrow = document.querySelector(".arrow-fast");
+const backZone = document.getElementById("backZone");
 
-/* entrada cinematográfica */
+/* ENTRADA CINEMATOGRÁFICA */
 setTimeout(() => {
   arrow.classList.add("show");
 }, 200);
@@ -216,21 +175,21 @@ setTimeout(() => {
   archive.classList.add("show");
 }, 800);
 
-/* clique */
-document.getElementById("backZone").addEventListener("click", () => {
+/* VOLTAR (CLIQUE) */
+backZone.addEventListener("click", () => {
   window.location.href = "timeline.html";
 });
 
-/* mover mouse */
+/* VOLTAR (MOUSE ESQUERDA) */
 window.addEventListener("mousemove", (e) => {
   const x = e.clientX / window.innerWidth;
 
-  if(x < 0.03){
+  if(x < 0.01){
     window.location.href = "timeline.html";
   }
 });
 
-/* mobile */
+/* MOBILE */
 window.addEventListener("touchmove", (e) => {
   const touch = e.touches[0];
   const x = touch.clientX / window.innerWidth;
@@ -239,6 +198,7 @@ window.addEventListener("touchmove", (e) => {
     window.location.href = "timeline.html";
   }
 });
+
 </script>
 
 </body>
