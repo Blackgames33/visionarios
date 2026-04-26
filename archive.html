@@ -84,23 +84,93 @@ body{
 .back-hint:hover{
   opacity:0.7;
 }
+  .archive{
+  text-align:center;
+}
+
+/* flecha rápida */
+.arrow-fast{
+  position:fixed;
+  left:-100px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:20px;
+  opacity:0.6;
+  transition:1s ease;
+}
+
+.arrow-fast.show{
+  left:110%;
+  opacity:0;
+}
+
+/* título */
+.archive-title{
+  opacity:0;
+  transform:translateY(20px);
+  transition:1.5s ease;
+}
+
+/* conteúdo */
+.archive-content{
+  opacity:0;
+  transform:translateY(20px);
+  transition:1.5s ease;
+}
+
+/* ativação */
+.archive.show .archive-title,
+.archive.show .archive-content{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* links */
+.archive a{
+  display:block;
+  margin:15px 0;
+  color:#fff;
+  text-decoration:none;
+  opacity:0.7;
+  transition:0.3s;
+}
+
+.archive a:hover{
+  opacity:1;
+}
+
+/* voltar por zona */
+.back-zone{
+  position:fixed;
+  left:0;
+  top:0;
+  width:80px;
+  height:100vh;
+  z-index:50;
+}
 </style>
 </head>
 
 <body>
 
 <div class="archive">
-<h1 class="archive-title">SEMANTIC INFRASTRUCTURE</h1>
+  <div class="arrow-fast">→</div>
 
-<a href="https://doi.org/10.5281/zenodo.19247329" target="_blank">
+  <h1 class="archive-title">SEMANTIC INFRASTRUCTURE</h1>
+
+  <div class="archive-content">
+  <a href="https://doi.org/10.5281/zenodo.19247329" target="_blank">
   Conceptual Foundations
-</a>
+      Layer I — Conceptual Foundations
+    </a>
 
-<a href="https://doi.org/10.5281/zenodo.19704495" target="_blank">
-  Post-Symbolic Communication
-</a>
+   <a href="https://doi.org/10.5281/zenodo.19704495" target="_blank">
+      Layer II — Post-Symbolic Communication
+    </a>
+  </div>
+</div>
 
-<div class="back-hint" id="back">←</div>
+<div class="back-zone" id="backZone"></div>
 
 <script>
 
@@ -114,6 +184,41 @@ setTimeout(() => {
 
 document.getElementById("back").addEventListener("click", () => {
   window.location.href = "timeline.html";
+});
+  const archive = document.querySelector(".archive");
+const arrow = document.querySelector(".arrow-fast");
+
+/* entrada cinematográfica */
+setTimeout(() => {
+  arrow.classList.add("show");
+}, 200);
+
+setTimeout(() => {
+  archive.classList.add("show");
+}, 800);
+
+/* clique */
+document.getElementById("backZone").addEventListener("click", () => {
+  window.location.href = "timeline.html";
+});
+
+/* mover mouse */
+window.addEventListener("mousemove", (e) => {
+  const x = e.clientX / window.innerWidth;
+
+  if(x < 0.03){
+    window.location.href = "timeline.html";
+  }
+});
+
+/* mobile */
+window.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  const x = touch.clientX / window.innerWidth;
+
+  if(x < 0.05){
+    window.location.href = "timeline.html";
+  }
 });
 </script>
 
