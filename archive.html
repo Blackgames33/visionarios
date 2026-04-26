@@ -59,24 +59,49 @@ body{
   height:100vh;
   cursor:pointer;
 }
+.archive-title{
+  opacity:0;
+  transform:translateY(10px);
+  transition:2s ease;
+}
 
+.archive-title.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.back-hint{
+  position:fixed;
+  left:30px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:18px;
+  opacity:0.2;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.back-hint:hover{
+  opacity:0.7;
+}
 </style>
 </head>
 
 <body>
 
 <div class="archive">
+<h1 class="archive-title">SEMANTIC INFRASTRUCTURE</h1>
 
-  <h1>ARCHIVE</h1>
-  <a href="https://doi.org/10.5281/zenodo.19247329" target="_blank">
-   Layer I - Conceptual Foundations 
-  </a>
-  
-  <a href="https://doi.org/10.5281/zenodo.19704495" target="_blank">
-  Layer II - Post-Symbolic Comunication
-  </a>
+<a href="https://doi.org/10.5281/zenodo.19247329" target="_blank">
+  Layer I — Conceptual Foundations
+</a>
 
-</div>
+<a href="https://doi.org/10.5281/zenodo.19704495" target="_blank">
+  Layer II — Post-Symbolic Communication
+</a>
+
+<div class="back-hint" id="back">←</div>
+ https://doi.org/10.5281/zenodo.19247329
 
 <div class="back-zone" id="back"></div>
 
@@ -86,7 +111,13 @@ body{
 document.getElementById("back").addEventListener("mousemove", () => {
   window.location.href = "timeline.html";
 });
+setTimeout(() => {
+  document.querySelector(".archive-title").classList.add("show");
+}, 800);
 
+document.getElementById("back").addEventListener("click", () => {
+  window.location.href = "timeline.html";
+});
 </script>
 
 </body>
