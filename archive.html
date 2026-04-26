@@ -57,7 +57,7 @@ body{
   transform:translateY(-50%);
   font-size:20px;
   opacity:0.6;
-  transition:0.8s ease;
+  transition:1.4s cubic-bezier(0.22, 1, 0.36, 1); 
   z-index:5;
 }
 
@@ -125,7 +125,25 @@ body{
     touch-action:none;
   }
 }
+@media (max-width:768px){
 
+  .archive-title{
+    font-size:1.4rem;
+    letter-spacing:0.15em;
+    padding:0 20px;
+  }
+
+  .archive-content{
+    margin-top:25px;
+  }
+
+  .archive a{
+    font-size:0.8rem;
+    letter-spacing:0.1em;
+    padding:0 20px;
+  }
+
+}
 </style>
 </head>
 
