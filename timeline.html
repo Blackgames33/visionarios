@@ -315,15 +315,16 @@ const scenes = [
 /* ================= 🎯 TIMELINE CONTROL ================= */
 
 const timelineConfig = [
-  { start: 0.00, end: 0.05, scene: 0 }, // Wall Street
-  { start: 0.05, end: 0.10, scene: 1 }, // ONU
-  { start: 0.10, end: 0.15, scene: 2 }, // Biblioteca
-  { start: 0.15, end: 0.20, scene: 3 }, // Avião
-  { start: 0.20, end: 0.25, scene: 4 }, // Cozinha
-  { start: 0.25, end: 0.30, scene: 5 }, // Futuro 1
-  { start: 0.30, end: 0.35, scene: 6 }, // Futuro 2
-  { start: 0.35, end: 0.40, scene: 7 }  // Final
+  { start: 0.00, end: 0.10, scene: 0 }, // Wall Street
+  { start: 0.10, end: 0.20, scene: 1 }, // ONU
+  { start: 0.20, end: 0.30, scene: 2 }, // Biblioteca
+  { start: 0.30, end: 0.40, scene: 3 }, // Avião
+  { start: 0.40, end: 0.50, scene: 4 }, // Cozinha
+  { start: 0.50, end: 0.60, scene: 5 }, // Futuro 1
+  { start: 0.60, end: 0.70, scene: 6 }, // Futuro 2
+  { start: 0.70, end: 0.80, scene: 7 }  // Final
 ];
+
 
 function getSceneIndex(x){
   for(let i = 0; i < timelineConfig.length; i++){
