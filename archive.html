@@ -328,23 +328,25 @@ window.addEventListener("mousemove", (e) => {
 
 });
 let touchStartX = 0;
+let isSwiping = false;
 
 window.addEventListener("touchstart", (e) => {
   touchStartX = e.touches[0].clientX;
+  isSwiping = true;
 });
 
-window.addEventListener("touchend", (e) => {
+window.addEventListener("touchmove", (e) => {
 
-  if(window.isGoingBack) return;
+  if(!isSwiping || window.isGoingBack) return;
 
-  const touchEndX = e.changedTouches[0].clientX;
-  const delta = touchEndX - touchStartX;
+  const touchX = e.touches[0].clientX;
+  const delta = touchX - touchStartX;
 
-  // swipe da direita para esquerda NÃO (evita conflito)
-  // swipe da esquerda para direita SIM (voltar)
+  // gesto: começou na esquerda + arrastou para direita
+  if(touchStartX < 80 && delta > 60){
 
-  if(touchStartX < 80 && delta > 50){ // começou perto da borda + arrastou
     window.isGoingBack = true;
+    isSwiping = false;
 
     document.body.style.transition = "opacity 0.6s ease";
     document.body.style.opacity = "0";
@@ -354,6 +356,10 @@ window.addEventListener("touchend", (e) => {
     }, 600);
   }
 
+});
+
+window.addEventListener("touchend", () => {
+  isSwiping = false;
 });
 /* ===== DESKTOP ===== */
 window.addEventListener("mousemove", (e) => {
