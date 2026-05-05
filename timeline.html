@@ -436,19 +436,7 @@ let ticking = false;
 function handleMove(clientX, clientY){
   const x = clientX / window.innerWidth;
   updateExperience(x, clientX, clientY);
-/* ================= VOLTAR (ESTÁVEL) ================= */
 
-const backZone = 0.05;
-
-if (x < backZone && !window._goingBack) {
-  window._goingBack = true;
-
-  document.body.style.transition = "opacity 0.8s ease";
-  document.body.style.opacity = "0";
-
-  setTimeout(() => {
-    window.location.href = "index.html";
-  }, 700);
 }
 
 /* ===== DESKTOP ===== */
