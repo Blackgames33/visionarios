@@ -238,6 +238,9 @@ body{
     font-size:0.9rem;
   }
 }
+  * {
+  -webkit-tap-highlight-color: transparent;
+}
 </style>
 </head>
 
@@ -354,17 +357,6 @@ window.addEventListener("mousemove", (e) => {
 
 });
 
-/* ===== MOBILE ===== */
-window.addEventListener("touchmove", (e) => {
-
-  const touch = e.touches[0];
-  const x = touch.clientX / window.innerWidth;
-
-  if(x < 0.08){
-    goBackTimeline();
-  }
-
-});
 
 </script>
 </body>
