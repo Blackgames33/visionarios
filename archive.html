@@ -280,28 +280,22 @@ body{
 
 <!-- ZONA DE VOLTA -->
 <div class="back-zone" id="backZone"></div>
-
 <script>
-
 /* ELEMENTOS */
 const archive = document.querySelector(".archive");
 const arrow = document.querySelector(".arrow-fast");
 const backZone = document.getElementById("backZone");
-
 /* ENTRADA CINEMATOGRÁFICA */
 setTimeout(() => {
   arrow.classList.add("show");
 }, 200);
-
 setTimeout(() => {
   archive.classList.add("show");
 }, 800);
-
 /* VOLTAR (CLIQUE) */
 backZone.addEventListener("click", () => {
   window.location.href = "timeline.html";
 });
-
 /* VOLTAR (MOUSE ESQUERDA) */
 window.addEventListener("mousemove", (e) => {
   const x = e.clientX / window.innerWidth;
