@@ -324,7 +324,25 @@ window.addEventListener("mousemove", (e) => {
   }
 
 });
+window.addEventListener("touchstart", (e) => {
 
+  if(window.isGoingBack) return;
+
+  const touch = e.touches[0];
+  const x = touch.clientX / window.innerWidth;
+
+  if(x < 0.15){ // zona maior para dedo
+    window.isGoingBack = true;
+
+    document.body.style.transition = "opacity 0.6s ease";
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+      window.location.href = "timeline.html";
+    }, 600);
+  }
+
+});
 /* ===== DESKTOP ===== */
 window.addEventListener("mousemove", (e) => {
 
