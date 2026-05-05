@@ -302,43 +302,48 @@ backZone.addEventListener("click", () => {
   window.location.href = "timeline.html";
 });
 
-/* VOLTAR (MOUSE ESQUERDA) */
+<script>
+
+/* ================= VOLTAR PARA TIMELINE (SUAVE E ESTÁVEL) ================= */
+
+let isGoingBack = false;
+
+function goBackTimeline(){
+
+  if(isGoingBack) return;
+  isGoingBack = true;
+
+  document.body.style.transition = "opacity 0.6s ease";
+  document.body.style.opacity = "0";
+
+  setTimeout(() => {
+    window.location.href = "timeline.html";
+  }, 600);
+}
+
+/* ===== DESKTOP ===== */
 window.addEventListener("mousemove", (e) => {
+
   const x = e.clientX / window.innerWidth;
 
- document.body.style.transition = "opacity 0.8s ease";
-document.body.style.opacity = "0";
+  if(x < 0.05){
+    goBackTimeline();
+  }
 
-setTimeout(() => {
-  window.location.href = "timeline.html";
-}, 800);
+});
 
-/* MOBILE */
+/* ===== MOBILE ===== */
 window.addEventListener("touchmove", (e) => {
+
   const touch = e.touches[0];
   const x = touch.clientX / window.innerWidth;
 
-  if(x < 0.05){
-    window.location.href = "timeline.html";
+  if(x < 0.08){
+    goBackTimeline();
   }
-});
-document.querySelectorAll(".link-out").forEach(link => {
-
-  link.addEventListener("click", function(e){
-
-    e.preventDefault();
-
-    const url = this.href;
-
-    document.body.classList.add("fade-out");
-
-    setTimeout(() => {
-      window.open(url, "_blank");
-    }, 600);
-
-  });
 
 });
+
 </script>
 
 </body>
