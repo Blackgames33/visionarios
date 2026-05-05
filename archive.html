@@ -238,9 +238,6 @@ body{
     font-size:0.9rem;
   }
 }
-  * {
-  -webkit-tap-highlight-color: transparent;
-}
 </style>
 </head>
 
@@ -306,65 +303,30 @@ backZone.addEventListener("click", () => {
 });
 
 /* VOLTAR (MOUSE ESQUERDA) */
-
-
-/* ================= VOLTAR PARA TIMELINE (SUAVE E ESTÁVEL) ================= */
 window.addEventListener("mousemove", (e) => {
-
-  if(window.isGoingBack) return;
-
   const x = e.clientX / window.innerWidth;
-
+  if(x < 0.01){
+    window.location.href = "timeline.html";
+  }
+});
+/* MOBILE */
+window.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  const x = touch.clientX / window.innerWidth;
   if(x < 0.05){
-    window.isGoingBack = true;
-
-    document.body.style.transition = "opacity 0.6s ease";
-    document.body.style.opacity = "0";
-
+    window.location.href = "timeline.html";
+  }
+});
+document.querySelectorAll(".link-out").forEach(link => {
+  link.addEventListener("click", function(e){
+    e.preventDefault();
+    const url = this.href;
+    document.body.classList.add("fade-out");
     setTimeout(() => {
-      window.location.href = "timeline.html";
+      window.open(url, "_blank");
     }, 600);
-  }
-
+  });
 });
-let startX = 0;
-
-window.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-});
-
-window.addEventListener("touchend", (e) => {
-
-  const endX = e.changedTouches[0].clientX;
-  const delta = endX - startX;
-
-  // gesto de voltar (swipe da esquerda)
-  if(startX < 50 && delta > 40){
-
-    document.body.style.transition = "opacity 0.6s ease";
-    document.body.style.opacity = "0";
-
-    setTimeout(() => {
-      history.back(); // 👈 chave aqui
-    }, 600);
-  }
-
-});
-window.addEventListener("touchend", () => {
-  isSwiping = false;
-});
-/* ===== DESKTOP ===== */
-window.addEventListener("mousemove", (e) => {
-
-  const x = e.clientX / window.innerWidth;
-
-  if(x < 0.05){
-    goBackTimeline();
-  }
-
-});
-
-
 </script>
 </body>
 </html>
