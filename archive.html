@@ -327,37 +327,29 @@ window.addEventListener("mousemove", (e) => {
   }
 
 });
-let touchStartX = 0;
-let isSwiping = false;
+let startX = 0;
 
 window.addEventListener("touchstart", (e) => {
-  touchStartX = e.touches[0].clientX;
-  isSwiping = true;
+  startX = e.touches[0].clientX;
 });
 
-window.addEventListener("touchmove", (e) => {
+window.addEventListener("touchend", (e) => {
 
-  if(!isSwiping || window.isGoingBack) return;
+  const endX = e.changedTouches[0].clientX;
+  const delta = endX - startX;
 
-  const touchX = e.touches[0].clientX;
-  const delta = touchX - touchStartX;
-
-  // gesto: começou na esquerda + arrastou para direita
-  if(touchStartX < 80 && delta > 60){
-
-    window.isGoingBack = true;
-    isSwiping = false;
+  // gesto de voltar (swipe da esquerda)
+  if(startX < 50 && delta > 40){
 
     document.body.style.transition = "opacity 0.6s ease";
     document.body.style.opacity = "0";
 
     setTimeout(() => {
-      window.location.href = "timeline.html";
+      history.back(); // 👈 chave aqui
     }, 600);
   }
 
 });
-
 window.addEventListener("touchend", () => {
   isSwiping = false;
 });
