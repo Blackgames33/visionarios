@@ -436,30 +436,7 @@ let ticking = false;
 function handleMove(clientX, clientY){
   const x = clientX / window.innerWidth;
   updateExperience(x, clientX, clientY);
-  /* ================= VOLTAR (ESQUERDA SUAVE) ================= */
-
-const backZone = 0.06;   // ativa retorno mais cedo (6%)
-const backHint = 0.12;   // zona de pré-efeito (12%)
-
-/* leve escurecimento ao aproximar */
-if (x < backHint) {
-  document.body.style.filter = "brightness(0.85)";
-} else {
-  document.body.style.filter = "brightness(1)";
-}
-
-/* transição suave de volta */
-if (x < backZone && !window._goingBack) {
-  window._goingBack = true;
-
-  document.body.style.transition = "opacity 0.8s ease";
-  document.body.style.opacity = "0";
-
-  setTimeout(() => {
-    window.location.href = "index.html"; // ou sua página anterior
-  }, 700);
-}
-}
+ 
 
 /* ===== DESKTOP ===== */
 
