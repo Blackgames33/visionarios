@@ -184,36 +184,58 @@ body{
 }
 
 .contact-node a{
-  display:inline-block;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+
   text-decoration:none;
   opacity:0.3;
+
   transition:0.4s ease;
 }
 
 /* símbolo */
 .node-symbol{
-  width:26px;
+  width:24px;
   height:auto;
 
-  stroke:rgba(255,255,255,0.35);
+  stroke:rgba(255,255,255,0.4);
   stroke-width:2;
   fill:none;
 
   transition:0.4s ease;
 }
 
+/* texto */
+.contact-node span{
+  font-size:0.6rem;
+  letter-spacing:0.25em;
+
+  color:rgba(255,255,255,0.4);
+
+  transition:0.4s ease;
+}
+
 /* hover */
 .contact-node a:hover{
-  opacity:0.8;
+  opacity:0.85;
 }
 
 .contact-node a:hover .node-symbol{
-  stroke:rgba(255,255,255,0.8);
-  transform:scale(1.05);
+  stroke:rgba(255,255,255,0.9);
+}
+
+.contact-node a:hover span{
+  color:rgba(255,255,255,0.8);
 }
   @media (max-width:768px){
-  .node-symbol{
-    stroke:rgba(255,255,255,0.6);
+  .contact-node{
+    margin-top:40px;
+  }
+
+  .contact-node span{
+    font-size:0.7rem;
   }
 }
 </style>
@@ -243,10 +265,12 @@ body{
     </a>
 <div class="contact-node">
   <a href="mailto:contato@visionarios.space">
-    
+
     <svg class="node-symbol" viewBox="0 0 100 60">
-      <path d="M10 35 L25 50 L40 10 L90 10" />
+      <path d="M15 35 L28 48 L38 18 L70 18" />
     </svg>
+
+    <span>contact</span>
 
   </a>
 </div>
