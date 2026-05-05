@@ -388,11 +388,7 @@ function updateExperience(x, clientX, clientY){
   if (scenes[index]) {
     scenes[index].style.opacity = "1";
   }
-if(x > 0.85){
-  document.body.style.filter = "brightness(0.6)";
-} else {
-  document.body.style.filter = "brightness(1)";
-}
+
   /* ===== TRANSIÇÃO FINAL ===== */
   if (x > 0.92 && !window._transitioning) {
     window._transitioning = true;
