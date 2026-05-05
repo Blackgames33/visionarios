@@ -194,17 +194,28 @@ body{
   transition:0.4s ease;
 }
 
-.contact-node img{
-  width:18px;
-  height:18px;
-  filter:grayscale(100%);
+/* símbolo (bolinha elegante) */
+.node-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#fff;
+
+  opacity:0.6;
+
+  box-shadow:
+    0 0 6px rgba(255,255,255,0.2),
+    0 0 12px rgba(255,255,255,0.05);
 }
 
+/* texto */
 .contact-node span{
   font-size:0.65rem;
   letter-spacing:0.25em;
+
   opacity:0;
   transform:translateX(-5px);
+
   transition:0.4s ease;
 }
 
@@ -248,14 +259,14 @@ body{
     <a href="https://doi.org/10.5281/zenodo.19704495" class-target="_blank">
      Entry - Post-Symbolic Systems
     </a>
-
-  </div>
 <div class="contact-node">
-  <a href="mailto:seuemail@email.com">
-    <img src="favicon.png" alt="contact">
+  <a href="mailto:contato@visionarios.space">
+    <div class="node-dot"></div>
     <span>contact</span>
   </a>
 </div>
+  </div>
+
 </div>
 
 <!-- ZONA DE VOLTA -->
