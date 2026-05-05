@@ -194,44 +194,39 @@ body{
   transition:0.4s ease;
 }
 
-/* símbolo (bolinha elegante) */
-.node-dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:#fff;
-
-  opacity:0.6;
-
-  box-shadow:
-    0 0 6px rgba(255,255,255,0.2),
-    0 0 12px rgba(255,255,255,0.05);
+.contact-node{
+  margin-top:60px;
+  text-align:center;
 }
 
-/* texto */
-.contact-node span{
-  font-size:0.65rem;
-  letter-spacing:0.25em;
+/* link */
+.contact-node a{
+  text-decoration:none;
+  display:inline-block;
+}
 
-  opacity:0;
-  transform:translateX(-5px);
+/* símbolo */
+.node-v{
+  font-family:'Montserrat', sans-serif;
+
+  font-size:14px;
+  letter-spacing:0.2em;
+
+  color:rgba(255,255,255,0.25); /* cinza suave */
+
+  transform:skewX(-8deg); /* leve inclinação (efeito raiz) */
 
   transition:0.4s ease;
 }
 
 /* hover */
-.contact-node a:hover{
-  opacity:0.8;
-}
-
-.contact-node a:hover span{
-  opacity:1;
-  transform:translateX(0);
+.contact-node a:hover .node-v{
+  color:rgba(255,255,255,0.6);
+  transform:skewX(-8deg) scale(1.1);
 }
   @media (max-width:768px){
-  .contact-node span{
-    opacity:0.6;
-    transform:none;
+  .node-v{
+    color:rgba(255,255,255,0.45);
   }
 }
 </style>
@@ -261,7 +256,7 @@ body{
     </a>
 <div class="contact-node">
   <a href="mailto:contato@visionarios.space">
-    <div class="node-dot"></div>
+    <div class="node-v">V</div>
     <span>contact</span>
   </a>
 </div>
