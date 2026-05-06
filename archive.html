@@ -299,9 +299,16 @@ backZone.addEventListener("click", () => {
 /* VOLTAR (MOUSE ESQUERDA) */
 window.addEventListener("mousemove", (e) => {
   const x = e.clientX / window.innerWidth;
-  if(x < 0.01){
+if(x < 0.05){
+
+  document.body.style.transition = "opacity 0.6s ease";
+  document.body.style.opacity = "0";
+
+  setTimeout(() => {
     window.location.href = "timeline.html";
-  }
+  }, 600);
+
+}
 });
 /* MOBILE */
 window.addEventListener("touchmove", (e) => {
